@@ -4,11 +4,13 @@ echo "Setting up your Mac..."
 
 # Check for Oh My Zsh and install if we don't have it
 if test ! $(which omz); then
+  echo "Installing Oh My Zsh..."
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
+  echo "Installing Homebrew" 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
@@ -23,22 +25,24 @@ ln -s .zshrc $HOME/.zshrc
 brew update
 
 # Install all our dependencies with bundle (See Brewfile)
+echo "Installing Homebrew dependencies" 
 brew tap homebrew/bundle
 brew bundle --file ./Brewfile
 
 # Set default MySQL root password and auth type
-mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
+# mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
 # Create a projects directories
-mkdir $HOME/Code
-mkdir $HOME/Herd
+mkdir $HOME/Developer
+# mkdir $HOME/Code
+# mkdir $HOME/Herd
 
 # Create Code subdirectories
-mkdir $HOME/Code/blade-ui-kit
-mkdir $HOME/Code/laravel
+# mkdir $HOME/Code/blade-ui-kit
+# mkdir $HOME/Code/laravel
 
 # Clone Github repositories
-./clone.sh
+# ./clone.sh
 
 # Symlink the Mackup config file to the home directory
 ln -s ./.mackup.cfg $HOME/.mackup.cfg
