@@ -8,8 +8,7 @@ if test ! $(which omz); then
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
-
-# Install Powerlevel10k theme
+# Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
 echo "Installing Powerlevel 10k theme..."
 sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
