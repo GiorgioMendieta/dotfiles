@@ -8,41 +8,6 @@ if test ! $(which omz); then
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
-# Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
-echo "Installing Powerlevel 10k theme..."
-sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# Removes .p10k.zsh from $HOME (if it exists) and symlinks the .p10k.zsh file from the .dotfiles
-rm -rf $HOME/.p10k.zsh
-ln -s .p10k.zsh $HOME/.p10k.zsh
-
-# Meslo Nerd Font (recommended by the creator of Powerlevel10k theme)
-echo "Installing Meslo Nerd Font"
-
-# Select fonts folder based on the current platform
-if [[ "$OS" == "Linux" ]]; then
-    FONTS_FOLDER_PATH=~/.fonts
-fi
-if [[ "$OS" == "Darwin" ]]; then
-    FONTS_FOLDER_PATH=~/Library/Fonts
-fi
-
-# Make sure that the fonts directory exists
-mkdir -p ${FONTS_FOLDER_PATH}
-
-# Download fonts
-(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Regular.ttf"     "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf")       &> /dev/null
-(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Bold.ttf"        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf")          &> /dev/null
-(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Italic.ttf"      "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf")        &> /dev/null
-(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Bold Italic.ttf" "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf") &> /dev/null
-
-# Refresh font cache if on Linux
-if [[ "$OS" == "Linux" ]]; then
-    echo
-    echo -e "Resetting Linux font cache"
-    (fc-cache -f -v) &> /dev/null
-fi
-
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
   echo "Installing Homebrew" 
@@ -78,6 +43,28 @@ mkdir $HOME/Developer
 
 # Clone Github repositories
 # ./clone.sh
+
+# Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
+echo "Installing Powerlevel 10k theme..."
+sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# Removes .p10k.zsh from $HOME (if it exists) and symlinks the .p10k.zsh file from the .dotfiles
+rm -rf $HOME/.p10k.zsh
+ln -s .p10k.zsh $HOME/.p10k.zsh
+
+# Meslo Nerd Font (recommended by the creator of Powerlevel10k theme)
+echo "Installing Meslo Nerd Font"
+# Select fonts folder path
+FONTS_FOLDER_PATH=~/Library/Fonts
+# Make sure that the fonts directory exists
+mkdir -p ${FONTS_FOLDER_PATH}
+
+# Download fonts
+(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Regular.ttf"     "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf")       &> /dev/null
+(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Bold.ttf"        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf")          &> /dev/null
+(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Italic.ttf"      "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf")        &> /dev/null
+(curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Bold Italic.ttf" "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf") &> /dev/null
+
 
 # Symlink the Mackup config file to the home directory
 ln -s ./.mackup.cfg $HOME/.mackup.cfg
