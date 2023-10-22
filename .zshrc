@@ -1,5 +1,5 @@
 # Path to your dotfiles.
-export DOTFILES="$HOME/dotfiles"
+export DOTFILES="$HOME/.dotfiles"
 
 # TODO: Configure P10k for dotfiles
 
