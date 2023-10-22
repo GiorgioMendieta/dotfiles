@@ -31,6 +31,8 @@ alias developer="cd $HOME/Developer"
 # alias unstage="git restore --staged ."
 # alias wip="commit wip"
 
+alias showpath="echo '${PATH//:/\n}'"
+
 # Homebrew
 alias outdated="brew update; brew outdated"
 
