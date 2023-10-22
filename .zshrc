@@ -1,5 +1,5 @@
 # Path to your dotfiles.
-export DOTFILES=$HOME/dotfiles
+export DOTFILES="$HOME/dotfiles"
 
 # TODO: Configure P10k for dotfiles
 
@@ -84,8 +84,8 @@ ZSH_CUSTOM=$DOTFILES
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# plugins=(git zsh-syntax-highlighting zsh-autosuggestions nvm)
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
+# plugins=(git zsh-syntax-highlighting zsh-autosuggestions colored-man-pages nvm)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,8 +123,8 @@ source $ZSH/oh-my-zsh.sh
 # source <(ng completion script)
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR=~/.nvm
+# source $(brew --prefix nvm)/nvm.sh
