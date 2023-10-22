@@ -3,15 +3,13 @@ alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias reloadshell="source $HOME/.zshrc"
 # alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 # alias ll="/opt/homebrew/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
-# alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
-alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 # alias compile="commit 'compile'"
 # alias version="commit 'version'"
 
 # Directories
-alias dotfiles="cd $DOTFILES"
-alias library="cd $HOME/Library"
-alias developer="cd $HOME/Developer"
+alias dotfiles="cd $DOTFILES && ls"
+alias library="cd $HOME/Library && ls"
+alias developer="cd $HOME/Developer && ls"
 
 # Git
 # alias gst="git status"
@@ -55,6 +53,35 @@ alias cp='cp -i'
 # Prevent rm -f from asking for confirmation on things like `rm -f *.bak`.
 setopt rm_star_silent
 
+# alias rm='safedelete'
+# function safedelete {
+#   if command -v gio > /dev/null; then
+#     for f in "$@"
+#     do
+#       gio trash -f "$f"
+#     done
+
+#   elif command -v gvfs-trash > /dev/null; then
+#     for f in "$@"
+#     do
+#       gvfs-trash "$f"
+#     done
+
+#   elif [ -d "$HOME/.local/share/Trash/files" ]; then
+#     for f in "$@"
+#     do
+#       mv "$f" "$HOME/.local/share/Trash/files"
+#     done
+
+#   else
+#     for f in "$@"
+#     do
+#       # shellcheck disable=SC1012
+#       \rm "$f"
+#     done
+#   fi
+# }
+
 # Create dir and immediately cd into it
 function mkcd {
   if [ ! -n "$1" ]; then
@@ -68,47 +95,46 @@ function mkcd {
 
 # exa aliases
 if [ -x "$(command -v exa)" ]; then
-    # Display type indicator by file names
-    alias ls='exa --classify --icons'
+  # Display type indicator by file names
+  alias ls='exa --classify --icons'
 
-    # Show header, git status, and sort by type
-    alias ll='ls -lh --git --sort type' 
+  # Show header, git status, and sort by type
+  alias ll='ls -lh --git --sort type'
 
-    # Show hidden files
-    alias la='ls -a'
+  # Show hidden files
+  alias la='ls -a'
 
-    # Show hidden files (long)
-    alias lla='ll -a'
+  # Show hidden files (long)
+  alias lla='ll -a'
 
-    # Tree view (long)
-    alias llt='ll --tree --level=2'
+  # Tree view (long)
+  alias llt='ll --tree --level=2'
 
-    # Tree view (level in parameter)
-    function lt {
-	if [ "$1" != "" ]
-    		then
-        		exa --tree --icons --level=$1
-    		else
-        		exa --tree --icons --level=1
-    		fi
-    }
+  # Tree view (level in parameter)
+  function lt {
+    if [ "$1" != "" ]; then
+      exa --tree --icons --level=$1
+    else
+      exa --tree --icons --level=1
+    fi
+  }
 fi
 
 # Navigation aliases
 # alias up='cd ..'
 function up {
-        if [[ "$#" < 1 ]] ; then
-            # Navigate up one level
-            cd ..
-        else
-            # Navigate up multiple levels
-            CDSTR=""
-            for i in {1..$1} ; do
-                CDSTR="../$CDSTR"
-            done
-            cd $CDSTR
-        fi
-    }
+  if [[ "$#" < 1 ]]; then
+    # Navigate up one level
+    cd ..
+  else
+    # Navigate up multiple levels
+    CDSTR=""
+    for i in {1..$1}; do
+      CDSTR="../$CDSTR"
+    done
+    cd $CDSTR
+  fi
+}
 
 alias please='sudo $(fc -ln -1)'
 
@@ -125,7 +151,7 @@ alias pvenv='python3 -m venv ./venv'
 alias avenv='source ./venv/bin/activate'
 
 # Path to custom alias file (this file)
-alias calias='code ~/.oh-my-zsh/custom/aliases.zsh'
+alias calias='code $ZSH_CUSTOM/aliases.zsh'
 
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
