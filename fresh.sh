@@ -5,7 +5,9 @@ echo "Setting up your Mac..."
 # Check for Oh My Zsh and install if we don't have it
 if test ! $(which omz); then
   echo "Installing Oh My Zsh..."
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+  # /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+  # https://github.com/stemount/oh-my-zsh#unattended-install
+  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
 # Check for Homebrew and install if we don't have it
