@@ -4,10 +4,10 @@ tap 'homebrew/bundle'
 # Binaries
 brew 'autoconf'
 brew 'automake'
-brew 'bat' # cat replacement
+brew 'bat'                  # cat replacement
 brew 'exa'
 brew 'git'
-brew 'mas' # Mac App Store manager
+brew 'mas'                  # Mac App Store manager
 brew 'openssl@1.1'
 brew 'neofetch'
 brew 'neovim'
@@ -16,25 +16,25 @@ brew 'speedtest-cli'
 brew 'tree'
 
 # Development
-cask 'ghdl' # Replace LLVM version for Intel version
+cask 'ghdl'                 # Replace LLVM version for Intel version
 brew 'http-server'
-brew 'nvm' # Node version manager
+brew 'nvm'                  # Node version manager
 
 # Apps
-cask 'aerial' # Pretty screensavers
-cask 'aldente' # Limit charging to preserve battery health
-cask 'alt-tab' # Mimic Windows alt-tab behavior
+cask 'aerial'               # Pretty screensavers
+cask 'aldente'              # Limit charging to preserve battery health
+cask 'alt-tab'              # Mimic Windows alt-tab behavior
 cask 'betterdisplay'
 cask 'discord'
-cask 'iina' # Video player akin to VLC for Mac
-cask 'iterm2' # Terminal replacement
+cask 'iina'                 # Video player akin to VLC for Mac
+cask 'iterm2'               # Terminal replacement
 cask 'karabiner-elements'
 cask 'keka'
 cask 'linearmouse'
 cask 'moonlight'
 cask 'numi'
 cask 'obsidian'
-cask 'raycast' # Spotlight replacement
+cask 'raycast'              # Spotlight replacement
 cask 'rectangle'
 cask 'shottr'
 cask 'spotify'
@@ -88,22 +88,22 @@ vscode 'yzhang.markdown-all-in-one'
 
 # Mac App Store
 # Safari extensions
-mas 'AdGuard for Safari', id: 1440147259
-mas 'Hush', id: 1544743900
-mas 'Keepa - Price Tracker', id: 1533805339
+mas 'AdGuard for Safari',     id: 1440147259
+mas 'Hush',                   id: 1544743900
+mas 'Keepa - Price Tracker',  id: 1533805339
 # Microsoft
-mas 'Microsoft Excel', id: 462058435
-mas 'Microsoft To Do', id: 1274495053
-mas 'Microsoft Word', id: 462054704
-mas 'OneDrive', id: 823766827
+mas 'Microsoft Excel',        id: 462058435
+mas 'Microsoft To Do',        id: 1274495053
+mas 'Microsoft Word',         id: 462054704
+mas 'OneDrive',               id: 823766827
 # Others
-mas 'Silicio', id: 933627574
-mas 'Keynote', id: 409183694
-mas 'PDFgear', id: 1615523079
-mas 'Pages', id: 409201541
-mas 'Flow', id: 1423210932
-mas 'Clocker', id: 1056643111
-mas 'Bitwarden', id: 1352778147 # Password manager
-mas 'ColorSlurp', id: 1287239339
-mas 'Numbers', id: 409203825
-mas 'Prime Video', id: 545519333
+mas 'Silicio',                id: 933627574
+mas 'Keynote',                id: 409183694
+mas 'PDFgear',                id: 1615523079
+mas 'Pages',                  id: 409201541
+mas 'Flow',                   id: 1423210932
+mas 'Clocker',                id: 1056643111
+mas 'Bitwarden',              id: 1352778147 # Password manager
+mas 'ColorSlurp',             id: 1287239339
+mas 'Numbers',                id: 409203825
+mas 'Prime Video',            id: 545519333
