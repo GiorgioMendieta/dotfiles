@@ -29,7 +29,7 @@ alias developer="cd $HOME/Developer && ls"
 # alias unstage="git restore --staged ."
 # alias wip="commit wip"
 
-alias showpath="echo '${PATH//:/\n}'"
+alias showpath='echo "${PATH//:/\n}"'
 
 # Homebrew
 alias outdated="brew update; brew outdated"
