@@ -7,6 +7,7 @@ brew 'automake'
 brew 'bat'                  # cat replacement
 brew 'exa'
 brew 'git'
+brew 'mackup'               # MacOS Backup utility
 brew 'mas'                  # Mac App Store manager
 brew 'openssl@1.1'
 brew 'neofetch'
