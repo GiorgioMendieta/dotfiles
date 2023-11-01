@@ -21,10 +21,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "MacBook Giorgio"
-sudo scutil --set HostName "MacBook Giorgio"
-sudo scutil --set LocalHostName "MacBook Giorgio"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MacBook Giorgio"
+sudo scutil --set ComputerName "Macbook Giorgio"
+sudo scutil --set HostName "Macbook Giorgio"
+sudo scutil --set LocalHostName "Macbook Giorgio"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Macbook Giorgio"
 
 # Disable the sound effects on boot
 # sudo nvram SystemAudioVolume=" "
@@ -40,6 +40,9 @@ defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "true"
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+# Set Launchpad Icon columns to 8
+defaults write com.apple.dock "springboard-columns" -int 8
 
 # Always show scrollbars
 # defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
