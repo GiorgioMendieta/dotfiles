@@ -1,7 +1,12 @@
+# ------------------------------------------------------------------------------
 # Taps
+# ------------------------------------------------------------------------------
 tap 'homebrew/bundle'
+tap 'homebrew/cask-fonts'   # Nerd fonts tap
 
-# Binaries
+# ------------------------------------------------------------------------------
+# CLI tools
+# ------------------------------------------------------------------------------
 brew 'autoconf'
 brew 'automake'
 brew 'bat'                  # cat replacement
@@ -22,11 +27,14 @@ brew 'http-server'
 brew 'nvm'                  # Node version manager
 brew "spaceship"            # Pretty ZSH prompt
 
-# Apps
+# ------------------------------------------------------------------------------
+# Casks
+# ------------------------------------------------------------------------------
 cask 'aerial'               # Pretty screensavers
 cask 'aldente'              # Limit charging to preserve battery health
 cask 'alt-tab'              # Mimic Windows alt-tab behavior
 cask 'betterdisplay'
+cask 'google-chrome'
 cask 'discord'
 cask 'iina'                 # Video player akin to VLC for Mac
 cask 'iterm2'               # Terminal replacement
@@ -43,7 +51,15 @@ cask 'spotify'
 cask 'stats'
 cask 'tradingview'
 
+# ------------------------------------------------------------------------------
+# Fonts
+# ------------------------------------------------------------------------------
+cask 'font-meslo-lg-nerd-font'
+cask 'font-fira-mono-nerd-font'
+
+# ------------------------------------------------------------------------------
 # VS Code extensions
+# ------------------------------------------------------------------------------
 vscode 'Angular.ng-template'
 vscode 'bierner.github-markdown-preview'
 vscode 'bierner.markdown-checkbox'
@@ -88,7 +104,10 @@ vscode 'xabikos.JavaScriptSnippets'
 vscode 'yzane.markdown-pdf'
 vscode 'yzhang.markdown-all-in-one'
 
+# ------------------------------------------------------------------------------
 # Mac App Store
+# ------------------------------------------------------------------------------
+
 # Safari extensions
 mas 'AdGuard for Safari',     id: 1440147259
 mas 'Hush',                   id: 1544743900
