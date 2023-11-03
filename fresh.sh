@@ -25,14 +25,14 @@ ln -s .gitconfig $HOME/.gitconfig
 rm -rf $HOME/.zshrc
 ln -s .zshrc $HOME/.zshrc
 
-# # Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
-# echo "Installing Powerlevel 10k theme..."
-# sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
+echo "Installing Powerlevel 10k theme..."
+sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# # Removes .p10k.zsh from $HOME (if it exists) and symlinks the .p10k.zsh file from the .dotfiles
-# rm -rf $HOME/.p10k.zsh
-# ln -s .p10k.zsh $HOME/.p10k.zsh
+# Removes .p10k.zsh from $HOME (if it exists) and symlinks the .p10k.zsh file from the .dotfiles
+rm -rf $HOME/.p10k.zsh
+ln -s .p10k.zsh $HOME/.p10k.zsh
 
 # Meslo Nerd Font (recommended by the creator of Powerlevel10k theme)
 echo "Installing Meslo Nerd Font"
@@ -54,9 +54,6 @@ brew update
 echo "Installing Homebrew dependencies" 
 brew tap homebrew/bundle
 brew bundle --file ./Brewfile
-
-# Symlink homebrew Spaceship prompt to the correct path
-ln -s "$(brew --prefix)/opt/spaceship/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme"
 
 # Set default MySQL root password and auth type
 # mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
