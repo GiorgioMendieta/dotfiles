@@ -11,6 +11,12 @@ alias dotfiles="cd $DOTFILES && ls"
 alias library="cd $HOME/Library && ls"
 alias developer="cd $HOME/Developer && ls"
 
+# Sorbonne Université
+alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
+alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
+alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
+alias algav="cd $HOME/Developer/Sorbonne\ Universite/ALGAV-projet && ls"
+
 # Git
 # alias gst="git status"
 # alias gb="git branch"
@@ -155,3 +161,9 @@ alias calias='code $ZSH_CUSTOM/aliases.zsh'
 
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
+
+# Replace cat with bat 
+alias cat='bat --paging=never'
+
+# Color help pages with bat
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
