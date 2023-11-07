@@ -17,11 +17,15 @@ alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
 alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
 alias algav="cd $HOME/Developer/Sorbonne\ Universite/ALGAV-projet && ls"
 
+# Open custom alias file (this file)
+alias calias='code $ZSH_CUSTOM/aliases.zsh'
+
 # Git
 # alias gst="git status"
 # alias gb="git branch"
 # alias gc="git checkout"
 # alias gl="git log --oneline --decorate --color"
+alias gl='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
 # alias amend="git add . && git commit --amend --no-edit"
 # alias commit="git add . && git commit -m"
 # alias diff="git diff"
@@ -37,9 +41,22 @@ alias algav="cd $HOME/Developer/Sorbonne\ Universite/ALGAV-projet && ls"
 
 alias showpath='echo "${PATH//:/\n}"'
 
-# Homebrew
-alias outdated="brew update; brew outdated"
+# Update homebrew (hide output) and show outdated formulae
+bold=$(tput bold)
+normal=$(tput sgr0)
+# TODO: Format output using awk
+# TODO: Sort columns
+outdated(){
+  brew update > /dev/null 2>&1
+  echo "${bold}Outdated packages:\n${normal}"
+  brew outdated
+  echo "\n${bold}Outdated casks:\n${normal}"
+  brew outdated --casks -g
+  echo "\n${bold}Outdated App store apps:\n${normal}"
+  mas outdated
+}
 
+# Homebrew
 bric() {
   brew install --cask $1
 }
@@ -99,6 +116,16 @@ function mkcd {
   fi
 }
 
+# Replace vim by Neovim
+alias vim=nvim
+
+# Replace cat with bat 
+alias cat='bat --paging=never'
+
+# Color help pages with bat
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
 # exa aliases
 if [ -x "$(command -v exa)" ]; then
   # Display type indicator by file names
@@ -126,8 +153,7 @@ if [ -x "$(command -v exa)" ]; then
   }
 fi
 
-# Navigation aliases
-# alias up='cd ..'
+# Directory navigation
 function up {
   if [[ "$#" < 1 ]]; then
     # Navigate up one level
@@ -144,8 +170,6 @@ function up {
 
 alias please='sudo $(fc -ln -1)'
 
-alias vim=nvim
-
 # open a man page as a pdf
 manpdf() {
   man -t "${1}" | open -f -a Preview.app
@@ -156,14 +180,5 @@ alias pvenv='python3 -m venv ./venv'
 # Activate venv
 alias avenv='source ./venv/bin/activate'
 
-# Path to custom alias file (this file)
-alias calias='code $ZSH_CUSTOM/aliases.zsh'
-
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
-
-# Replace cat with bat 
-alias cat='bat --paging=never'
-
-# Color help pages with bat
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
