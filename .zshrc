@@ -85,7 +85,12 @@ ZSH_CUSTOM=$DOTFILES
 # Add wisely, as too many plugins slow down shell startup.
 
 # plugins=(git zsh-syntax-highlighting zsh-autosuggestions colored-man-pages nvm)
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions colored-man-pages)
+plugins=(
+  git 
+  zsh-autosuggestions 
+  colored-man-pages 
+  zsh-syntax-highlighting
+  )
 
 source $ZSH/oh-my-zsh.sh
 
