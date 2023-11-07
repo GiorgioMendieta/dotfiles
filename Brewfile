@@ -25,7 +25,6 @@ brew 'tree'
 cask 'ghdl'                 # Replace LLVM version for Intel version
 brew 'http-server'
 brew 'nvm'                  # Node version manager
-brew "spaceship"            # Pretty ZSH prompt
 
 # ------------------------------------------------------------------------------
 # Casks
