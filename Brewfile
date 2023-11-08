@@ -20,6 +20,7 @@ brew 'neovim'
 brew 'python@3.10'
 brew 'speedtest-cli'
 brew 'tree'
+brew 'git-delta'            # Better diff tool
 
 # Development
 cask 'ghdl'                 # Replace LLVM version for Intel version
