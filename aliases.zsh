@@ -1,13 +1,30 @@
+# ------------------------------------------------------------------------------
 # Shortcuts
+# ------------------------------------------------------------------------------
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias reloadshell="source $HOME/.zshrc"
+# Show PATH in readable view
+alias path='echo "${PATH//:/\\n}"'
+# Show current IP address
+alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
+# Reload DNS
 # alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-# alias ll="/opt/homebrew/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
-# alias compile="commit 'compile'"
-# alias version="commit 'version'"
+# Re-run last command as sudo
+alias please='sudo $(fc -ln -1)'
+# Create python virtual environmnet
+alias pvenv='python3 -m venv ./venv'
+# Activate venv
+alias avenv='source ./venv/bin/activate'
+# Show mounted physical drives by column
+alias mnt='mount | grep -E ^/dev | column -t'
 
-# Directories
+# ------------------------------------------------------------------------------
+# Directories shortcuts
+# ------------------------------------------------------------------------------
+# Open .dotfiles (this repo)
 alias dotfiles="cd $DOTFILES && ls"
+# Open custom alias file (this file)
+alias calias="code $ZSH_CUSTOM/aliases.zsh"
 alias library="cd $HOME/Library && ls"
 alias developer="cd $HOME/Developer && ls"
 
@@ -17,15 +34,41 @@ alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
 alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
 alias algav="cd $HOME/Developer/Sorbonne\ Universite/ALGAV-projet && ls"
 
-# Open custom alias file (this file)
-alias calias='code $ZSH_CUSTOM/aliases.zsh'
+# Directory navigation
+function up {
+  if [[ "$#" < 1 ]]; then
+    # Navigate up one level
+    cd ..
+  else
+    # Navigate up multiple levels
+    CDSTR=""
+    for i in {1..$1}; do
+      CDSTR="../$CDSTR"
+    done
+    cd $CDSTR
+  fi
+}
 
+# Create dir and immediately cd into it
+function mkcd {
+  if [ ! -n "$1" ]; then
+    echo "Enter a directory name"
+  elif [ -d $1 ]; then
+    echo "\`$1' already exists"
+  else
+    mkdir -p $1 && cd $1
+  fi
+}
+
+# ------------------------------------------------------------------------------
 # Git
+# ------------------------------------------------------------------------------
 # alias gst="git status"
 # alias gb="git branch"
 # alias gc="git checkout"
 # alias gl="git log --oneline --decorate --color"
-alias gl='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
+# alias gl='git log --graph --pretty="%C(red)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%ad) %C(bold blue)<%an>%C(reset)" --date=short'
+# alias gl="git log --graph --abbrev-commit --date=format:'%Y-%m-%d' --format=format:'%C(03)%>|(15)%h%C(reset)  %C(04)%ad%C(reset)  %C(green)%<(16,trunc)%an%C(reset)  %C(bold 1)%d%C(reset) %C(bold)%>|(1)%s%C(reset)' --all"
 # alias amend="git add . && git commit --amend --no-edit"
 # alias commit="git add . && git commit -m"
 # alias diff="git diff"
@@ -39,8 +82,9 @@ alias gl='git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen
 # alias unstage="git restore --staged ."
 # alias wip="commit wip"
 
-alias showpath='echo "${PATH//:/\n}"'
-
+# ------------------------------------------------------------------------------
+# Packages & Apps
+# ------------------------------------------------------------------------------
 # Update homebrew (hide output) and show outdated formulae
 bold=$(tput bold)
 normal=$(tput sgr0)
@@ -56,11 +100,11 @@ outdated(){
   mas outdated
 }
 
-# Homebrew
+# Install Homebrew cask
 bric() {
   brew install --cask $1
 }
-
+# Install Homebrew formula
 bri() {
   brew install $1
 }
@@ -105,22 +149,15 @@ setopt rm_star_silent
 #   fi
 # }
 
-# Create dir and immediately cd into it
-function mkcd {
-  if [ ! -n "$1" ]; then
-    echo "Enter a directory name"
-  elif [ -d $1 ]; then
-    echo "\`$1' already exists"
-  else
-    mkdir -p $1 && cd $1
-  fi
-}
+# ------------------------------------------------------------------------------
+# Useful replacements
+# ------------------------------------------------------------------------------
 
 # Replace vim by Neovim
 alias vim=nvim
 
 # Replace cat with bat 
-alias cat='bat --paging=never'
+alias cat='bat'
 
 # Color help pages with bat
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
@@ -153,32 +190,11 @@ if [ -x "$(command -v exa)" ]; then
   }
 fi
 
-# Directory navigation
-function up {
-  if [[ "$#" < 1 ]]; then
-    # Navigate up one level
-    cd ..
-  else
-    # Navigate up multiple levels
-    CDSTR=""
-    for i in {1..$1}; do
-      CDSTR="../$CDSTR"
-    done
-    cd $CDSTR
-  fi
-}
+# ------------------------------------------------------------------------------
+# Misc
+# ------------------------------------------------------------------------------
 
-alias please='sudo $(fc -ln -1)'
-
-# open a man page as a pdf
+# open a man page as a pdf (DEPRECATED SINCE VENTURA)
 manpdf() {
   man -t "${1}" | open -f -a Preview.app
 }
-
-# Create python virtual environmnet
-alias pvenv='python3 -m venv ./venv'
-# Activate venv
-alias avenv='source ./venv/bin/activate'
-
-# Show mounted physical drives by column
-alias mnt='mount | grep -E ^/dev | column -t'
