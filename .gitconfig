@@ -6,10 +6,10 @@
 [color]
 	ui = auto
 [alias]
-  	# List available aliases
-  	aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+  # List available aliases
+  aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
 	# Display tree-like log, because default log is a pain…
-	# lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cblue(%an - %ad)%Creset'
 	cm = commit -m
 	cam = commit -am
 	st = status -sb
