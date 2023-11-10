@@ -17,6 +17,17 @@ alias pvenv='python3 -m venv ./venv'
 alias avenv='source ./venv/bin/activate'
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
+# Visual Studio Code 
+function vsc {
+  if [ "$1" != "" ]; then
+    # Open file in VSC
+    code $1
+  else
+    # Open current directory in VSC
+    code .
+  fi
+}
+
 
 # ------------------------------------------------------------------------------
 # Directories shortcuts
@@ -92,11 +103,11 @@ normal=$(tput sgr0)
 # TODO: Sort columns
 outdated(){
   brew update > /dev/null 2>&1
-  echo "${bold}Outdated packages:\n${normal}"
+  echo "${bold}Outdated packages:${normal}"
   brew outdated
-  echo "\n${bold}Outdated casks:\n${normal}"
+  echo "\n${bold}Outdated casks:${normal}"
   brew outdated --casks -g
-  echo "\n${bold}Outdated App store apps:\n${normal}"
+  echo "\n${bold}Outdated App store apps:${normal}"
   mas outdated
 }
 
