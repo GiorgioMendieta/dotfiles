@@ -43,7 +43,6 @@ alias developer="cd $HOME/Developer && ls"
 alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
 alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
 alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
-alias algav="cd $HOME/Developer/Sorbonne\ Universite/ALGAV-projet && ls"
 
 # Directory navigation
 function up {
@@ -205,4 +204,33 @@ fi
 # open a man page as a pdf (DEPRECATED SINCE VENTURA)
 manpdf() {
   man -t "${1}" | open -f -a Preview.app
+}
+
+function _calcram() {
+  local sum
+  sum=0
+  for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
+    sum=$(($i + $sum))
+  done
+  sum=$(echo "scale=2; $sum / 1024.0" | bc)
+  echo $sum
+}
+
+# Show how much RAM application uses.
+# $ ram safari
+# # => safari uses 154.69 MBs of RAM
+function ram() {
+  local sum
+  local app="$1"
+  if [ -z "$app" ]; then
+    echo "First argument - pattern to grep from processes"
+    return 0
+  fi
+
+  sum=$(_calcram $app)
+  if [[ $sum != "0" ]]; then
+    echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
+  else
+    echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
+  fi
 }
