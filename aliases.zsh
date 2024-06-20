@@ -1,20 +1,23 @@
 # ------------------------------------------------------------------------------
 # Shortcuts
 # ------------------------------------------------------------------------------
+# SSH 
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
+alias sshconfig="code /Users/giorgio/.ssh/config"
 alias reloadshell="source $HOME/.zshrc"
-# Show PATH in readable view
+# Show PATH in readable view (replace : with newline)
 alias path='echo "${PATH//:/\\n}"'
 # Show current IP address
 alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
+alias myextip='curl -s ipv4.icanhazip.com' # Show external IPv4 address
+# Show MAC address
+alias mymac="networksetup -listallhardwareports | grep Wi-Fi -A 3 | grep 'Ethernet Address'"
 # Reload DNS
 # alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 # Re-run last command as sudo
 alias please='sudo $(fc -ln -1)'
-# Create python virtual environmnet
-alias pvenv='python3 -m venv ./venv'
-# Activate venv
-alias avenv='source ./venv/bin/activate'
+# ping only 5 times then stop
+alias ping='ping -c 5 '
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
 # Visual Studio Code 
@@ -28,6 +31,17 @@ function vsc {
   fi
 }
 
+# ------------------------------------------------------------------------------
+# Python & Virtual Environments
+# ------------------------------------------------------------------------------
+# Create python virtual environmnet
+alias pvenv='python3 -m venv ./venv'
+alias pvenv2="virtualenv -p python2 ./venv"
+# alias pvenv2="virtualenv -p `which python2.6` ./venv"
+# Activate venv
+alias avenv='source ./venv/bin/activate'
+alias avenv2='source ./venv2/bin/activate'
+alias pip2="python2 -m pip"
 
 # ------------------------------------------------------------------------------
 # Directories shortcuts
@@ -41,8 +55,10 @@ alias developer="cd $HOME/Developer && ls"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
-alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
-alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
+# alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
+# alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
+# alias ioc="cd $HOME/Developer/Sorbonne\ Universite/IOC-TME && ls"
+# alias multi="cd $HOME/Developer/Sorbonne\ Universite/MULTI-TPs && ls"
 
 # Directory navigation
 function up {
@@ -234,3 +250,14 @@ function ram() {
     echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
   fi
 }
+
+alias :q='echo You are not editing a file, dummy.'
+alias :wq='echo You are not editing a file, dummy.'
+
+### Raspberry pi aliases
+
+# alias mountusb='sudo mount /dev/sda1 /mnt/usb'
+# alias unmountusb='sudo umount /mnt/usb'
+# # List files in a human readable format
+# alias ll='ls -alF'
+# alias bashrc="nano ~/.bashrc " # edit bashrc

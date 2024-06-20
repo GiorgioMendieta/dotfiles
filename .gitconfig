@@ -9,8 +9,8 @@
 	ui = auto
 
 [alias]
-  # List available aliases
-  aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+  	# List available aliases
+  	aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
 	# Display tree-like log, because default log is a pain…
 	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cblue(%an - %C(bold)%ad)%Creset' -10
 	cm = commit -m
@@ -20,7 +20,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = code --wait
-  pager = delta
+  	pager = delta
 
 [interactive]
     diffFilter = delta --color-only
