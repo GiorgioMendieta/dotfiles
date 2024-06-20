@@ -6,18 +6,18 @@ alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias sshconfig="code /Users/giorgio/.ssh/config"
 alias reloadshell="source $HOME/.zshrc"
 # Show PATH in readable view (replace : with newline)
-alias path='echo "${PATH//:/\\n}"'
+alias path='echo ${PATH} | tr ":" "\n"'
 # Show current IP address
 alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
 alias myextip='curl -s ipv4.icanhazip.com' # Show external IPv4 address
-# Show MAC address
+# Show MAC address (MacOs only)
 alias mymac="networksetup -listallhardwareports | grep Wi-Fi -A 3 | grep 'Ethernet Address'"
 # Reload DNS
 # alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 # Re-run last command as sudo
 alias please='sudo $(fc -ln -1)'
 # ping only 5 times then stop
-alias ping='ping -c 5 '
+alias ping='ping -c 5'
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
 # Visual Studio Code 
@@ -233,7 +233,7 @@ function _calcram() {
 }
 
 # Show how much RAM application uses.
-# $ ram safari
+# e.g. $ ram safari
 # # => safari uses 154.69 MBs of RAM
 function ram() {
   local sum
