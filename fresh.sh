@@ -25,9 +25,13 @@ ln -s .gitconfig $HOME/.gitconfig
 rm -rf $HOME/.zshrc
 ln -s .zshrc $HOME/.zshrc
 
-# Removes .zsvimrchrc from $HOME (if it exists) and symlinks the .vimrc file from the .dotfiles
+# Removes .vimrc from $HOME (if it exists) and symlinks the .vimrc file from the .dotfiles
 rm -rf $HOME/.vimrc
 ln -s .vimrc $HOME/.vimrc
+
+# Removes .nanorc from $HOME (if it exists) and symlinks the .nanorc file from the .dotfiles
+rm -rf $HOME/.nanorc
+ln -s .nanorc $HOME/.nanorc
 
 # Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
 echo "Installing Powerlevel 10k theme..."

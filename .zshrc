@@ -1,6 +1,9 @@
 # Path to your dotfiles.
 export DOTFILES="$HOME/.dotfiles"
 
+export EDITOR="/opt/homebrew/bin/nano"
+export VISUAL="$EDITOR"
+
 # TODO: Configure P10k for dotfiles
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
