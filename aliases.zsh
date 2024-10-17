@@ -51,7 +51,7 @@ alias dotfiles="cd $DOTFILES && ls"
 # Open custom alias file (this file)
 alias calias="code $ZSH_CUSTOM/aliases.zsh"
 alias library="cd $HOME/Library && ls"
-alias developer="cd $HOME/Developer && ls"
+alias dev="cd $HOME/Developer && ls"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
@@ -59,6 +59,7 @@ alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
 # alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
 # alias ioc="cd $HOME/Developer/Sorbonne\ Universite/IOC-TME && ls"
 # alias multi="cd $HOME/Developer/Sorbonne\ Universite/MULTI-TPs && ls"
+alias mobj="cd $HOME/Developer/Sorbonne\ Universite/MOBJ && ls"
 
 # Directory navigation
 function up {
@@ -186,10 +187,10 @@ alias cat='bat'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
-# exa aliases
-if [ -x "$(command -v exa)" ]; then
+# eza (exa has been deprecated) aliases
+if [ -x "$(command -v eza)" ]; then
   # Display type indicator by file names
-  alias ls='exa --classify --icons'
+  alias ls='eza --classify --icons'
 
   # Show header, git status, and sort by type
   alias ll='ls -lh --git --sort type'
@@ -206,9 +207,9 @@ if [ -x "$(command -v exa)" ]; then
   # Tree view (level in parameter)
   function lt {
     if [ "$1" != "" ]; then
-      exa --tree --icons --level=$1
+      eza --tree --icons --level=$1
     else
-      exa --tree --icons --level=1
+      eza --tree --icons --level=1
     fi
   }
 fi
