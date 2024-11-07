@@ -10,7 +10,7 @@ tap 'homebrew/cask-fonts'   # Nerd fonts tap
 brew 'autoconf'
 brew 'automake'
 brew 'bat'                  # cat replacement
-brew 'exa'
+brew 'eza'
 brew 'git'
 brew 'mackup'               # MacOS Backup utility
 brew 'mas'                  # Mac App Store manager
@@ -21,9 +21,10 @@ brew 'python@3.10'
 brew 'speedtest-cli'
 brew 'tree'
 brew 'git-delta'            # Better diff tool
+brew 'fzf'                  # Fuzzy finder
 
 # Development
-cask 'ghdl'                 # Replace LLVM version for Intel version
+# cask 'ghdl'                 # Replace LLVM version for Intel version
 brew 'http-server'
 brew 'nvm'                  # Node version manager
 
@@ -60,23 +61,39 @@ cask 'font-fira-mono-nerd-font'
 # ------------------------------------------------------------------------------
 # VS Code extensions
 # ------------------------------------------------------------------------------
-vscode 'Angular.ng-template'
+# Markdown
 vscode 'bierner.github-markdown-preview'
 vscode 'bierner.markdown-checkbox'
 vscode 'bierner.markdown-emoji'
 vscode 'bierner.markdown-mermaid'
 vscode 'bierner.markdown-preview-github-styles'
 vscode 'bierner.markdown-yaml-preamble'
-vscode 'cschlosser.doxdocgen'
-vscode 'danielpinto8zz6.c-cpp-compile-run'
 vscode 'DavidAnson.vscode-markdownlint'
-vscode 'dbaeumer.vscode-eslint'
+vscode 'yzane.markdown-pdf'
+vscode 'yzhang.markdown-all-in-one'
+# CPP
+vscode 'danielpinto8zz6.c-cpp-compile-run'
+vscode 'ms-vscode.cmake-tools'
+vscode 'ms-vscode.cpptools'
+vscode 'ms-vscode.cpptools-extension-pack'
+vscode 'ms-vscode.cpptools-themes'
+vscode 'jeff-hykin.better-cpp-syntax'
+# Git
 vscode 'eamodio.gitlens'
+vscode 'mhutchie.git-graph'
+# Themes
+vscode 'whizkydee.material-palenight-theme'
 vscode 'equinusocio.vsc-material-theme-icons'
+# Hardware Description Languages
+# vscode 'mshr-h.veriloghdl'
+# vscode 'teros-technology.teroshdl'
+
+vscode 'Angular.ng-template'
+vscode 'cschlosser.doxdocgen'
+vscode 'dbaeumer.vscode-eslint'
 vscode 'esbenp.prettier-vscode'
 vscode 'Gruntfuggly.todo-tree'
-vscode 'jeff-hykin.better-cpp-syntax'
-vscode 'mhutchie.git-graph'
+vscode 'wayou.vscode-todo-highlight'
 vscode 'ms-python.isort'
 vscode 'ms-python.python'
 vscode 'ms-python.vscode-pylance'
@@ -84,25 +101,16 @@ vscode 'ms-vscode-remote.remote-containers'
 vscode 'ms-vscode-remote.remote-ssh'
 vscode 'ms-vscode-remote.remote-ssh-edit'
 vscode 'ms-vscode-remote.remote-wsl'
-vscode 'ms-vscode.cmake-tools'
-vscode 'ms-vscode.cpptools'
-vscode 'ms-vscode.cpptools-extension-pack'
-vscode 'ms-vscode.cpptools-themes'
+
 vscode 'ms-vscode.makefile-tools'
 vscode 'ms-vscode.remote-explorer'
-vscode 'mshr-h.veriloghdl'
 vscode 'qwtel.sqlite-viewer'
 vscode 'redhat.vscode-xml'
-vscode 'teros-technology.teroshdl'
 vscode 'tomoki1207.pdf'
 vscode 'twxs.cmake'
 vscode 'VisualStudioExptTeam.intellicode-api-usage-examples'
 vscode 'VisualStudioExptTeam.vscodeintellicode'
-vscode 'wayou.vscode-todo-highlight'
-vscode 'whizkydee.material-palenight-theme'
 vscode 'xabikos.JavaScriptSnippets'
-vscode 'yzane.markdown-pdf'
-vscode 'yzhang.markdown-all-in-one'
 
 # ------------------------------------------------------------------------------
 # Mac App Store
