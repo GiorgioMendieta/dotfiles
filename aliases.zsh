@@ -31,6 +31,9 @@ function vsc {
   fi
 }
 
+# Performance monitoring CLI tool for Apple Silicon
+alias asitop='sudo asitop'
+
 # ------------------------------------------------------------------------------
 # Python & Virtual Environments
 # ------------------------------------------------------------------------------
@@ -52,6 +55,7 @@ alias dotfiles="cd $DOTFILES && ls"
 alias calias="code $ZSH_CUSTOM/aliases.zsh"
 alias library="cd $HOME/Library && ls"
 alias dev="cd $HOME/Developer && ls"
+# alias dw="cd $HOME/Downloads && open . && exit"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
@@ -193,13 +197,16 @@ if [ -x "$(command -v eza)" ]; then
   alias ls='eza --classify --icons'
 
   # Show header, git status, and sort by type
-  alias ll='ls -lh --git --sort type'
+  alias ll='ls -lh --git --sort=extension'
 
-  # Show hidden files
+  # Show all files
   alias la='ls -a'
 
-  # Show hidden files (long)
+  # Show all files (long)
   alias lla='ll -a'
+
+  # Show only hidden files
+  alias l.='ls -d .*'
 
   # Tree view (long)
   alias llt='ll --tree --level=2'
