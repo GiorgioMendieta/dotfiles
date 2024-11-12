@@ -1,25 +1,21 @@
 # ------------------------------------------------------------------------------
-# Shortcuts
+# General
 # ------------------------------------------------------------------------------
+alias reloadshell="source $HOME/.zshrc"
+
 # SSH 
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias sshconfig="code $HOME/.ssh/config"
-alias reloadshell="source $HOME/.zshrc"
+
 # Show PATH in readable view (replace : with newline)
 alias path='echo ${PATH} | tr ":" "\n"'
-# Show current IP address
-alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
-alias myextip='curl -s ipv4.icanhazip.com' # Show external IPv4 address
-# Show MAC address (MacOs only)
-alias mymac="networksetup -listallhardwareports | grep Wi-Fi -A 3 | grep 'Ethernet Address'"
-# Reload DNS
-# alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+
 # Re-run last command as sudo
 alias please='sudo $(fc -ln -1)'
-# ping only 5 times then stop
-alias ping='ping -c 5'
+
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
+
 # Visual Studio Code 
 vsc() {
   if [ "$1" != "" ]; then
@@ -34,6 +30,59 @@ vsc() {
 # Performance monitoring CLI tool for Apple Silicon
 alias asitop='sudo asitop'
 
+# Avoid accidental deletions by enabling interactive mode
+alias rm='rm -i'
+alias mv='mv -i'
+alias cp='cp -i'
+
+# Prevent rm -f from asking for confirmation on things like `rm -f *.bak`.
+setopt rm_star_silent
+
+# alias rm='safedelete'
+# function safedelete {
+#   if command -v gio > /dev/null; then
+#     for f in "$@"
+#     do
+#       gio trash -f "$f"
+#     done
+
+#   elif command -v gvfs-trash > /dev/null; then
+#     for f in "$@"
+#     do
+#       gvfs-trash "$f"
+#     done
+
+#   elif [ -d "$HOME/.local/share/Trash/files" ]; then
+#     for f in "$@"
+#     do
+#       mv "$f" "$HOME/.local/share/Trash/files"
+#     done
+
+#   else
+#     for f in "$@"
+#     do
+#       # shellcheck disable=SC1012
+#       \rm "$f"
+#     done
+#   fi
+# }
+
+# ------------------------------------------------------------------------------
+# Networking
+# ------------------------------------------------------------------------------
+# Show current IP address
+alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
+alias myextip='curl -s ipv4.icanhazip.com' # Show external IPv4 address
+
+# Show MAC address (MacOs only)
+alias mymac="networksetup -listallhardwareports | grep Wi-Fi -A 3 | grep 'Ethernet Address'"
+
+# Reload DNS
+# alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+
+# ping only 5 times then stop
+alias ping='ping -c 5'
+
 # ------------------------------------------------------------------------------
 # Python & Virtual Environments
 # ------------------------------------------------------------------------------
@@ -41,16 +90,18 @@ alias asitop='sudo asitop'
 alias pvenv='python3 -m venv ./venv'
 alias pvenv2="virtualenv -p python2 ./venv"
 # alias pvenv2="virtualenv -p `which python2.6` ./venv"
+
 # Activate venv
 alias avenv='source ./venv/bin/activate'
 alias avenv2='source ./venv2/bin/activate'
 alias pip2="python2 -m pip"
 
 # ------------------------------------------------------------------------------
-# Directories shortcuts
+# Directory shortcuts
 # ------------------------------------------------------------------------------
 # Open .dotfiles (this repo)
 alias dotfiles="cd $DOTFILES && ls"
+
 # Open custom alias file (this file)
 alias calias="code $ZSH_CUSTOM/aliases.zsh"
 alias library="cd $HOME/Library && ls"
@@ -119,8 +170,7 @@ mkcd() {
 # Update homebrew (hide output) and show outdated formulae
 bold=$(tput bold)
 normal=$(tput sgr0)
-# TODO: Format output using awk
-# TODO: Sort columns
+# TODO: Format output using awk & Sort columns
 outdated(){
   brew update > /dev/null 2>&1
   echo "${bold}Outdated packages:${normal}"
@@ -130,43 +180,6 @@ outdated(){
   echo "\n${bold}Outdated App store apps:${normal}"
   mas outdated
 }
-
-# Avoid accidental deletions by enabling interactive mode
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -i'
-
-# Prevent rm -f from asking for confirmation on things like `rm -f *.bak`.
-setopt rm_star_silent
-
-# alias rm='safedelete'
-# function safedelete {
-#   if command -v gio > /dev/null; then
-#     for f in "$@"
-#     do
-#       gio trash -f "$f"
-#     done
-
-#   elif command -v gvfs-trash > /dev/null; then
-#     for f in "$@"
-#     do
-#       gvfs-trash "$f"
-#     done
-
-#   elif [ -d "$HOME/.local/share/Trash/files" ]; then
-#     for f in "$@"
-#     do
-#       mv "$f" "$HOME/.local/share/Trash/files"
-#     done
-
-#   else
-#     for f in "$@"
-#     do
-#       # shellcheck disable=SC1012
-#       \rm "$f"
-#     done
-#   fi
-# }
 
 # ------------------------------------------------------------------------------
 # Useful replacements
@@ -182,7 +195,7 @@ alias cat='bat'
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
-# eza (exa has been deprecated) aliases
+# eza (Enhanced Zsh Aliases) is a command-line tool that enhances the output of the ls command.
 if [ -x "$(command -v eza)" ]; then
   # Display type indicator by file names
   alias ls='eza --classify --icons'
@@ -265,7 +278,9 @@ ram() {
 alias :q='echo You are not editing a file, dummy.'
 alias :wq='echo You are not editing a file, dummy.'
 
-### Raspberry pi aliases
+# ------------------------------------------------------------------------------
+# Raspberry pi aliases
+# ------------------------------------------------------------------------------
 
 # alias mountusb='sudo mount /dev/sda1 /mnt/usb'
 # alias unmountusb='sudo umount /mnt/usb'
