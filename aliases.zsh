@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 # SSH 
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
-alias sshconfig="code /Users/giorgio/.ssh/config"
+alias sshconfig="code $HOME/.ssh/config"
 alias reloadshell="source $HOME/.zshrc"
 # Show PATH in readable view (replace : with newline)
 alias path='echo ${PATH} | tr ":" "\n"'
@@ -21,7 +21,7 @@ alias ping='ping -c 5'
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
 # Visual Studio Code 
-function vsc {
+vsc() {
   if [ "$1" != "" ]; then
     # Open file in VSC
     code $1
@@ -66,7 +66,7 @@ alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
 alias mobj="cd $HOME/Developer/Sorbonne\ Universite/MOBJ && ls"
 
 # Directory navigation
-function up {
+up (){
   if [[ "$#" < 1 ]]; then
     # Navigate up one level
     cd ..
@@ -81,7 +81,7 @@ function up {
 }
 
 # Create dir and immediately cd into it
-function mkcd {
+mkcd() {
   if [ ! -n "$1" ]; then
     echo "Enter a directory name"
   elif [ -d $1 ]; then
@@ -129,15 +129,6 @@ outdated(){
   brew outdated --casks -g
   echo "\n${bold}Outdated App store apps:${normal}"
   mas outdated
-}
-
-# Install Homebrew cask
-bric() {
-  brew install --cask $1
-}
-# Install Homebrew formula
-bri() {
-  brew install $1
 }
 
 # Avoid accidental deletions by enabling interactive mode
@@ -212,7 +203,7 @@ if [ -x "$(command -v eza)" ]; then
   alias llt='ll --tree --level=2'
 
   # Tree view (level in parameter)
-  function lt {
+  lt() {
     if [ "$1" != "" ]; then
       eza --tree --icons --level=$1
     else
@@ -224,13 +215,25 @@ fi
 # ------------------------------------------------------------------------------
 # Misc
 # ------------------------------------------------------------------------------
-
-# open a man page as a pdf (DEPRECATED SINCE VENTURA)
-manpdf() {
-  man -t "${1}" | open -f -a Preview.app
+man2pdf() {
+    # Get the macOS version (e.g. 14.7.1)
+    local version
+    version=$(sw_vers -productVersion)
+    # Extract the major version number (before the first dot)
+    local major_version
+    major_version=$(echo "$version" | cut -d '.' -f 1)
+    
+    # Check if the major version is 14 (Ventura) or higher
+    if [[ $major_version -ge 14 ]]; then
+        # Ventura or higher
+        mandoc -T pdf `man -w $@` | open -f -F -n -a /System/Applications/Preview.app
+    else
+        # Lower than Ventura
+        man -t "${1}" | open -f -F -n -a /System/Applications/Preview.app
+    fi
 }
 
-function _calcram() {
+_calcram() {
   local sum
   sum=0
   for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
@@ -243,7 +246,7 @@ function _calcram() {
 # Show how much RAM application uses.
 # e.g. $ ram safari
 # # => safari uses 154.69 MBs of RAM
-function ram() {
+ram() {
   local sum
   local app="$1"
   if [ -z "$app" ]; then
