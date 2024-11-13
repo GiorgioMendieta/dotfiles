@@ -100,21 +100,21 @@ alias pip2="python2 -m pip"
 # Directory shortcuts
 # ------------------------------------------------------------------------------
 # Open .dotfiles (this repo)
-alias dotfiles="cd $DOTFILES && ls"
+alias dotfiles="cd $DOTFILES"
 
 # Open custom alias file (this file)
 alias calias="code $ZSH_CUSTOM/aliases.zsh"
-alias library="cd $HOME/Library && ls"
-alias dev="cd $HOME/Developer && ls"
+alias library="cd $HOME/Library"
+alias dev="cd $HOME/Developer"
 # alias dw="cd $HOME/Downloads && open . && exit"
 
 # Sorbonne Université
-alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite && ls"
-# alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs && ls"
-# alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME && ls"
-# alias ioc="cd $HOME/Developer/Sorbonne\ Universite/IOC-TME && ls"
-# alias multi="cd $HOME/Developer/Sorbonne\ Universite/MULTI-TPs && ls"
-alias mobj="cd $HOME/Developer/Sorbonne\ Universite/MOBJ && ls"
+alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite"
+# alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs"
+# alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME"
+# alias ioc="cd $HOME/Developer/Sorbonne\ Universite/IOC-TME"
+# alias multi="cd $HOME/Developer/Sorbonne\ Universite/MULTI-TPs"
+alias mobj="cd $HOME/Developer/Sorbonne\ Universite/MOBJ"
 
 # Directory navigation
 up (){
@@ -224,6 +224,17 @@ if [ -x "$(command -v eza)" ]; then
     fi
   }
 fi
+
+# Set up fzf key bindings and fuzzy completion (useful for searching command history with ctrl + r) 
+# ** + tab to search for files
+source <(fzf --zsh)
+
+# Show files (ls) after changing directory (cd)
+cd ()
+{
+  builtin cd $1
+  ls
+}
 
 # ------------------------------------------------------------------------------
 # Misc

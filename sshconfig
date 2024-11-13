@@ -1,0 +1,62 @@
+# To prevent typing each time the password, run from the host terminal 
+# ssh-copy-id username@remotehost
+# Then verify by ssh'ing into the remote host
+
+# GitHub
+Host *.github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+## Salle SESI (paserelle)
+Host sesi
+   HostName durian.lip6.fr
+   User mendieta
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_ed25519
+  
+## SESI chopin
+Host chopin
+  User mendieta
+  Hostname chopin.soc.lip6.fr
+  ProxyJump sesi
+  IdentityFile ~/.ssh/id_ed25519
+
+## Sorbonne Université
+## Forward -X flag (graphics)
+Host sorbonne
+  HostName ssh.ufr-info-p6.jussieu.fr
+  User 21304469
+  AddKeysToAgent yes
+  UseKeychain yes
+  ForwardX11 yes
+  IdentityFile ~/.ssh/id_ed25519
+
+## Plateforme pédagogique et technique d’informatique (PPTI)
+## Proxy jump from sorbonne (ssh.ufr-info-p6.jussieu.fr) directly into ppti-14-302-xx (xx = 01 - 20)
+
+Host ppti*
+  HostName ppti-14-302-*.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+  
+## Raspberry Pi 25
+## IOC
+# Host pi
+#   User pi
+#   Hostname peri
+#   Port 62225
+#   ProxyJump bartok
+#   ForwardAgent yes
+#   IdentityFile ~/.ssh/id_ed25519.pub
+
+## Raspberry Pi
+Host rpi
+  User giorgio
+  Hostname raspberrypi.local
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+

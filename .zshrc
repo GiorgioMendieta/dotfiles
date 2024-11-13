@@ -90,9 +90,9 @@ ZSH_CUSTOM=$DOTFILES
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# plugins=(git zsh-syntax-highlighting zsh-autosuggestions colored-man-pages nvm)
 plugins=(
-  git 
+  git
+  fzf-tab
   zsh-autosuggestions 
   colored-man-pages 
   zsh-syntax-highlighting

@@ -42,6 +42,12 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 rm -rf $HOME/.p10k.zsh
 ln -s .p10k.zsh $HOME/.p10k.zsh
 
+# Removes .ssh/config from $HOME (if it exists) and symlinks the sshconfig file from the .dotfiles
+# More info : https://linuxize.com/post/using-the-ssh-config-file/
+mkdir -p ~/.ssh && chmod 700 $HOME/.ssh
+ln -s sshconfig $HOME/.ssh/config
+chmod 600 $HOME/.ssh/config
+
 # # Meslo Nerd Font (recommended by the creator of Powerlevel10k theme)
 # echo "Installing Meslo Nerd Font"
 # # Select fonts folder path
@@ -49,7 +55,7 @@ ln -s .p10k.zsh $HOME/.p10k.zsh
 # # Make sure that the fonts directory exists
 # mkdir -p ${FONTS_FOLDER_PATH}
 
-# # Download fonts
+# # Download fonts TODO:
 # (curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Regular.ttf"     "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf")       &> /dev/null
 # (curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Bold.ttf"        "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf")          &> /dev/null
 # (curl -Lo "${FONTS_FOLDER_PATH}/MesloLGS NF Italic.ttf"      "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf")        &> /dev/null
@@ -80,6 +86,9 @@ mkdir $HOME/Developer
 
 # Symlink the Mackup config file to the home directory
 ln -s ./.mackup.cfg $HOME/.mackup.cfg
+
+# Set fzf as the default completion engine for zsh
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
 
 # Set macOS preferences - we will run this last because this will reload the shell
 source ./.macos
