@@ -58,18 +58,20 @@ brew "sherlock"
 brew "speedtest-cli"
 brew "tmux"
 brew "tree"
+brew "wget"
 brew "randomplum/gtkwave/gtkwave", args: ["HEAD"]
 
 # ------------------------------------------------------------------------------
 # Casks
 # ------------------------------------------------------------------------------
 cask "aerial"
+cask "android-platform-tools"
 cask "aldente"
 cask "alt-tab"
 cask "betterdisplay"
 cask "bitwarden"
 cask "bluesnooze"
-cask "font-fira-mono-nerd-font"
+cask "font-meslo-lg-nerd-font"
 cask "ghdl"
 cask "google-chrome"
 cask "iina"
@@ -92,6 +94,8 @@ cask "spotify"
 cask "stats"
 cask "syntax-highlight"
 cask "tradingview"
+cask "visual-studio-code"
+cask "trex"
 
 # ------------------------------------------------------------------------------
 # VS Code extensions
