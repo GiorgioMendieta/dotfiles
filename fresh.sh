@@ -17,9 +17,13 @@ if test ! $(which brew); then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-# Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
+# Removes .gitconfig from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.gitconfig
 ln -s .gitconfig $HOME/.gitconfig
+
+# Removes .gitignore_global from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
+rm -rf $HOME/.gitignore_global
+ln -s .gitignore_global $HOME/.gitignore_global
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
