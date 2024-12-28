@@ -133,9 +133,58 @@ source $ZSH/oh-my-zsh.sh
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
 
-# nvm
+## nvm
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
+
+## bat
+# Set the default theme for bat
+export BAT_THEME="Catppuccin Macchiato"
+# Use bat as the default pager for man pages
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+## fzf
+# Catppuccin Macchiato theme
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--color=selected-bg:#494d64 \
+--multi" 
+
+## fzf-tab
+# Use FZF_DEFAULT_OPTS
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# review directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:complete:cat:*' fzf-preview 'bat -n --color=always $realpath'
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
+	fzf-preview 'echo ${(P)word}'
+
+mime=$(file -bL --mime-type "$1")
+category=${mime%%/*}
+kind=${mime##*/}
+if [ -d "$1" ]; then
+	eza --git -hl --color=always --icons "$1"
+elif [ "$category" = text ]; then
+	bat --color=always "$1"
+fi
+
+# Homebrew
+zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' fzf-preview 'brew info $word'
+
+## QT5
+#If you need to have qt@5 first in your PATH, run:
+export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+#For compilers to find qt@5 you may need to set:
+export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include"
+#For pkg-config to find qt@5 you may need to set:
+export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig"
+# Fix for CMake
+export CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5/lib/cmake/Qt5":$CMAKE_PREFIX_PATH
+export Qt5_DIR="/opt/homebrew/opt/qt@5/lib/cmake/Qt5"
