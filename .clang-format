@@ -1,0 +1,18 @@
+﻿---
+BasedOnStyle: Microsoft
+AlignConsecutiveMacros: "true"
+AlignConsecutiveAssignments: "true"
+AlignTrailingComments: "true"
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: All
+BreakConstructorInitializers: AfterColon
+BreakInheritanceList: AfterColon
+ConstructorInitializerAllOnOneLineOrOnePerLine: "false"
+IndentCaseLabels: "false"
+Language: Cpp
+NamespaceIndentation: All
+UseTab: Never
+KeepEmptyLinesAtTheStartOfBlocks: "false"
+SeparateDefinitionBlocks: Always
+BraceWrapping:
+  SplitEmptyFunction: false
