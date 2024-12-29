@@ -94,6 +94,7 @@ cask "spotify"
 cask "stats"
 cask "syntax-highlight"
 cask "tradingview"
+cask "transmission"
 cask "visual-studio-code"
 cask "trex"
 

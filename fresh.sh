@@ -52,6 +52,10 @@ run() {
     echo ""
 }
 
+_getBundleID() {
+    mdls -raw -name kMDItemCFBundleIdentifier "$1"
+}
+
 ############################################################################################
 
 # Just a little welcome screen
@@ -696,8 +700,11 @@ run mkdir $HOME/Developer
 ##############################################
 chapter "GitHub configuration"
 ##############################################
-step "Clone Github repositories\n"
-run ./clone.sh
+step "Veryfing git installation\n"
+if test ! $(which git); then
+    echo "Git is not installed, installing it now...\n"
+    run brew install git
+fi
 
 step "Symlink Git config files"
 run m -rf $HOME/.gitconfig
@@ -705,39 +712,48 @@ run n -s .gitconfig $HOME/.gitconfig
 run m -rf $HOME/.gitignore_global
 run n -s .gitignore_global $HOME/.gitignore_global
 
+step "Clone Github repositories\n"
+run ./clone.sh
 
 ##############################################
 chapter "Transmission.app settings"
 ##############################################
 
-# Use `~/Documents/Torrents` to store incomplete downloads
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
+# Only run if Transmission is installed
+app=/Applications/Transmission.app
+if [ ! -d "$app" ]; then
+    echo "Transmission is not installed. Skipping."
+else
+    bundleid=$(_getBundleID "$app")
 
-# Use `~/Downloads` to store completed downloads
-defaults write org.m0k.transmission DownloadLocationConstant -bool true
+    # Use `~/Documents/Torrents` to store incomplete downloads
+    run defaults write ${bundleid} UseIncompleteDownloadFolder -bool true
+    run defaults write ${bundleid} IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
 
-# Don’t prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
-defaults write org.m0k.transmission MagnetOpenAsk -bool false
+    # Use `~/Downloads` to store completed downloads
+    run defaults write ${bundleid} DownloadLocationConstant -bool true
 
-# Don’t prompt for confirmation before removing non-downloading active transfers
-defaults write org.m0k.transmission CheckRemoveDownloading -bool true
+    # Don’t prompt for confirmation before downloading
+    run defaults write ${bundleid} DownloadAsk -bool false
+    run defaults write ${bundleid} MagnetOpenAsk -bool false
 
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+    # Don’t prompt for confirmation before removing non-downloading active transfers
+    run defaults write ${bundleid} CheckRemoveDownloading -bool true
 
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
+    # Trash original torrent files
+    run defaults write ${bundleid} DeleteOriginalTorrent -bool true
 
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
+    # Hide the donate message
+    run defaults write ${bundleid} WarningDonate -bool false
 
-# IP block list.
-# Source: https://giuliomac.wordpress.com/2014/02/19/best-blocklist-for-transmission/
-defaults write org.m0k.transmission BlocklistNew -bool true
-defaults write org.m0k.transmission BlocklistURL -string "http://john.bitsurge.net/public/biglist.p2p.gz"
-defaults write org.m0k.transmission BlocklistAutoUpdate -bool true
+    # Hide the legal disclaimer
+    run defaults write ${bundleid} WarningLegal -bool false
 
-# Randomize port on launch
-defaults write org.m0k.transmission RandomPort -bool true
+    # IP block list.
+    run defaults write ${bundleid} BlocklistNew -bool true
+    run defaults write ${bundleid} BlocklistURL -string "http://list.iblocklist.com/?list=fr&fileformat=p2p&archiveformat=gz"
+    run defaults write ${bundleid} BlocklistAutoUpdate -bool true
+
+    # Randomize port on launch
+    run defaults write ${bundleid} RandomPort -bool true
+fi
