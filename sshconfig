@@ -34,10 +34,123 @@ Host sorbonne
   IdentityFile ~/.ssh/id_ed25519
 
 ## Plateforme pédagogique et technique d’informatique (PPTI)
-## Proxy jump from sorbonne (ssh.ufr-info-p6.jussieu.fr) directly into ppti-14-302-xx (xx = 01 - 20)
+## Proxy jump from sorbonne (ssh.ufr-info-p6.jussieu.fr) directly into ppti-14-302-xx
+Host ppti01
+  HostName ppti-14-302-01.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
 
-Host ppti*
-  HostName ppti-14-302-*.ufr-info-p6.jussieu.fr
+Host ppti02
+  HostName ppti-14-302-02.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti03
+  HostName ppti-14-302-03.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti04
+  HostName ppti-14-302-04.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti05
+  HostName ppti-14-302-05.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti06
+  HostName ppti-14-302-06.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti07
+  HostName ppti-14-302-07.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti08
+  HostName ppti-14-302-08.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti09
+  HostName ppti-14-302-09.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti10
+  HostName ppti-14-302-10.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti11
+  HostName ppti-14-302-11.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti12
+  HostName ppti-14-302-12.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti13
+  HostName ppti-14-302-13.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti14
+  HostName ppti-14-302-14.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti15
+  HostName ppti-14-302-15.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti16
+  HostName ppti-14-302-16.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti17
+  HostName ppti-14-302-17.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti18
+  HostName ppti-14-302-18.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti19
+  HostName ppti-14-302-19.ufr-info-p6.jussieu.fr
+  User 21304469
+  ForwardX11 yes
+  ProxyJump sorbonne
+
+Host ppti20
+  HostName ppti-14-302-20.ufr-info-p6.jussieu.fr
   User 21304469
   ForwardX11 yes
   ProxyJump sorbonne
@@ -52,7 +165,7 @@ Host ppti*
 #   ForwardAgent yes
 #   IdentityFile ~/.ssh/id_ed25519.pub
 
-## Raspberry Pi
+## Raspberry Pi Giorgio
 Host rpi
   User giorgio
   Hostname raspberrypi.local
