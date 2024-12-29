@@ -5,14 +5,20 @@
 
 # Script's color palette (https://misc.flogisoft.com/bash/tip_colors_and_formatting)
 COLOR_BLACK=0
+COLOR_RED=1
+COLOR_GREEN=2
 COLOR_YELLOW=3
 COLOR_BLUE=4
+COLOR_MAGENTA=5
+COLOR_CYAN=6
+COLOR_WHITE=7
+
 # Use tput to get the escape codes for the colors
 reset=$(tput sgr0) # Reset text attributes to normal
 dim=$(tput dim)
 bold=$(tput bold)
-highlight=$(tput setab $COLOR_BLUE; tput setaf $COLOR_BLACK) # Highlight text with blue background
-arrow="$(tput setaf $COLOR_YELLOW)▸ $reset" # Print an arrow with yellow foreground
+highlight=$(tput setab ${COLOR_BLUE}; tput setaf ${COLOR_BLACK}) # Highlight text with blue background
+arrow="$(tput setaf ${COLOR_YELLOW})▸ ${reset}" # Print an arrow with yellow foreground
 
 # Get full directory name of this script
 cwd="$(cd "$(dirname "$0")" && pwd)"
@@ -27,7 +33,7 @@ headline() {
 # Increase chapter count and print out a chapter title
 chapter_count=1
 chapter() {
-    echo -e "${highlight} $((chapter_count++)).) $@ ${reset}\n"
+    echo -e "${highlight} $((chapter_count++)). $@ ${reset}\n"
 }
 
 # Prints out a step, if last parameter is true then without an ending newline
@@ -56,6 +62,10 @@ headline "     Follow the prompts and you'll be fine.     "
 headline "                                                "
 echo ""
 
+chapter "Test chapter"
+step "Set custom App Shortcuts? (Keyboard → Keyboard Shortcuts → App Shortcuts) [Y/n]: " 
+exit
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
@@ -68,15 +78,15 @@ then
     echo ""
 fi
 
+
 ##############################################
 chapter "Adjusting general settings"
 ##############################################
 
-
 step "Setting your computer name (as done via System Preferences → Sharing)."
-echo -ne "  What would you like it to be? (e.g. Macbook NAME) $bold"
+echo -ne "  What would you like it to be? (e.g. <name>-Macbook) ${bold}"
 read computer_name
-echo -e "$reset"
+echo -e "${reset}"
 run sudo scutil --set ComputerName "'$computer_name'"
 run sudo scutil --set HostName "'$computer_name'"
 run sudo scutil --set LocalHostName "'$computer_name'"
@@ -94,7 +104,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Disable the “Are you sure you want to open this application?” dialog? [Y/n]: " ""
+step "Disable the “Are you sure you want to open this application?” dialog? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -141,7 +151,7 @@ run defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9
 chapter "Adjusting input device settings"
 ##############################################
 
-step "Enable tap to click for this user and for the login screen? [Y/n]: " ""
+step "Enable tap to click for this user and for the login screen? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -165,7 +175,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Disable press-and-hold for keys in favor of key repeat? [Y/n]: " ""
+step "Disable press-and-hold for keys in favor of key repeat? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -176,7 +186,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Use scroll gesture with the Ctrl (^) modifier key to zoom? [Y/n]: " ""
+step "Use scroll gesture with the Ctrl (^) modifier key to zoom? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -188,7 +198,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Disable auto-correct? [Y/n]: " ""
+step "Disable auto-correct? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -199,7 +209,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Stop iTunes from responding to the keyboard media keys? [Y/n]: " ""
+step "Stop iTunes from responding to the keyboard media keys? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -210,7 +220,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Set click weight (0, 1, 2): " ""
+step "Set click weight (0, 1, 2): "
 read clickweight
 case $clickweight in
     [nN] )
@@ -222,7 +232,7 @@ case $clickweight in
         ;;
 esac
 
-step "Enable three finger drag? [Y/n]: " ""
+step "Enable three finger drag? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -232,6 +242,7 @@ case $(read choice; echo $choice) in
         run defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool true
         ;;
 esac
+
 
 ###############################################################################
 chapter "Energy saving settings"
@@ -264,11 +275,12 @@ run sudo pmset -c displaysleep 20
 run sudo pmset -c sleep 0
 run sudo pmset -b sleep 5
 
+
 ##############################################
 chapter "Adjusting locale settings"
 ##############################################
 
-step "Set custom language and text formats? [Y/n]: " ""
+step "Set custom language and text formats? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -288,11 +300,12 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
+
 ##############################################
 chapter "Adjusting Finder settings"
 ##############################################
 
-step "Show icons for hard drives, servers, and removable media on the desktop? [Y/n]: " ""
+step "Show icons for hard drives, servers, and removable media on the desktop? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -335,7 +348,7 @@ run defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
 run defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-step "Enable AirDrop over Ethernet and on unsupported Macs running Lion? [Y/n]: " ""
+step "Enable AirDrop over Ethernet and on unsupported Macs running Lion? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -376,7 +389,7 @@ run /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconS
 chapter "Adjusting Dock, Dashboard, and hot corners"
 ##############################################
 
-step "Set Dock orientation to the left?: " ""
+step "Set Dock orientation to the left?: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -387,7 +400,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Change the icon size (in px) of Dock items? [54/n]: " ""
+step "Change the icon size (in px) of Dock items? [54/n]: "
 read tilesize
 case $tilesize in
     [nN] )
@@ -399,7 +412,7 @@ case $tilesize in
         ;;
 esac
 
-step "Change the magnification size (in px) of Dock items when hovering over them? [82/n]: " ""
+step "Change the magnification size (in px) of Dock items when hovering over them? [82/n]: "
 read largesize
 case $largesize in
     [nN] )
@@ -411,7 +424,7 @@ case $largesize in
         ;;
 esac
 
-step "Automatically hide and show the Dock? [Y/n]: " ""
+step "Automatically hide and show the Dock? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -466,7 +479,7 @@ run defaults write com.apple.dock show-recents -bool false
 # 12: Notification Center
 # 13: Lock Screen
 
-step "Set custom Hot corners? [Y/n]: " ""
+step "Set custom Hot corners? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -491,11 +504,12 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
+
 ##############################################
 chapter "Safari & WebKit settings"
 ##############################################
 
-step "Enable the Developer menu and the Web Inspector in Safari? [Y/n]: " ""
+step "Enable the Developer menu and the Web Inspector in Safari? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -508,7 +522,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Disable AutoFill? [Y/n]: " ""
+step "Disable AutoFill? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -533,11 +547,12 @@ run defaults write com.apple.AdLib allowIdentifierForAdvertising -bool false
 run defaults write com.apple.AdLib allowApplePersonalizedAdvertising -bool false
 run defaults write com.apple.AdLib forceLimitAdTracking -bool true
 
+
 ##############################################
 chapter "Adjusting Mac App Store settings"
 ##############################################
 
-step "Enable the automatic update check? [Y/n]: " ""
+step "Enable the automatic update check? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -550,7 +565,7 @@ case $(read choice; echo $choice) in
 esac
 
 
-step "Download newly available updates in background? [Y/n]: " ""
+step "Download newly available updates in background? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -561,7 +576,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-step "Install System data files & security updates? [Y/n]: " ""
+step "Install System data files & security updates? [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -572,21 +587,11 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-# step "Turn on app auto-update? [Y/n]: " ""
-# case $(read choice; echo $choice) in
-#     [nN] )
-#         echo ""
-#         ;;
-#     [yY] | * )
-#         echo ""
-#         run defaults write com.apple.commerce AutoUpdate -bool true
-#         ;;
-# esac
 
 ##############################################
-chapter "Adding custom App shortcuts"
+chapter "Custom App shortcuts"
 ##############################################
-step "Add custom App Shortcuts? (Keyboard > Keyboard Shortcuts > App Shortcuts) [Y/n]: " ""
+step "Set custom App Shortcuts? (Keyboard → Keyboard Shortcuts → App Shortcuts) [Y/n]: "
 case $(read choice; echo $choice) in
     [nN] )
         echo ""
@@ -597,12 +602,12 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
-# TODO:
+
 ##############################################
 chapter "Symlinking dotfiles…"
 ##############################################
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
-step ".zshrc"
+step ".zshrc config file"
 run rm -rf $HOME/.zshrc
 run ln -s .zshrc $HOME/.zshrc
 
@@ -612,15 +617,17 @@ run ln -s .vimrc $HOME/.vimrc
 run rm -rf $HOME/.nanorc
 run ln -s .nanorc $HOME/.nanorc
 
-step "Setting sshconfig"
+step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
 run mkdir -p ~/.ssh && chmod 700 $HOME/.ssh
+run rm -rf $HOME/.ssh/config
 run ln -s sshconfig $HOME/.ssh/config
 run chmod 600 $HOME/.ssh/config
 
 step "Mackup config file"
 run rm -rf $HOME/.mackup.cfg
 run ln -s .mackup.cfg $HOME/.mackup.cfg
+
 
 ##############################################
 chapter "Installing CLI tools"
@@ -666,6 +673,7 @@ case $(read choice; echo $choice) in
         ;;
 esac
 
+
 ##############################################
 chapter "Installing Homebrew formulae and casks…"
 ##############################################
@@ -675,6 +683,7 @@ run brew update
 # Install all our dependencies with homebrew bundle (See Brewfile)
 run brew tap homebrew/bundle
 run brew bundle --file ./Brewfile
+
 
 ##############################################
 chapter "Directories"
