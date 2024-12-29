@@ -73,14 +73,14 @@ chapter "Adjusting general settings"
 ##############################################
 
 
-# step "Setting your computer name (as done via System Preferences → Sharing)."
-# echo -ne "  What would you like it to be? (e.g. Macbook NAME) $bold"
-# read computer_name
-# echo -e "$reset"
-# run sudo scutil --set ComputerName "'$computer_name'"
-# run sudo scutil --set HostName "'$computer_name'"
-# run sudo scutil --set LocalHostName "'$computer_name'"
-# run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "'$computer_name'"
+step "Setting your computer name (as done via System Preferences → Sharing)."
+echo -ne "  What would you like it to be? (e.g. Macbook NAME) $bold"
+read computer_name
+echo -e "$reset"
+run sudo scutil --set ComputerName "'$computer_name'"
+run sudo scutil --set HostName "'$computer_name'"
+run sudo scutil --set LocalHostName "'$computer_name'"
+run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "'$computer_name'"
 
 step "Disable OS X Gate Keeper? (You'll be able to install any app you want from here on, not just Mac App Store apps) [Y/n]: "
 case $(read choice; echo $choice) in
