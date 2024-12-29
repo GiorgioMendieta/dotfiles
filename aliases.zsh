@@ -2,6 +2,7 @@
 # General
 # ------------------------------------------------------------------------------
 alias reloadshell="source $HOME/.zshrc"
+alias hxtutor="hx --tutor"
 
 # SSH 
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
@@ -109,12 +110,12 @@ alias dev="cd $HOME/Developer"
 # alias dw="cd $HOME/Downloads && open . && exit"
 
 # Sorbonne Université
-alias sorbonne="cd $HOME/Developer/Sorbonne\ Universite"
-# alias vlsi="cd $HOME/Developer/Sorbonne\ Universite/VLSI-TPs"
-# alias pscr="cd $HOME/Developer/Sorbonne\ Universite/PSCR-TME"
-# alias ioc="cd $HOME/Developer/Sorbonne\ Universite/IOC-TME"
-# alias multi="cd $HOME/Developer/Sorbonne\ Universite/MULTI-TPs"
-alias mobj="cd $HOME/Developer/Sorbonne\ Universite/MOBJ"
+alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
+# alias vlsi="cd $HOME/Developer/Sorbonne_Universite/VLSI-TPs"
+# alias pscr="cd $HOME/Developer/Sorbonne_Universite/PSCR-TME"
+# alias ioc="cd $HOME/Developer/Sorbonne_Universite/IOC-TME"
+# alias multi="cd $HOME/Developer/Sorbonne_Universite/MULTI-TPs"
+alias mobj="cd $HOME/Developer/Sorbonne_Universite/MOBJ"
 
 # Directory navigation
 up (){
@@ -188,12 +189,30 @@ outdated(){
 # Replace vim by Neovim
 alias vim=nvim
 
-# Replace cat with bat 
-alias cat='bat'
+# Bat is a cat clone with syntax highlighting and Git integration
+if [ -x "$(command -v bat)" ]; then
+    # Replace cat with bat 
+    alias cat='bat'
 
-# Color help pages with bat
-alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+    # Color help pages with bat
+    alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+    alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+    # Color defaults read output with bat
+    defaultsread() {
+        local domain
+        domain=$1
+
+        local key
+        key=$2
+
+        if [ -z "$key" ]; then
+            defaults read "$domain" | bat --language json
+        else
+            defaults read "$domain" "$key" | bat --language json
+        fi
+    } 
+fi
 
 # eza (Enhanced Zsh Aliases) is a command-line tool that enhances the output of the ls command.
 if [ -x "$(command -v eza)" ]; then
@@ -211,6 +230,7 @@ if [ -x "$(command -v eza)" ]; then
 
   # Show only hidden files
   alias l.='ls -d .*'
+  alias ll.='ll -d .*'
 
   # Tree view (long)
   alias llt='ll --tree --level=2'
@@ -221,6 +241,15 @@ if [ -x "$(command -v eza)" ]; then
       eza --tree --icons --level=$1
     else
       eza --tree --icons --level=1
+    fi
+  }
+
+# Tree view (directories only)
+  ltd() {
+    if [ "$1" != "" ]; then
+      eza --tree --icons -D --level=$1
+    else
+      eza --tree --icons -D --level=1
     fi
   }
 fi
@@ -258,36 +287,54 @@ man2pdf() {
 }
 
 _calcram() {
-  local sum
-  sum=0
-  for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
-    sum=$(($i + $sum))
-  done
-  sum=$(echo "scale=2; $sum / 1024.0" | bc)
-  echo $sum
+    local sum
+    sum=0
+    for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
+        sum=$(($i + $sum))
+    done
+    sum=$(echo "scale=2; $sum / 1024.0" | bc)
+    echo $sum
 }
 
 # Show how much RAM application uses.
 # e.g. $ ram safari
 # # => safari uses 154.69 MBs of RAM
 ram() {
-  local sum
-  local app="$1"
-  if [ -z "$app" ]; then
-    echo "First argument - pattern to grep from processes"
-    return 0
-  fi
+    local sum
+    local app="$1"
+    if [ -z "$app" ]; then
+        echo "First argument - pattern to grep from processes"
+        return 0
+    fi
 
-  sum=$(_calcram $app)
-  if [[ $sum != "0" ]]; then
-    echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
-  else
-    echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
-  fi
+    sum=$(_calcram $app)
+    if [[ $sum != "0" ]]; then
+        echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
+    else
+        echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
+    fi
 }
 
 alias :q='echo You are not editing a file, dummy.'
 alias :wq='echo You are not editing a file, dummy.'
+
+alias copyclang-format="cp $DOTFILES/.clang-format ./" # Copy clang-format file to current directory
+
+applyclangformat() {
+    echo "Applying clang-format to all .cpp and .h files in the current directory..."
+
+    if [ -f .clang-format ]; then
+    echo "Found .clang-format file in the current directory"
+    else
+    echo "No .clang-format file found in the current directory"
+    echo "Copying .clang-format file from $DOTFILES to the current directory..."
+    copyclang-format
+    fi
+
+    find . -iname "*.cpp" -o -iname "*.h" | xargs clang-format -i --style=file --fallback-style=none
+
+    echo "Done!"
+}
 
 # ------------------------------------------------------------------------------
 # Raspberry pi aliases
