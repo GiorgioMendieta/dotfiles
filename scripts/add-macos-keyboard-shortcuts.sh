@@ -4,10 +4,9 @@
 
 set -e
 
-
 addEntries() {
     # check if universal access / custom menu key exists
-    if defaults read com.apple.universalaccess com.apple.custommenu.apps > /dev/null 2>&1; then
+    if defaults read com.apple.universalaccess com.apple.custommenu.apps >/dev/null 2>&1; then
         defaults delete com.apple.universalaccess com.apple.custommenu.apps
     fi
     defaults write com.apple.universalaccess com.apple.custommenu.apps -array
@@ -26,14 +25,12 @@ addEntries() {
     killall Finder
 }
 
-
 # We need the bundleid for each app
-get_BundleId(){
+get_BundleId() {
     mdls -raw -name kMDItemCFBundleIdentifier "$1"
 }
 
-
-createKeyboardShortcuts(){
+createKeyboardShortcuts() {
     # make life easier
     app=""
     appList=""

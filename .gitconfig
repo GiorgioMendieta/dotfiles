@@ -1,37 +1,36 @@
 [user]
-	name = Giorgio Mendieta
-	email = 31053658+GiorgioMendieta@users.noreply.github.com
-  
+name = Giorgio Mendieta
+email = 31053658+GiorgioMendieta@users.noreply.github.com
+
 [init]
-	defaultBranch = main
+defaultBranch = main
 
 [color]
-	ui = auto
+ui = auto
 
 [alias]
-  	# List available aliases
-  	aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
-	# Display tree-like log, because default log is a pain…
-	lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cblue(%an - %C(bold)%ad)%Creset' -10
-	cm = commit -m
-	cam = commit -am
-	st = status -sb
+# List available aliases
+aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+# Display tree-like log, because default log is a pain…
+lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cblue(%an - %C(bold)%ad)%Creset' -10
+cm = commit -m
+cam = commit -am
+st = status -sb
 
 [core]
-	excludesfile = ~/.gitignore_global
-	editor = code --wait
-  	pager = delta
+excludesfile = ~/.gitignore_global
+editor = code --wait
+pager = delta
 
 [interactive]
-    diffFilter = delta --color-only
+diffFilter = delta --color-only
 
 [delta]
-    navigate = true
-    line-numbers = true
+navigate = true
+line-numbers = true
 
 [merge]
-    conflictstyle = diff3
+conflictstyle = diff3
 
 [diff]
-    colorMoved = default
-
+colorMoved = default

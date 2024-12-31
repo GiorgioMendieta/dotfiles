@@ -17,9 +17,9 @@ echo "Host *.github.com\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile
 echo "Adding your SSH key to the ssh-agent..."
 ssh-add -K ~/.ssh/id_ed25519
 
-# Adding your SSH key to your GitHub account 
+# Adding your SSH key to your GitHub account
 # https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
-pbcopy < ~/.ssh/id_ed25519.pub
+pbcopy <~/.ssh/id_ed25519.pub
 echo "The public key has been copied to keyboard. (pbcopy < ~/.ssh/id_ed25519.pub)"
 echo "Please follow the following steps to add your SSH key to your GitHub account:"
 echo ""

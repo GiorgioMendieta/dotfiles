@@ -4,7 +4,7 @@
 alias reloadshell="source $HOME/.zshrc"
 alias hxtutor="hx --tutor"
 
-# SSH 
+# SSH
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias sshconfig="code $HOME/.ssh/config"
 
@@ -17,15 +17,15 @@ alias please='sudo $(fc -ln -1)'
 # Show mounted physical drives by column
 alias mnt='mount | grep -E ^/dev | column -t'
 
-# Visual Studio Code 
+# Visual Studio Code
 vsc() {
-  if [ "$1" != "" ]; then
-    # Open file in VSC
-    code $1
-  else
-    # Open current directory in VSC
-    code .
-  fi
+    if [ "$1" != "" ]; then
+        # Open file in VSC
+        code $1
+    else
+        # Open current directory in VSC
+        code .
+    fi
 }
 
 # Performance monitoring CLI tool for Apple Silicon
@@ -118,29 +118,29 @@ alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
 alias mobj="cd $HOME/Developer/Sorbonne_Universite/MOBJ"
 
 # Directory navigation
-up (){
-  if [[ "$#" < 1 ]]; then
-    # Navigate up one level
-    cd ..
-  else
-    # Navigate up multiple levels
-    CDSTR=""
-    for i in {1..$1}; do
-      CDSTR="../$CDSTR"
-    done
-    cd $CDSTR
-  fi
+up() {
+    if [[ "$#" < 1 ]]; then
+        # Navigate up one level
+        cd ..
+    else
+        # Navigate up multiple levels
+        CDSTR=""
+        for i in {1..$1}; do
+            CDSTR="../$CDSTR"
+        done
+        cd $CDSTR
+    fi
 }
 
 # Create dir and immediately cd into it
 mkcd() {
-  if [ ! -n "$1" ]; then
-    echo "Enter a directory name"
-  elif [ -d $1 ]; then
-    echo "\`$1' already exists"
-  else
-    mkdir -p $1 && cd $1
-  fi
+    if [ ! -n "$1" ]; then
+        echo "Enter a directory name"
+    elif [ -d $1 ]; then
+        echo "\`$1' already exists"
+    else
+        mkdir -p $1 && cd $1
+    fi
 }
 
 # ------------------------------------------------------------------------------
@@ -172,14 +172,14 @@ mkcd() {
 bold=$(tput bold)
 normal=$(tput sgr0)
 # TODO: Format output using awk & Sort columns
-outdated(){
-  brew update > /dev/null 2>&1
-  echo "${bold}Outdated packages:${normal}"
-  brew outdated
-  echo "\n${bold}Outdated casks:${normal}"
-  brew outdated --casks -g
-  echo "\n${bold}Outdated App store apps:${normal}"
-  mas outdated
+outdated() {
+    brew update >/dev/null 2>&1
+    echo "${bold}Outdated packages:${normal}"
+    brew outdated
+    echo "\n${bold}Outdated casks:${normal}"
+    brew outdated --casks -g
+    echo "\n${bold}Outdated App store apps:${normal}"
+    mas outdated
 }
 
 # ------------------------------------------------------------------------------
@@ -191,7 +191,7 @@ alias vim=nvim
 
 # Bat is a cat clone with syntax highlighting and Git integration
 if [ -x "$(command -v bat)" ]; then
-    # Replace cat with bat 
+    # Replace cat with bat
     alias cat='bat'
 
     # Color help pages with bat
@@ -211,58 +211,57 @@ if [ -x "$(command -v bat)" ]; then
         else
             defaults read "$domain" "$key" | bat --language json
         fi
-    } 
+    }
 fi
 
 # eza (Enhanced Zsh Aliases) is a command-line tool that enhances the output of the ls command.
 if [ -x "$(command -v eza)" ]; then
-  # Display type indicator by file names
-  alias ls='eza --classify --icons'
+    # Display type indicator by file names
+    alias ls='eza --classify --icons'
 
-  # Show header, git status, and sort by type
-  alias ll='ls -lh --git --sort=extension'
+    # Show header, git status, and sort by type
+    alias ll='ls -lh --git --sort=extension'
 
-  # Show all files
-  alias la='ls -a'
+    # Show all files
+    alias la='ls -a'
 
-  # Show all files (long)
-  alias lla='ll -a'
+    # Show all files (long)
+    alias lla='ll -a'
 
-  # Show only hidden files
-  alias l.='ls -d .*'
-  alias ll.='ll -d .*'
+    # Show only hidden files
+    alias l.='ls -d .*'
+    alias ll.='ll -d .*'
 
-  # Tree view (long)
-  alias llt='ll --tree --level=2'
+    # Tree view (long)
+    alias llt='ll --tree --level=2'
 
-  # Tree view (level in parameter)
-  lt() {
-    if [ "$1" != "" ]; then
-      eza --tree --icons --level=$1
-    else
-      eza --tree --icons --level=1
-    fi
-  }
+    # Tree view (level in parameter)
+    lt() {
+        if [ "$1" != "" ]; then
+            eza --tree --icons --level=$1
+        else
+            eza --tree --icons --level=1
+        fi
+    }
 
-# Tree view (directories only)
-  ltd() {
-    if [ "$1" != "" ]; then
-      eza --tree --icons -D --level=$1
-    else
-      eza --tree --icons -D --level=1
-    fi
-  }
+    # Tree view (directories only)
+    ltd() {
+        if [ "$1" != "" ]; then
+            eza --tree --icons -D --level=$1
+        else
+            eza --tree --icons -D --level=1
+        fi
+    }
 fi
 
-# Set up fzf key bindings and fuzzy completion (useful for searching command history with ctrl + r) 
+# Set up fzf key bindings and fuzzy completion (useful for searching command history with ctrl + r)
 # ** + tab to search for files
 source <(fzf --zsh)
 
 # Show files (ls) after changing directory (cd)
-cd ()
-{
-  builtin cd $1
-  ls
+cd() {
+    builtin cd $1
+    ls
 }
 
 # ------------------------------------------------------------------------------
@@ -275,11 +274,11 @@ man2pdf() {
     # Extract the major version number (before the first dot)
     local major_version
     major_version=$(echo "$version" | cut -d '.' -f 1)
-    
+
     # Check if the major version is 14 (Ventura) or higher
     if [[ $major_version -ge 14 ]]; then
         # Ventura or higher
-        mandoc -T pdf `man -w $@` | open -f -F -n -a /System/Applications/Preview.app
+        mandoc -T pdf $(man -w $@) | open -f -F -n -a /System/Applications/Preview.app
     else
         # Lower than Ventura
         man -t "${1}" | open -f -F -n -a /System/Applications/Preview.app
@@ -289,7 +288,7 @@ man2pdf() {
 _calcram() {
     local sum
     sum=0
-    for i in `ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'`; do
+    for i in $(ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'); do
         sum=$(($i + $sum))
     done
     sum=$(echo "scale=2; $sum / 1024.0" | bc)
@@ -324,11 +323,11 @@ applyclangformat() {
     echo "Applying clang-format to all .cpp and .h files in the current directory..."
 
     if [ -f .clang-format ]; then
-    echo "Found .clang-format file in the current directory"
+        echo "Found .clang-format file in the current directory"
     else
-    echo "No .clang-format file found in the current directory"
-    echo "Copying .clang-format file from $DOTFILES to the current directory..."
-    copyclang-format
+        echo "No .clang-format file found in the current directory"
+        echo "Copying .clang-format file from $DOTFILES to the current directory..."
+        copyclang-format
     fi
 
     find . -iname "*.cpp" -o -iname "*.h" | xargs clang-format -i --style=file --fallback-style=none
