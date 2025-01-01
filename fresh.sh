@@ -673,24 +673,24 @@ chapter "Symlinking dotfiles…"
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
 step ".zshrc config file"
 run rm -rf $HOME/.zshrc
-run ln -s .zshrc $HOME/.zshrc
+run ln -s $DOTFILES/.zshrc $HOME/.zshrc
 
 step "Seting Vim and Nano config files"
 run rm -rf $HOME/.vimrc
-run ln -s .vimrc $HOME/.vimrc
+run ln -s $DOTFILES/.vimrc $HOME/.vimrc
 run rm -rf $HOME/.nanorc
-run ln -s .nanorc $HOME/.nanorc
+run ln -s $DOTFILES/.nanorc $HOME/.nanorc
 
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
 run mkdir -p ~/.ssh && chmod 700 $HOME/.ssh
 run rm -rf $HOME/.ssh/config
-run ln -s sshconfig $HOME/.ssh/config
+run ln -s $DOTFILES/sshconfig $HOME/.ssh/config
 run chmod 600 $HOME/.ssh/config
 
 step "Mackup config file"
 run rm -rf $HOME/.mackup.cfg
-run ln -s .mackup.cfg $HOME/.mackup.cfg
+run ln -s $DOTFILES/.mackup.cfg $HOME/.mackup.cfg
 
 ##############################################
 chapter "Installing CLI tools"
@@ -769,10 +769,10 @@ if test ! $(which git); then
 fi
 
 step "Symlink Git config files"
-run m -rf $HOME/.gitconfig
-run n -s .gitconfig $HOME/.gitconfig
-run m -rf $HOME/.gitignore_global
-run n -s .gitignore_global $HOME/.gitignore_global
+run rm -rf $HOME/.gitconfig
+run ln -s $DOTFILES/.gitconfig $HOME/.gitconfig
+run rm -rf $HOME/.gitignore_global
+run ln -s $DOTFILES/.gitignore_global $HOME/.gitignore_global
 
 step "Clone Github repositories\n"
 run ./clone.sh
