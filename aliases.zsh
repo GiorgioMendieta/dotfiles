@@ -101,7 +101,7 @@ alias pip2="python2 -m pip"
 # Directory shortcuts
 # ------------------------------------------------------------------------------
 # Open .dotfiles (this repo)
-alias dotfiles="cd $DOTFILES"
+alias dot="cd $DOTFILES"
 
 # Open custom alias file (this file)
 alias calias="code $ZSH_CUSTOM/aliases.zsh"
@@ -176,11 +176,12 @@ outdated() {
     brew update >/dev/null 2>&1
     echo "${bold}Outdated packages:${normal}"
     brew outdated
-    echo "\n${bold}Outdated casks:${normal}"
-    brew outdated --casks -g
     echo "\n${bold}Outdated App store apps:${normal}"
     mas outdated
 }
+
+alias bri="brew install"
+alias bric="brew install --cask"
 
 # ------------------------------------------------------------------------------
 # Useful replacements
