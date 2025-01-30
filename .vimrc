@@ -22,6 +22,48 @@ else
   set clipboard=unnamedplus "Linux
 endif
 
+" vim-plug plugin manager
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
+call plug#end()
+
+""""""""""""""""""""""""""""""""
+" Color theme
+""""""""""""""""""""""""""""""""
+silent! colorscheme catppuccin
+
+""""""""""""""""""""""""""""""""
+" Keybinding configurations
+""""""""""""""""""""""""""""""""
+" - inoremap: maps the key in *insert* mode
+" - nnoremap: maps the key in *normal* mode
+" - vnoremap: maps the key in *visual* mode
+" - A: alt/opt key
+" - C: ctrl/cmd key
+" - S: shift key
+
+" move line or visually selected block - alt+j/k
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" copies filepath to clipboard by pressing yf (yank filepath)
+:nnoremap <silent> yf :let @+=expand('%:p')<CR>
+" copies pwd to clipboard: command yd (yank directory)
+:nnoremap <silent> yd :let @+=expand('%:p:h')<CR>
+
+" Press i to enter insert mode, and ii to exit insert mode.
+:inoremap ii <Esc>
+
 
 set rtp+=/opt/homebrew/opt/fzf  " use fzf"
 

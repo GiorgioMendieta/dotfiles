@@ -680,6 +680,8 @@ run rm -rf $HOME/.vimrc
 run ln -s $DOTFILES/.vimrc $HOME/.vimrc
 run rm -rf $HOME/.nanorc
 run ln -s $DOTFILES/.nanorc $HOME/.nanorc
+run rm -rf $HOME/.vim
+run ln -s $DOTFILES/.vim $HOME/.vim
 
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
@@ -819,3 +821,6 @@ else
     # Randomize port on launch
     run defaults write ${bundleid} RandomPort -bool true
 fi
+
+# Karabiner-Elements config
+run cp ./karabiner.json $HOME/.config/karabiner/karabiner.json

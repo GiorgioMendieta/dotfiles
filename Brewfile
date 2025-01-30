@@ -1,11 +1,8 @@
 # ------------------------------------------------------------------------------
 # Taps
 # ------------------------------------------------------------------------------
-tap "grishka/grishka"  # NearDrop
 tap "homebrew/bundle"
 tap "homebrew/services"
-tap "popcorn-official/popcorn-desktop", "https://github.com/popcorn-official/popcorn-desktop.git"
-tap "randomplum/gtkwave"
 
 # ------------------------------------------------------------------------------
 # CLI tools
@@ -17,9 +14,9 @@ brew "at-spi2-core"
 brew "autoconf"
 brew "automake"
 brew "bat"
+brew "btop"
 brew "cmake"
 brew "cmatrix"
-brew "cowsay"
 brew "eza"
 brew "fzf"
 brew "libtiff"
@@ -50,7 +47,6 @@ brew "neovim"
 brew "nvm"
 brew "py3cairo"
 brew "pyenv"
-brew "pygments"
 brew "pygobject3"
 brew "python@3.10"
 brew "python@3.11"
@@ -58,8 +54,9 @@ brew "sherlock"
 brew "speedtest-cli"
 brew "tmux"
 brew "tree"
+brew "typst"
 brew "wget"
-brew "randomplum/gtkwave/gtkwave", args: ["HEAD"]
+brew "onefetch"
 
 # ------------------------------------------------------------------------------
 # Casks
@@ -71,8 +68,6 @@ cask "alt-tab"
 cask "betterdisplay"
 cask "bitwarden"
 cask "bluesnooze"
-cask "font-meslo-lg-nerd-font"
-cask "ghdl"
 cask "google-chrome"
 cask "iina"
 cask "iterm2"
@@ -80,12 +75,13 @@ cask "karabiner-elements"
 cask "keka"
 cask "linearmouse"
 cask "lookaway"
-cask "mactex-no-gui"
 cask "moonlight"
-cask "neardrop"
 cask "numi"
 cask "obsidian"
 cask "onyx"
+cask "pearcleaner"
+cask "qlvideo"
+cask "qlmarkdown"
 cask "raycast"
 cask "rectangle"
 cask "reflex"
@@ -97,6 +93,11 @@ cask "tradingview"
 cask "transmission"
 cask "visual-studio-code"
 cask "trex"
+
+# ------------------------------------------------------------------------------
+# Fonts 
+# ------------------------------------------------------------------------------
+cask "font-meslo-lg-nerd-font"
 
 # ------------------------------------------------------------------------------
 # VS Code extensions
@@ -141,11 +142,9 @@ vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.vscode-serial-monitor"
 vscode "ms-vsliveshare.vsliveshare"
 vscode "mshr-h.veriloghdl"
-vscode "platformio.platformio-ide"
 vscode "puorc.awesome-vhdl"
 vscode "qwtel.sqlite-viewer"
 vscode "redhat.vscode-xml"
-vscode "teros-technology.teroshdl"
 vscode "timonwong.shellcheck"
 vscode "tomoki1207.pdf"
 vscode "twxs.cmake"
@@ -172,10 +171,11 @@ mas "Keepa - Price Tracker", id: 1533805339
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft To Do", id: 1274495053
 mas "Microsoft Word", id: 462054704
-mas "OneDrive", id: 823766827
 mas "Microsoft OneNote", id: 784801555
 mas "Microsoft PowerPoint", id: 462062816
+mas "OneDrive", id: 823766827
 
+mas "Klack", id: 6446206067 
 mas "Bitwarden", id: 1352778147
 mas "ColorSlurp", id: 1287239339
 mas "Developer", id: 640199958

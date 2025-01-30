@@ -1,14 +1,17 @@
 # ------------------------------------------------------------------------------
 # General
 # ------------------------------------------------------------------------------
+alias zshconfig="vim $HOME/.zshrc"
+alias aliasconfig="vim $DOTFILES/aliases.zsh"
 alias reloadshell="source $HOME/.zshrc"
-alias hxtutor="hx --tutor"
 
+alias hxtutor="hx --tutor"
+alias sha256="shasum -a 256"
 # SSH
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
-alias sshconfig="code $HOME/.ssh/config"
+alias sshconfig="vim $HOME/.ssh/config"
 
-# Show PATH in readable view (replace : with newline)
+# Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
 alias path='echo ${PATH} | tr ":" "\n"'
 
 # Re-run last command as sudo
@@ -259,11 +262,30 @@ fi
 # ** + tab to search for files
 source <(fzf --zsh)
 
-# Show files (ls) after changing directory (cd)
+## Onefetch
+# git repository greeter
+last_repository=
+check_directory_for_new_repository() {
+    current_repository=$(git rev-parse --show-toplevel 2>/dev/null)
+
+    if [ "$current_repository" ] &&
+        [ "$current_repository" != "$last_repository" ]; then
+        onefetch
+    fi
+    last_repository=$current_repository
+}
+
 cd() {
-    builtin cd $1
+    builtin cd "$@"
+    # Run onefetch after changing directory (if in a git repository)
+    check_directory_for_new_repository
+    # Show files (ls) after changing directory (cd)
     ls
 }
+
+# optional, greet also when opening shell directly in repository directory
+# adds time to startup
+check_directory_for_new_repository
 
 # ------------------------------------------------------------------------------
 # Misc

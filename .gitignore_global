@@ -34,7 +34,7 @@
 ######################
 
 # General
-.DS_Store?
+**/.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -179,7 +179,6 @@ fabric.properties
 *.tmp
 *.rst
 *.os
-*.js
 *.pb
 *.dcp
 *.hwdef
@@ -264,10 +263,7 @@ fabric.properties
 */*/bd/*/ip/*/*.xml
 */*/*/bd/*/ip/*/*.xml
 
-*.c
-*.h
 *.vho
-*.html
 */*/bd/*/ip/*/*.tcl
 */*/*/bd/*/ip/*/*.tcl
 hw_handoff

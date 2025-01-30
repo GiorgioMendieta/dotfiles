@@ -97,6 +97,20 @@ createKeyboardShortcuts() {
         defaults read "$bundleid" NSUserKeyEquivalents
         echo
     fi
+
+    # Mela 
+    app=$HOME/Applications/Mela.app
+    if [ -a "$app" ]; then
+        bundleid=$(get_BundleId "$app")
+        echo "Adding: $app"
+        appList+="$bundleid\n"
+        defaults write "$bundleid" NSUserKeyEquivalents "{
+            'Hide Sidebar' = '${CMD}$b';
+            'Show Sidebar' = '${CMD}$b';
+        }"
+        defaults read "$bundleid" NSUserKeyEquivalents
+        echo
+    fi
 }
 
 # Make it happen

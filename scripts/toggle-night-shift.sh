@@ -15,4 +15,3 @@
 
 shortcuts run "Toggle Night Shift"
 echo "Night Shift Toggled"
-

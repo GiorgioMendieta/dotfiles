@@ -39,10 +39,11 @@ After backing up your old Mac you may now follow these install instructions to s
     cd ~/.dotfiles && ./fresh.sh
     ```
 
-5. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
-6. Restart your computer to finalize the process
+5. Follow the prompts appearing on screen
+6. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
+7. Restart your computer to finalize the process
 
-Your Mac is now ready to use!
+Congratulations, your Mac is now ready to use!
 
 > 💡 You can use a different location than `~/.dotfiles` if you want. Make sure you also update the reference in the [`.zshrc`](./.zshrc#L2) file.
 

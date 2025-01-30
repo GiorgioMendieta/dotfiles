@@ -14,5 +14,6 @@ NamespaceIndentation: All
 UseTab: Never
 KeepEmptyLinesAtTheStartOfBlocks: "false"
 SeparateDefinitionBlocks: Always
+PointerAlignment: Left
 BraceWrapping:
   SplitEmptyFunction: false

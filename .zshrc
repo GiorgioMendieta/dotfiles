@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -179,12 +179,12 @@ zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' 
 
 ## QT5
 #If you need to have qt@5 first in your PATH, run:
-export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+# export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
 #For compilers to find qt@5 you may need to set:
-export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include"
+# export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include"
 #For pkg-config to find qt@5 you may need to set:
-export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig"
+# export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig"
 # Fix for CMake
-export CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5/lib/cmake/Qt5":$CMAKE_PREFIX_PATH
-export Qt5_DIR="/opt/homebrew/opt/qt@5/lib/cmake/Qt5"
+# export CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5/lib/cmake/Qt5":$CMAKE_PREFIX_PATH
+# export Qt5_DIR="/opt/homebrew/opt/qt@5/lib/cmake/Qt5"
