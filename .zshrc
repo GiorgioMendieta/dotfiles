@@ -133,20 +133,28 @@ export LANG=en_US.UTF-8
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
 
+#####################################
 ## nvm
+#####################################
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # export NVM_DIR=~/.nvm
 # source $(brew --prefix nvm)/nvm.sh
 
+
+#####################################
 ## bat
+#####################################
 # Set the default theme for bat
 export BAT_THEME="Catppuccin Macchiato"
 # Use bat as the default pager for man pages
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+
+#####################################
 ## fzf
+#####################################
 # Catppuccin Macchiato theme
 export FZF_DEFAULT_OPTS=" \
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
@@ -177,7 +185,9 @@ fi
 # Homebrew
 zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' fzf-preview 'brew info $word'
 
+#####################################
 ## QT5
+#####################################
 #If you need to have qt@5 first in your PATH, run:
 # export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
 #For compilers to find qt@5 you may need to set:
@@ -188,3 +198,19 @@ zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' 
 # Fix for CMake
 # export CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5/lib/cmake/Qt5":$CMAKE_PREFIX_PATH
 # export Qt5_DIR="/opt/homebrew/opt/qt@5/lib/cmake/Qt5"
+
+#####################################
+## History
+#####################################
+setopt EXTENDED_HISTORY       # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY     # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY          # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS       # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS   # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS      # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE      # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS      # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY            # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY         # append to history file
+setopt HIST_NO_STORE          # Don't store history commands

@@ -1,12 +1,12 @@
 # ------------------------------------------------------------------------------
 # General
 # ------------------------------------------------------------------------------
-alias zshconfig="vim $HOME/.zshrc"
-alias aliasconfig="vim $DOTFILES/aliases.zsh"
-alias reloadshell="source $HOME/.zshrc"
+alias zshconfig="vim $HOME/.zshrc; omz reload"
+alias aliasconfig="vim $DOTFILES/aliases.zsh; omz reload" 
+# alias reloadshell="source $HOME/.zshrc"
 
+alias reloadshell="omz reload"
 alias hxtutor="hx --tutor"
-alias sha256="shasum -a 256"
 # SSH
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias sshconfig="vim $HOME/.ssh/config"
@@ -21,15 +21,7 @@ alias please='sudo $(fc -ln -1)'
 alias mnt='mount | grep -E ^/dev | column -t'
 
 # Visual Studio Code
-vsc() {
-    if [ "$1" != "" ]; then
-        # Open file in VSC
-        code $1
-    else
-        # Open current directory in VSC
-        code .
-    fi
-}
+alias vsc="code ."
 
 # Performance monitoring CLI tool for Apple Silicon
 alias asitop='sudo asitop'
@@ -105,12 +97,8 @@ alias pip2="python2 -m pip"
 # ------------------------------------------------------------------------------
 # Open .dotfiles (this repo)
 alias dot="cd $DOTFILES"
-
-# Open custom alias file (this file)
-alias calias="code $ZSH_CUSTOM/aliases.zsh"
 alias library="cd $HOME/Library"
 alias dev="cd $HOME/Developer"
-# alias dw="cd $HOME/Downloads && open . && exit"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
@@ -189,7 +177,8 @@ alias bric="brew install --cask"
 # ------------------------------------------------------------------------------
 # Useful replacements
 # ------------------------------------------------------------------------------
-
+# Quickly calculate SHA256 hash of a file
+alias sha256="shasum -a 256"
 # Replace vim by Neovim
 alias vim=nvim
 
@@ -198,6 +187,7 @@ if [ -x "$(command -v bat)" ]; then
     # Replace cat with bat
     alias cat='bat'
 
+    # TODO: Fix error (https://github.com/ohmyzsh/ohmyzsh/issues/12457)
     # Color help pages with bat
     alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
     alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
@@ -337,8 +327,8 @@ ram() {
     fi
 }
 
-alias :q='echo You are not editing a file, dummy.'
-alias :wq='echo You are not editing a file, dummy.'
+alias :q="exit"
+alias :wq="exit"
 
 alias copyclang-format="cp $DOTFILES/.clang-format ./" # Copy clang-format file to current directory
 
