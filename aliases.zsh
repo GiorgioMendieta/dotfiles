@@ -1,15 +1,20 @@
 # ------------------------------------------------------------------------------
 # General
 # ------------------------------------------------------------------------------
+# Quick config shortcuts
 alias zshconfig="vim $HOME/.zshrc; omz reload"
 alias aliasconfig="vim $DOTFILES/aliases.zsh; omz reload" 
+alias vimconfig="vim $DOTFILES/.vimrc"
+alias sshconfig="vim $HOME/.ssh/config"
 # alias reloadshell="source $HOME/.zshrc"
-
 alias reloadshell="omz reload"
+
+# Search aliases using fzf
+alias salias="alias | fzf"
 alias hxtutor="hx --tutor"
+
 # SSH
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
-alias sshconfig="vim $HOME/.ssh/config"
 
 # Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
 alias path='echo ${PATH} | tr ":" "\n"'
@@ -173,7 +178,8 @@ outdated() {
 
 alias bri="brew install"
 alias bric="brew install --cask"
-
+alias brewgraph="brew deps --installed --graph"
+alias brewdeps="brew uses --recursive --installed"
 # ------------------------------------------------------------------------------
 # Useful replacements
 # ------------------------------------------------------------------------------
@@ -252,15 +258,14 @@ fi
 # ** + tab to search for files
 source <(fzf --zsh)
 
-## Onefetch
-# git repository greeter
+## Onefetch (git repository greeter)
 last_repository=
 check_directory_for_new_repository() {
     current_repository=$(git rev-parse --show-toplevel 2>/dev/null)
 
     if [ "$current_repository" ] &&
         [ "$current_repository" != "$last_repository" ]; then
-        onefetch
+        onefetch --no-art --no-title -d head url license authors --http-url --number-separator=comma --text-colors 7 7 7 3 7 7 
     fi
     last_repository=$current_repository
 }
@@ -270,12 +275,13 @@ cd() {
     # Run onefetch after changing directory (if in a git repository)
     check_directory_for_new_repository
     # Show files (ls) after changing directory (cd)
+    echo ""
     ls
 }
 
 # optional, greet also when opening shell directly in repository directory
 # adds time to startup
-check_directory_for_new_repository
+# check_directory_for_new_repository
 
 # ------------------------------------------------------------------------------
 # Misc
@@ -333,15 +339,16 @@ alias :wq="exit"
 alias copyclang-format="cp $DOTFILES/.clang-format ./" # Copy clang-format file to current directory
 
 applyclangformat() {
-    echo "Applying clang-format to all .cpp and .h files in the current directory..."
 
     if [ -f .clang-format ]; then
-        echo "Found .clang-format file in the current directory"
+        echo "Found .clang-format file in the current directory!"
     else
         echo "No .clang-format file found in the current directory"
         echo "Copying .clang-format file from $DOTFILES to the current directory..."
         copyclang-format
     fi
+
+    echo "Applying clang-format to all .cpp and .h files in the current directory..."
 
     find . -iname "*.cpp" -o -iname "*.h" | xargs clang-format -i --style=file --fallback-style=none
 
