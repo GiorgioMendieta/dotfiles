@@ -1,7 +1,7 @@
 # Path to your dotfiles.
 export DOTFILES="$HOME/.dotfiles"
 
-export EDITOR="/opt/homebrew/bin/nano"
+export EDITOR="/opt/homebrew/bin/vim"
 export VISUAL="$EDITOR"
 
 # Custom location for Homebrew Bundle file

@@ -186,9 +186,13 @@ alias brewdeps="brew uses --recursive --installed"
 # Quickly calculate SHA256 hash of a file
 alias sha256="shasum -a 256"
 # Replace vim by Neovim
-alias vim=nvim
+alias vim="nvim"
 
 # Bat is a cat clone with syntax highlighting and Git integration
+if [[ "$(uname -s)" == "Linux" ]]; then
+  alias bat='batcat'
+fi
+
 if [ -x "$(command -v bat)" ]; then
     # Replace cat with bat
     alias cat='bat'
