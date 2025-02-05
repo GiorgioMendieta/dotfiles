@@ -189,11 +189,12 @@ alias sha256="shasum -a 256"
 alias vim="nvim"
 
 # Bat is a cat clone with syntax highlighting and Git integration
+# Ubuntu compatibility
 if [[ "$(uname -s)" == "Linux" ]]; then
   alias bat='batcat'
 fi
 
-if [ -x "$(command -v bat)" ]; then
+if [ -x "$(command -v bat)" ] || [ -x "$(command -v batcat)" ]; then
     # Replace cat with bat
     alias cat='bat'
 
