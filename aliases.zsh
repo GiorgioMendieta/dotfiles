@@ -175,7 +175,7 @@ alias brewgraph="brew deps --installed --graph"
 alias brewdeps="brew uses --recursive --installed"
 
 if [[ "$(uname -s)" == "Linux" ]]; then
-  alias outdated='sudo apt update; apt list --upgradeable'
+  alias outdated="apt list --upgradeable 2>/dev/null | tail -n +2 | awk '{print \$1, \$2, \$6}' | sed 's/\]$//' | column -t -N 'PACKAGE NAME','NEW VERSION','OLD VERSION'"
 fi
 
 if [[ "$(uname -s)" == "Darwin" ]]; then

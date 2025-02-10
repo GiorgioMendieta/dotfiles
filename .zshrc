@@ -1,7 +1,14 @@
 # Path to your dotfiles.
 export DOTFILES="$HOME/.dotfiles"
 
-export EDITOR="/opt/homebrew/bin/vim"
+if [[ "$(uname -s)" == "Linux" ]]; then
+  export EDITOR="/usr/bin/vim"
+fi
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  export EDITOR="/opt/homebrew/bin/vim"
+fi
+
 export VISUAL="$EDITOR"
 
 # Custom location for Homebrew Bundle file
