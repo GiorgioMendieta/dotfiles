@@ -72,8 +72,16 @@ setopt rm_star_silent
 # Networking
 # ------------------------------------------------------------------------------
 # Show current IP address
-alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
-alias myiplinux='hostname -l'
+
+
+if [[ "$(uname -s)" == "Linux" ]]; then
+  alias myip='hostname -I'
+fi
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
+fi
+
 alias myextip='curl -s ipv4.icanhazip.com' # Show external IPv4 address
 
 # Show MAC address (MacOs only)
@@ -175,7 +183,7 @@ alias brewgraph="brew deps --installed --graph"
 alias brewdeps="brew uses --recursive --installed"
 
 if [[ "$(uname -s)" == "Linux" ]]; then
-  alias outdated="apt list --upgradeable 2>/dev/null | tail -n +2 | awk '{print \$1, \$2, \$6}' | sed 's/\]$//' | column -t -N 'PACKAGE NAME','NEW VERSION','OLD VERSION'"
+  alias outdated="apt list --upgradeable 2>/dev/null | tail -n +2 | awk '{print \$1, \$6, \$2}' | tr -d ']' | column -t -N 'PACKAGE NAME','OLD VERSION','NEW VERSION'"
 fi
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
