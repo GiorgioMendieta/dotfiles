@@ -220,3 +220,5 @@ setopt HIST_NO_STORE          # Don't store history commands
 ## NVIM
 #####################################
 export NVIM_APPNAME=lazyvim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

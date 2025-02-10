@@ -73,6 +73,7 @@ setopt rm_star_silent
 # ------------------------------------------------------------------------------
 # Show current IP address
 alias myip='ifconfig | sed -En "s/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p"'
+alias myiplinux='hostname -l'
 alias myextip='curl -s ipv4.icanhazip.com' # Show external IPv4 address
 
 # Show MAC address (MacOs only)
@@ -167,19 +168,21 @@ mkcd() {
 # Update homebrew (hide output) and show outdated formulae
 bold=$(tput bold)
 normal=$(tput sgr0)
-# TODO: Format output using awk & Sort columns
-outdated() {
-    brew update >/dev/null 2>&1
-    echo "${bold}Outdated packages:${normal}"
-    brew outdated
-    echo "\n${bold}Outdated App store apps:${normal}"
-    mas outdated
-}
 
 alias bri="brew install"
 alias bric="brew install --cask"
 alias brewgraph="brew deps --installed --graph"
 alias brewdeps="brew uses --recursive --installed"
+
+if [[ "$(uname -s)" == "Linux" ]]; then
+  alias outdated='sudo apt update; apt list --upgradeable'
+fi
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias outdated='brew update >/dev/null 2>&1; brew outdated'
+fi
+## Apt
+alias sai="sudo apt install"
 # ------------------------------------------------------------------------------
 # Useful replacements
 # ------------------------------------------------------------------------------
