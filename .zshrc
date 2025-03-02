@@ -156,7 +156,7 @@ export LANG=en_US.UTF-8
 # Set the default theme for bat
 export BAT_THEME="Catppuccin Macchiato"
 # Use bat as the default pager for man pages
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 
 #####################################

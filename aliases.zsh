@@ -39,6 +39,9 @@ alias cp='cp -i'
 # Prevent rm -f from asking for confirmation on things like `rm -f *.bak`.
 setopt rm_star_silent
 
+# List users formatted as a table
+alias lsusers='cat /etc/passwd | column -t -s ":" -N USERNAME,PW,UID,GUID,COMMENT,HOME,INTERPRETER'
+
 # alias rm='safedelete'
 # function safedelete {
 #   if command -v gio > /dev/null; then
@@ -113,6 +116,8 @@ alias pip2="python2 -m pip"
 alias dot="cd $DOTFILES"
 alias library="cd $HOME/Library"
 alias dev="cd $HOME/Developer"
+alias lab="cd $HOME/docker"
+
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
@@ -177,10 +182,14 @@ mkcd() {
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+# Homebrew
 alias bri="brew install"
 alias bric="brew install --cask"
 alias brewgraph="brew deps --installed --graph"
 alias brewdeps="brew uses --recursive --installed"
+
+## Apt
+alias sai="sudo apt install"
 
 if [[ "$(uname -s)" == "Linux" ]]; then
   alias outdated="sudo apt update >/dev/null 2>&1; apt list --upgradeable | tail -n +2 | awk '{print \$1, \$6, \$2}' | tr -d ']' | column -t -N 'PACKAGE NAME','OLD VERSION','NEW VERSION'"
@@ -189,8 +198,7 @@ fi
 if [[ "$(uname -s)" == "Darwin" ]]; then
   alias outdated='brew update >/dev/null 2>&1; brew outdated'
 fi
-## Apt
-alias sai="sudo apt install"
+
 # ------------------------------------------------------------------------------
 # Useful replacements
 # ------------------------------------------------------------------------------
@@ -202,10 +210,10 @@ alias vim="nvim"
 # Bat is a cat clone with syntax highlighting and Git integration
 # Ubuntu compatibility
 if [[ "$(uname -s)" == "Linux" ]]; then
-  alias bat='batcat'
+    MANPAGER=less
 fi
 
-if [ -x "$(command -v bat)" ] || [ -x "$(command -v batcat)" ]; then
+if [ -x "$(command -v bat)" ]; then
     # Replace cat with bat
     alias cat='bat'
 
@@ -274,30 +282,12 @@ fi
 # ** + tab to search for files
 source <(fzf --zsh)
 
-## Onefetch (git repository greeter)
-last_repository=
-check_directory_for_new_repository() {
-    current_repository=$(git rev-parse --show-toplevel 2>/dev/null)
-
-    if [ "$current_repository" ] &&
-        [ "$current_repository" != "$last_repository" ]; then
-        onefetch --no-art --no-title -d head url license authors --http-url --number-separator=comma --text-colors 7 7 7 3 7 7 
-    fi
-    last_repository=$current_repository
-}
-
 cd() {
     builtin cd "$@"
-    # Run onefetch after changing directory (if in a git repository)
-    check_directory_for_new_repository
     # Show files (ls) after changing directory (cd)
     echo ""
     ls
 }
-
-# optional, greet also when opening shell directly in repository directory
-# adds time to startup
-# check_directory_for_new_repository
 
 # ------------------------------------------------------------------------------
 # Misc
@@ -380,3 +370,13 @@ applyclangformat() {
 # # List files in a human readable format
 # alias ll='ls -alF'
 # alias bashrc="nano ~/.bashrc " # edit bashrc
+
+
+
+# ------------------------------------------------------------------------------
+# Docker aliases
+# ------------------------------------------------------------------------------
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}"'
+alias dcu='docker compose up -d'
+alias dcd='docker compose down'
+alias dcl='docker compose logs -f'
