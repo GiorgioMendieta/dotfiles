@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+<head>
+<title>GitHub</title>
+</head>
+<body>
+<outline title="Android 📱" text="Android 📱">
+<outline type="rss" text="Aegis 2FA" htmlUrl="https://github.com/beemdevelopment/Aegis/releases" xmlUrl="https://github.com/beemdevelopment/Aegis/releases.atom" title="Aegis 2FA" />
+<outline type="rss" htmlUrl="https://github.com/zhanghai/MaterialFiles/releases" xmlUrl="https://github.com/zhanghai/MaterialFiles/releases.atom" title="Material Files" text="Material Files" />
+<outline title="Metro Player" text="Metro Player" htmlUrl="https://github.com/MuntashirAkon/Metro/releases" type="rss" xmlUrl="https://github.com/MuntashirAkon/Metro/releases.atom" />
+<outline htmlUrl="https://github.com/Jays2Kings/tachiyomiJ2K/releases" xmlUrl="https://github.com/Jays2Kings/tachiyomiJ2K/releases.atom" text="Tachiyomi J2K" title="Tachiyomi J2K" type="rss" />
+<outline xmlUrl="https://github.com/Ashinch/ReadYou/releases.atom" title="ReadYou RSS" htmlUrl="https://github.com/Ashinch/ReadYou/releases" text="ReadYou RSS" type="rss" />
+</outline>
+<outline text="MacOS 💻" title="MacOS 💻">
+<outline text="Alt-tab" htmlUrl="https://github.com/lwouis/alt-tab-macos/releases" type="rss" xmlUrl="https://github.com/lwouis/alt-tab-macos/releases.atom" title="Alt-tab" />
+<outline text="Bitwarden clients" type="rss" htmlUrl="https://github.com/bitwarden/clients/releases" xmlUrl="https://github.com/bitwarden/clients/releases.atom" title="Bitwarden clients" />
+<outline htmlUrl="https://github.com/iina/iina/releases" xmlUrl="https://github.com/iina/iina/releases.atom" title="IINA" type="rss" text="IINA" />
+<outline type="rss" htmlUrl="https://github.com/mangerlahn/Latest/releases" text="Latest (update checker)" xmlUrl="https://github.com/mangerlahn/latest/releases.atom" title="Latest (update checker)" />
+<outline type="rss" title="LinearMouse" xmlUrl="https://github.com/linearmouse/linearmouse/releases.atom" htmlUrl="https://github.com/linearmouse/linearmouse/releases" text="LinearMouse" />
+<outline title="Rectangle" xmlUrl="https://github.com/rxhanson/Rectangle/releases.atom" type="rss" text="Rectangle" htmlUrl="https://github.com/rxhanson/Rectangle/releases" />
+<outline xmlUrl="https://github.com/waydabber/BetterDisplay/releases.atom" text="BetterDisplay" title="BetterDisplay" type="rss" htmlUrl="https://github.com/waydabber/BetterDisplay/releases" />
+<outline type="rss" title="Keka" htmlUrl="https://github.com/aonez/Keka/releases" xmlUrl="https://github.com/aonez/Keka/releases.atom" text="Keka" />
+<outline type="rss" xmlUrl="https://github.com/moonlight-stream/moonlight-qt/releases.atom" title="Moonlight PC" text="Moonlight PC" htmlUrl="https://github.com/moonlight-stream/moonlight-qt/releases" />
+<outline text="Stats" type="rss" xmlUrl="https://github.com/exelban/stats/releases.atom" htmlUrl="https://github.com/exelban/stats/releases" title="Stats" />
+<outline text="Transmission" htmlUrl="https://github.com/transmission/transmission/releases" xmlUrl="https://github.com/transmission/transmission/releases.atom" title="Transmission" type="rss" />
+<outline xmlUrl="https://github.com/jordanbaird/Ice/releases.atom" htmlUrl="https://github.com/jordanbaird/Ice/releases" text="Ice" type="rss" title="Ice" />
+<outline title="Immich" type="rss" htmlUrl="https://github.com/immich-app/immich/releases" xmlUrl="https://github.com/immich-app/immich/releases.atom" text="Immich" />
+</outline>
+<outline title="Windows 🖥️" text="Windows 🖥️">
+<outline title="Czkawka (Duplicate finder)" text="Czkawka (Duplicate finder)" type="rss" htmlUrl="https://github.com/qarmin/czkawka/releases" xmlUrl="https://github.com/qarmin/czkawka/releases.atom" />
+<outline title="Nicotine+ (Soulseek client)" type="rss" htmlUrl="https://github.com/nicotine-plus/nicotine-plus/releases" text="Nicotine+ (Soulseek client)" xmlUrl="https://github.com/nicotine-plus/nicotine-plus/releases.atom" />
+<outline xmlUrl="https://github.com/microsoft/PowerToys/releases.atom" text="PowerToys" htmlUrl="https://github.com/microsoft/PowerToys/releases" title="PowerToys" type="rss" />
+<outline title="Sumatra PDF" text="Sumatra PDF" type="rss" htmlUrl="https://github.com/sumatrapdfreader/sumatrapdf/releases" xmlUrl="https://github.com/sumatrapdfreader/sumatrapdf/releases.atom" />
+</outline>
+</body>
+</opml>

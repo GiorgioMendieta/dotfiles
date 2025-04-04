@@ -1,0 +1,117 @@
+plugins: fetchart embedart convert scrub replaygain lastgenre chroma web lyrics the edit ftintitle
+directory: /music
+library: /config/musiclibrary.blb
+art_filename: albumart
+
+# Use the original release date of an album when a re-release is added
+original_date: yes
+# Start counting track numbers back at one for each disc
+per_disc_numbering: yes
+
+convert:
+    auto: no
+    ffmpeg: /usr/bin/ffmpeg
+    opts: -ab 320k -ac 2 -ar 48000
+    max_bitrate: 320
+    threads: 1
+
+asciify_paths: yes
+
+# Sets the albumartist for various-artist compilations. Defaults to 'Various Artists' (the MusicBrainz standard)
+va_name: 'Various Artists'
+
+
+# Set ft. in track name and remove it from Artist field
+ftintitle:
+    format: ft. {0}
+    
+paths:
+    default: %the{$albumartist}/$album ($year)%aunique{}/$track. $title
+    singleton: %the{$albumartist}/$album ($year)%aunique{}/$artist - $title
+    albumtype:soundtrack: Soundtracks/$album/$track. $title
+    comp: Compilations/$album%aunique{}/$track. $title
+
+import:
+    write: yes
+    copy: no
+    move: yes
+    resume: ask
+    incremental: yes
+    quiet_fallback: skip
+    timid: no
+    bell: yes
+    log: /config/beet.log
+    languages: en
+
+lastgenre:
+    auto: yes
+    source: album
+    count: 4
+
+embedart:
+    auto: no
+
+fetchart:
+    auto: no
+
+replaygain:
+    auto: no
+
+scrub:
+    auto: yes
+
+replace:
+    # Matches any filename starting with a dot (.), like .hiddenfile
+    '^\.': _
+    # Matches non-printable control characters
+    '[\x00-\x1f]': _
+    # Matches characters forbidden in filenames on Windows
+    '[<>"\?\*\|]': _
+    # Replace colon by a dash
+    ':': ' - '
+    # Accented characters
+    '[\xE8-\xEB]': e
+    '[\xEC-\xEF]': i
+    '[\xE2-\xE6]': a
+    '[\xF2-\xF6]': o
+    '[\xF8]': o
+    '[\xC8-\xCB]': E
+    '[\xCC-\xCF]': I
+    '[\xC2-\xC6]': A
+    '[\xD2-\xD6]': O
+    '[\xD8]': O
+    '[\xD9-\xDC]': U
+    # Matches a period at the end of a filename (e.g. Track.)
+    '\.$': _
+    # Strips trailing whitespace
+    '\s+$': ''
+    # Replace hyphens
+    '[\u2010-\u2015]': '-'
+    # replace ellipsis
+    '[…]': '...'
+
+web:
+    host: 0.0.0.0
+    port: 8337
+
+# Use multiple cores?
+threaded: yes
+
+# Configure the edit plugin. Defines which fields are available for editing.
+# To choose your favorite editor change the $EDITOR environment variable
+edit:
+  itemfields:
+    - album
+    - albumartist
+    - artist
+    - track
+    - title
+    - year
+  albumfields:
+    - albumartist
+    - album
+    - year
+    - albumtype
+
+match:
+    ignored: missing_tracks
