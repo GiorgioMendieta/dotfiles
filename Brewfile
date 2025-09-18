@@ -50,43 +50,63 @@ brew "tldr"
 # Casks
 # ------------------------------------------------------------------------------
 cask "aerial"
-cask "apparency"
-cask "android-platform-tools"
 cask "aldente"
 cask "alt-tab"
+cask "android-platform-tools"
+cask "apparency"
+
+cask "balenaetcher"
 cask "betterdisplay"
-cask "bitwarden"
+# cask "bitwarden" # Prefer Mac App Store version (Touch ID support)
 cask "bluesnooze"
+
 cask "cork"
-# cask "ghdl"
+
+cask "dolphin@dev"
+
 cask "ghostty"
-cask "macwhisper"
 cask "google-chrome"
+
 cask "iina"
 cask "iterm2"
+
+cask "jellyfin-media-player"
+
 cask "karabiner-elements"
 cask "keka"
+
 cask "linearmouse"
 cask "lookaway"
-cask "moonlight"
+
+#cask "macwhisper"
+#cask "moonlight"
+
 cask "numi"
+
 cask "obsidian"
 cask "onyx"
+
 cask "pearcleaner"
-cask "qlvideo"
+cask "ppsspp-emulator"
+
 cask "qlmarkdown"
+cask "qlvideo"
+
 cask "raycast"
 cask "rectangle"
-cask "reflex"
+cask "reflex-app"
+
 cask "shottr"
 cask "stats"
 cask "syntax-highlight"
+
 cask "tradingview"
 cask "transmission"
-cask "visual-studio-code"
 cask "trex"
 
-cask "dolphin@dev"
+cask "visual-studio-code"
+
+cask "whisky"
 
 # ------------------------------------------------------------------------------
 # Fonts 
@@ -165,7 +185,7 @@ mas "Keepa - Price Tracker", id: 1533805339
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft To Do", id: 1274495053
 mas "Microsoft Word", id: 462054704
-mas "Microsoft OneNote", id: 784801555
+#mas "Microsoft OneNote", id: 784801555
 mas "Microsoft PowerPoint", id: 462062816
 mas "OneDrive", id: 823766827
 
