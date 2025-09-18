@@ -3,16 +3,16 @@
 # More info : https://macos-defaults.com
 
 function getAdminPassword() {
-    # Ask for the administrator password upfront.
-    step "Admin password is required for install..."
-    sudo -v
-    echo ""
-    # Keep-alive: update existing `sudo` time stamp until the script has finished.
-    while true; do
-        sudo -n true
-        sleep 60
-        kill -0 "$$" || exit
-    done 2>/dev/null &
+  # Ask for the administrator password upfront.
+  step "Admin password is required for install..."
+  sudo -v
+  echo ""
+  # Keep-alive: update existing `sudo` time stamp until the script has finished.
+  while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
 }
 
 # Script's color palette (https://misc.flogisoft.com/bash/tip_colors_and_formatting)
@@ -30,40 +30,40 @@ reset=$(tput sgr0) # Reset text attributes to normal
 dim=$(tput dim)
 bold=$(tput bold)
 highlight=$(
-    tput setab ${COLOR_BLUE}
-    tput setaf ${COLOR_BLACK}
+  tput setab ${COLOR_BLUE}
+  tput setaf ${COLOR_BLACK}
 )                                               # Highlight text with blue background
 arrow="$(tput setaf ${COLOR_YELLOW})▸ ${reset}" # Print an arrow with yellow foreground
 
 headline() {
-    printf "${highlight} %s ${reset}\n" "$@"
+  printf "${highlight} %s ${reset}\n" "$@"
 }
 
 # Increase chapter count and print out a chapter title
 chapter_count=1
 chapter() {
-    echo -e "${highlight} $((chapter_count++)). $@ ${reset}\n"
+  echo -e "${highlight} $((chapter_count++)). $@ ${reset}\n"
 }
 
 # Prints out a step, if last parameter is true then without an ending newline
 # i.e. ▸ Step 1 [Y/n]:
 step() {
-    if [ $# -eq 1 ]; then
-        echo -e "${arrow}$@"
-    else
-        echo -ne "${arrow}$@"
-    fi
+  if [ $# -eq 1 ]; then
+    echo -e "${arrow}$@"
+  else
+    echo -ne "${arrow}$@"
+  fi
 }
 
 # Print the executed command with a dim color
 run() {
-    echo -e "${dim}▹ $@ $reset"
-    eval $@
-    echo ""
+  echo -e "${dim}▹ $@ $reset"
+  eval $@
+  echo ""
 }
 
 _getBundleID() {
-    mdls -raw -name kMDItemCFBundleIdentifier "$1"
+  mdls -raw -name kMDItemCFBundleIdentifier "$1"
 }
 
 ############################################################################################
@@ -106,31 +106,31 @@ run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.s
 
 step "Disable OS X Gate Keeper? (You'll be able to install any app you want from here on, not just Mac App Store apps) [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run sudo spctl --master-disable
-    run sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
-    ;;
+  echo ""
+  run sudo spctl --master-disable
+  run sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
+  ;;
 esac
 
 step "Disable the “Are you sure you want to open this application?” dialog? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.LaunchServices LSQuarantine -bool false
-    ;;
+  echo ""
+  run defaults write com.apple.LaunchServices LSQuarantine -bool false
+  ;;
 esac
 
 # Flash clock time separators every second
@@ -170,115 +170,115 @@ chapter "Adjusting input device settings"
 
 step "Enable tap to click for this user and for the login screen? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-    run defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-    run defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-    ;;
+  echo ""
+  run defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+  run defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  run defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+  ;;
 esac
 
 step "Enable full keyboard access for all controls? (e.g. enable Tab in modal dialogs) [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-    ;;
+  echo ""
+  run defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+  ;;
 esac
 
 step "Disable press-and-hold for keys in favor of key repeat? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-    ;;
+  echo ""
+  run defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+  ;;
 esac
 
 step "Use scroll gesture with the Ctrl (^) modifier key to zoom? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-    run defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-    ;;
+  echo ""
+  run defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+  run defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
+  ;;
 esac
 
 step "Disable auto-correct? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-    ;;
+  echo ""
+  run defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+  ;;
 esac
 
 step "Stop iTunes from responding to the keyboard media keys? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
-    ;;
+  echo ""
+  run launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
+  ;;
 esac
 
 step "Set click weight (0, 1, 2): "
 read clickweight
 case $clickweight in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 *)
-    echo ""
-    run defaults write com.apple.AppleMultitouchTrackpad "FirstClickThreshold" -int ${clickweight:-0}
-    ;;
+  echo ""
+  run defaults write com.apple.AppleMultitouchTrackpad "FirstClickThreshold" -int ${clickweight:-0}
+  ;;
 esac
 
 step "Enable three finger drag? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool true
-    ;;
+  echo ""
+  run defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool true
+  ;;
 esac
 
 ###############################################################################
@@ -318,25 +318,25 @@ chapter "Adjusting locale settings"
 
 step "Set custom language and text formats? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    # Note: Replace to your locale
-    run defaults write NSGlobalDomain AppleLanguages -array "en-MX" "es-MX" "ru-MX"
-    run defaults write NSGlobalDomain AppleLocale -string "en_MX@currency=MXN"
-    run defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-    run defaults write NSGlobalDomain AppleMetricUnits -bool true
-    # Show language menu in the top right corner of the boot screen
-    run sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
-    # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-    run sudo systemsetup -settimezone "Europe/Paris" >/dev/null
-    # run sudo systemsetup -settimezone "America/Mexico_City" > /dev/null
-    ;;
+  echo ""
+  # Note: Replace to your locale
+  run defaults write NSGlobalDomain AppleLanguages -array "en-MX" "es-MX" "ru-MX"
+  run defaults write NSGlobalDomain AppleLocale -string "en_MX@currency=MXN"
+  run defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+  run defaults write NSGlobalDomain AppleMetricUnits -bool true
+  # Show language menu in the top right corner of the boot screen
+  run sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
+  # Set the timezone; see `sudo systemsetup -listtimezones` for other values
+  run sudo systemsetup -settimezone "Europe/Paris" >/dev/null
+  # run sudo systemsetup -settimezone "America/Mexico_City" > /dev/null
+  ;;
 esac
 
 ##############################################
@@ -345,19 +345,19 @@ chapter "Adjusting Finder settings"
 
 step "Show icons for hard drives, servers, and removable media on the desktop? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-    run defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-    run defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-    run defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-    ;;
+  echo ""
+  run defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+  run defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+  run defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+  run defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
+  ;;
 esac
 
 # Finder: disable window animations and Get Info animations
@@ -391,16 +391,16 @@ run defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 step "Enable AirDrop over Ethernet and on unsupported Macs running Lion? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-    ;;
+  echo ""
+  run defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+  ;;
 esac
 
 # Show the ~/Library folder
@@ -409,9 +409,9 @@ run chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
 run defaults write com.apple.finder FXInfoPanesExpanded -dict \
-    General -bool true \
-    OpenWith -bool true \
-    Privileges -bool true
+  General -bool true \
+  OpenWith -bool true \
+  Privileges -bool true
 
 # Enable snap-to-grid for icons on the desktop and in other icon views
 run /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
@@ -434,58 +434,58 @@ chapter "Adjusting Dock, Dashboard, and hot corners"
 
 step "Set Dock orientation to the left?: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.dock orientation -string "left"
-    ;;
+  echo ""
+  run defaults write com.apple.dock orientation -string "left"
+  ;;
 esac
 
 step "Change the icon size (in px) of Dock items? [54/n]: "
 read tilesize
 case $tilesize in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 *)
-    echo ""
-    run defaults write com.apple.dock tilesize -int ${tilesize:-54}
-    ;;
+  echo ""
+  run defaults write com.apple.dock tilesize -int ${tilesize:-54}
+  ;;
 esac
 
 step "Change the magnification size (in px) of Dock items when hovering over them? [82/n]: "
 read largesize
 case $largesize in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 *)
-    echo ""
-    run defaults write com.apple.dock largesize -int ${largesize:-82}
-    ;;
+  echo ""
+  run defaults write com.apple.dock largesize -int ${largesize:-82}
+  ;;
 esac
 
 step "Automatically hide and show the Dock? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.dock autohide -bool true
-    # Speed-up or remove the animation when hiding/showing the Dock
-    run defaults write com.apple.dock autohide-delay -float 0
-    # Speed-up or remove the animation when hiding/showing the Dock
-    run defaults write com.apple.dock autohide-time-modifier -float 0.15
-    ;;
+  echo ""
+  run defaults write com.apple.dock autohide -bool true
+  # Speed-up or remove the animation when hiding/showing the Dock
+  run defaults write com.apple.dock autohide-delay -float 0
+  # Speed-up or remove the animation when hiding/showing the Dock
+  run defaults write com.apple.dock autohide-time-modifier -float 0.15
+  ;;
 esac
 
 # Change minimize/maximize window effect
@@ -529,30 +529,30 @@ run defaults write com.apple.dock show-recents -bool false
 
 step "Set custom Hot corners? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    echo "Top right screen corner → Mission Control"
-    run defaults write com.apple.dock wvous-tr-corner -int 2
-    defaults write com.apple.dock wvous-tr-modifier -int 0
+  echo ""
+  echo "Top right screen corner → Mission Control"
+  run defaults write com.apple.dock wvous-tr-corner -int 2
+  defaults write com.apple.dock wvous-tr-modifier -int 0
 
-    echo "Top left screen corner → Nothing"
-    run defaults write com.apple.dock wvous-tl-corner -int 1
-    defaults write com.apple.dock wvous-tl-modifier -int 0
+  echo "Top left screen corner → Nothing"
+  run defaults write com.apple.dock wvous-tl-corner -int 1
+  defaults write com.apple.dock wvous-tl-modifier -int 0
 
-    echo "Bottom left screen corner → Launchpad"
-    run defaults write com.apple.dock wvous-bl-corner -int 11
-    defaults write com.apple.dock wvous-bl-modifier -int 0
+  echo "Bottom left screen corner → Launchpad"
+  run defaults write com.apple.dock wvous-bl-corner -int 11
+  defaults write com.apple.dock wvous-bl-modifier -int 0
 
-    echo "Bottom right screen corner → Desktop"
-    run defaults write com.apple.dock wvous-br-corner -int 4
-    defaults write com.apple.dock wvous-br-modifier -int 0
-    ;;
+  echo "Bottom right screen corner → Desktop"
+  run defaults write com.apple.dock wvous-br-corner -int 4
+  defaults write com.apple.dock wvous-br-modifier -int 0
+  ;;
 esac
 
 ##############################################
@@ -561,35 +561,35 @@ chapter "Safari & WebKit settings"
 
 step "Enable the Developer menu and the Web Inspector in Safari? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.Safari IncludeDevelopMenu -bool true
-    run defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-    run defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-    ;;
+  echo ""
+  run defaults write com.apple.Safari IncludeDevelopMenu -bool true
+  run defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+  run defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+  ;;
 esac
 
 step "Disable AutoFill? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.Safari AutoFillFromAddressBook -bool false
-    run defaults write com.apple.Safari AutoFillPasswords -bool false
-    run defaults write com.apple.Safari AutoFillCreditCardData -bool false
-    run defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
-    ;;
+  echo ""
+  run defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+  run defaults write com.apple.Safari AutoFillPasswords -bool false
+  run defaults write com.apple.Safari AutoFillCreditCardData -bool false
+  run defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
+  ;;
 esac
 
 # Restore session at launch
@@ -609,45 +609,45 @@ chapter "Adjusting Mac App Store settings"
 
 step "Enable the automatic update check? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
-    run defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-    ;;
+  echo ""
+  run defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+  run defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+  ;;
 esac
 
 step "Download newly available updates in background? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
-    ;;
+  echo ""
+  run defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+  ;;
 esac
 
 step "Install System data files & security updates? [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
-    ;;
+  echo ""
+  run defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+  ;;
 esac
 
 ##############################################
@@ -655,21 +655,22 @@ chapter "Custom App shortcuts"
 ##############################################
 step "Set custom App Shortcuts? (Keyboard → Keyboard Shortcuts → App Shortcuts) [Y/n]: "
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run ./scripts/add-macos-keyboard-shortcuts.sh
-    ;;
+  echo ""
+  run ./scripts/add-macos-keyboard-shortcuts.sh
+  ;;
 esac
 
 ##############################################
 chapter "Symlinking dotfiles…"
 ##############################################
+DOTFILES="${HOME}/.dotfiles"
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
 step ".zshrc config file"
 run rm -rf $HOME/.zshrc
@@ -701,47 +702,47 @@ chapter "Installing CLI tools"
 # Check for Oh My Zsh and install if we don't have it
 step "Installing Oh My Zsh\n"
 if test ! $(which omz); then
-    /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
 # Check for Homebrew and install if we don't have it
 step "Installing Homebrew"
 if test ! $(which brew); then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
 step "Install Powerlevel 10k theme? [y/n]"
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    run git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    run rm -rf $HOME/.p10k.zsh
-    run ln -s .p10k.zsh $HOME/.p10k.zsh
-    ;;
+  echo ""
+  run sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  run git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  run rm -rf $HOME/.p10k.zsh
+  run ln -s .p10k.zsh $HOME/.p10k.zsh
+  ;;
 esac
 
 step "Set fzf as the default completion engine for zsh? [y/n]"
 case $(
-    read choice
-    echo $choice
+  read choice
+  echo $choice
 ) in
 [nN])
-    echo ""
-    ;;
+  echo ""
+  ;;
 [yY] | *)
-    echo ""
-    run git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-    ;;
+  echo ""
+  run git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+  ;;
 esac
 
 ##############################################
@@ -766,8 +767,8 @@ chapter "GitHub configuration"
 ##############################################
 step "Veryfing git installation\n"
 if test ! $(which git); then
-    echo "Git is not installed, installing it now...\n"
-    run brew install git
+  echo "Git is not installed, installing it now...\n"
+  run brew install git
 fi
 
 step "Symlink Git config files"
@@ -786,40 +787,40 @@ chapter "Transmission.app settings"
 # Only run if Transmission is installed
 app=/Applications/Transmission.app
 if [ ! -d "$app" ]; then
-    echo "Transmission is not installed. Skipping."
+  echo "Transmission is not installed. Skipping."
 else
-    bundleid=$(_getBundleID "$app")
+  bundleid=$(_getBundleID "$app")
 
-    # Use `~/Documents/Torrents` to store incomplete downloads
-    run defaults write ${bundleid} UseIncompleteDownloadFolder -bool true
-    run defaults write ${bundleid} IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
+  # Use `~/Documents/Torrents` to store incomplete downloads
+  run defaults write ${bundleid} UseIncompleteDownloadFolder -bool true
+  run defaults write ${bundleid} IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
 
-    # Use `~/Downloads` to store completed downloads
-    run defaults write ${bundleid} DownloadLocationConstant -bool true
+  # Use `~/Downloads` to store completed downloads
+  run defaults write ${bundleid} DownloadLocationConstant -bool true
 
-    # Don’t prompt for confirmation before downloading
-    run defaults write ${bundleid} DownloadAsk -bool false
-    run defaults write ${bundleid} MagnetOpenAsk -bool false
+  # Don’t prompt for confirmation before downloading
+  run defaults write ${bundleid} DownloadAsk -bool false
+  run defaults write ${bundleid} MagnetOpenAsk -bool false
 
-    # Don’t prompt for confirmation before removing non-downloading active transfers
-    run defaults write ${bundleid} CheckRemoveDownloading -bool true
+  # Don’t prompt for confirmation before removing non-downloading active transfers
+  run defaults write ${bundleid} CheckRemoveDownloading -bool true
 
-    # Trash original torrent files
-    run defaults write ${bundleid} DeleteOriginalTorrent -bool true
+  # Trash original torrent files
+  run defaults write ${bundleid} DeleteOriginalTorrent -bool true
 
-    # Hide the donate message
-    run defaults write ${bundleid} WarningDonate -bool false
+  # Hide the donate message
+  run defaults write ${bundleid} WarningDonate -bool false
 
-    # Hide the legal disclaimer
-    run defaults write ${bundleid} WarningLegal -bool false
+  # Hide the legal disclaimer
+  run defaults write ${bundleid} WarningLegal -bool false
 
-    # IP block list.
-    run defaults write ${bundleid} BlocklistNew -bool true
-    run defaults write ${bundleid} BlocklistURL -string "http://list.iblocklist.com/?list=fr&fileformat=p2p&archiveformat=gz"
-    run defaults write ${bundleid} BlocklistAutoUpdate -bool true
+  # IP block list.
+  run defaults write ${bundleid} BlocklistNew -bool true
+  run defaults write ${bundleid} BlocklistURL -string "http://list.iblocklist.com/?list=fr&fileformat=p2p&archiveformat=gz"
+  run defaults write ${bundleid} BlocklistAutoUpdate -bool true
 
-    # Randomize port on launch
-    run defaults write ${bundleid} RandomPort -bool true
+  # Randomize port on launch
+  run defaults write ${bundleid} RandomPort -bool true
 fi
 
 # Karabiner-Elements config

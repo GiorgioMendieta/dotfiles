@@ -94,7 +94,7 @@ alias mymac="networksetup -listallhardwareports | grep Wi-Fi -A 3 | grep 'Ethern
 # alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 
 # ping only 5 times then stop
-alias ping='ping -c 5'
+# alias ping='ping -c 5'
 
 # ------------------------------------------------------------------------------
 # Python & Virtual Environments

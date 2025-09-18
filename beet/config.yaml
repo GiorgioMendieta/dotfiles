@@ -1,4 +1,18 @@
-plugins: fetchart embedart convert scrub replaygain lastgenre chroma web lyrics the edit ftintitle
+plugins: 
+    - fetchart 
+    - embedart 
+    - convert 
+    - scrub 
+    - replaygain 
+    - lastgenre 
+    - chroma 
+    - web 
+    - lyrics 
+    - the 
+    - edit 
+    - ftintitle 
+    - inline
+
 directory: /music
 library: /config/musiclibrary.blb
 art_filename: albumart
@@ -20,17 +34,20 @@ asciify_paths: yes
 # Sets the albumartist for various-artist compilations. Defaults to 'Various Artists' (the MusicBrainz standard)
 va_name: 'Various Artists'
 
-
 # Set ft. in track name and remove it from Artist field
 ftintitle:
     format: ft. {0}
-    
+
+# Needed to correctly name songs with multiple discs
+item_fields:
+    multidisc: 1 if disctotal > 1 else 0
+
 paths:
-    default: %the{$albumartist}/$album ($year)%aunique{}/$track. $title
+    default: %the{$albumartist}/$album ($year)%aunique{}/%if{$multidisc,$disc-}$track. $title
     singleton: %the{$albumartist}/$album ($year)%aunique{}/$artist - $title
     albumtype:soundtrack: Soundtracks/$album/$track. $title
     comp: Compilations/$album%aunique{}/$track. $title
-
+    
 import:
     write: yes
     copy: no
@@ -41,7 +58,8 @@ import:
     timid: no
     bell: yes
     log: /config/beet.log
-    languages: en
+    hardlink: yes # Not compatible with Windows machines
+    languages: en es
 
 lastgenre:
     auto: yes
@@ -52,7 +70,10 @@ embedart:
     auto: no
 
 fetchart:
-    auto: no
+    auto: yes
+    minwidth: 1000
+    maxwidth: 3000
+    enforce_ratio: yes
 
 replaygain:
     auto: no

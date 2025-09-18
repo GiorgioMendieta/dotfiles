@@ -17,7 +17,7 @@ Hyper key (✦) = Caps Lock
 ✦O : (OCR) :       - Text Sniper
 ✦P : (MiniPlayer)  - Toggle Sleeve mini player
 ✦Q :
-✦R :
+✦R : (Reader)      - Open safari website with reader 
 ✦S : (Screenshot)  - Screenshot
 ✦T : (Telegram)    - Open Telegram web
 ✦U :
