@@ -62,6 +62,7 @@ cask "bluesnooze"
 
 cask "cork"
 
+cask "daisydisk"
 cask "dolphin@dev"
 
 cask "ghostty"
@@ -70,12 +71,15 @@ cask "google-chrome"
 cask "iina"
 cask "iterm2"
 
+cask "jordanbaird-ice"
 cask "jellyfin-media-player"
 
 cask "karabiner-elements"
 cask "keka"
 
+cask "latest"
 cask "linearmouse"
+cask "localsend"
 cask "lookaway"
 
 #cask "macwhisper"
@@ -95,9 +99,10 @@ cask "qlvideo"
 cask "raycast"
 cask "rectangle"
 cask "reflex-app"
+cask "rustdesk"
 
 cask "shottr"
-cask "stats"
+# cask "stats" # Replaced by iStat Menus
 cask "syntax-highlight"
 
 cask "tradingview"
