@@ -2,6 +2,8 @@
 
 *Hyper key (✦) = Caps Lock*
 
+These shortcuts work in tandem with Raycast hotkeys to quickly launch apps.
+
 | Key | App | Description |
 |-----|-----|-------------|
 | ✦ + A | | |
