@@ -9,10 +9,13 @@ ssh-keygen -t ed25519 -C $1 -f ~/.ssh/id_ed25519
 # https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
 echo "Starting the ssh-agent..."
 eval "$(ssh-agent -s)"
-
-echo "Creating ~/.ssh/config file..."
-touch ~/.ssh/config
-echo "Host *.github.com\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_ed25519" | tee ~/.ssh/config
+ß
+# TODO: Check if the config file already exists
+if [ ! -f ~/.ssh/config ]; then
+  echo "Creating ~/.ssh/config file..."
+  touch ~/.ssh/config
+  echo "Host *.github.com\n  AddKeysToAgent yes\n  UseKeychain yes\n  IdentityFile ~/.ssh/id_ed25519" | tee ~/.ssh/config
+fi
 
 echo "Adding your SSH key to the ssh-agent..."
 ssh-add -K ~/.ssh/id_ed25519
