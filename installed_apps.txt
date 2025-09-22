@@ -1,0 +1,108 @@
+=== System Applications (/Applications) ===
+2s2h
+'AdGuard for Safari.app'
+'Aerial Companion.app'
+AlDente
+AltTab
+Apparency
+balenaEtcher
+BetterDisplay
+Bitwarden
+Bluesnooze
+CapCut
+Cemu
+ColorSlurp
+Consent-O-Matic
+Cork
+DaisyDisk
+DeepL
+Developer
+Dolphin
+DuckStation
+Excel
+Flow
+GarageBand
+Ghostty
+'Google Chrome.app'
+'Guitar Pro 8.app'
+'Hover for Safari.app'
+Hush
+Ice
+IINA
+Immich
+'iStat Menus.app'
+iTerm
+'Jellyfin Media Player.app'
+Karabiner-Elements
+Karabiner-EventViewer
+'Keepa - Price Tracker.app'
+Keka
+Keynote
+Klack
+Latest
+LIMBO+
+LinearMouse
+'Little Snitch.app'
+LocalSend
+LookAway
+MacWhisper
+Mela
+'Microsoft To Do.app'
+Minecraft
+Moonlight
+Nicotine+
+Noir
+Numbers
+Numi
+Obsidian
+OneDrive
+OneNote
+OnyX
+OpenEmu
+Pages
+PCSX2-v2.5.101
+PDFgear
+Pearcleaner
+'Playlisty for Apple Music.app'
+'PlistEdit Pro.app'
+PowerPoint
+PPSSPPSDL
+'Prime Video.app'
+Protego
+ProtonVPN
+QLMarkdown
+'QuickLook Video.app'
+'Raspberry Pi Imager.app'
+Raycast
+Rectangle
+Redact
+Reeder
+Reflex
+RemotePlay
+RustDesk
+Ryujinx
+Safari.app -> ../System/Cryptexes/App/System/Applications/Safari
+Shottr
+Sleeve
+soh
+Stats
+Steam
+'Syntax Highlight.app'
+TradingView
+Transmission
+TRex
+Upscayl
+Userscripts
+Utilities
+'Visual Studio Code.app'
+Whisky
+Word
+Xcode
+
+=== User Applications (~/Applications) ===
+'Chrome Apps.localized'
+Crunchyroll
+'HBO Max.app'
+Netflix
+'Telegram Web.app'
+WhatsApp
