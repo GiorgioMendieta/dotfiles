@@ -27,7 +27,7 @@ After backing up your old Mac you may now follow these install instructions to s
    curl https://raw.githubusercontent.com/GiorgioMendieta/dotfiles/HEAD/ssh/ssh.sh | sh -s "<your-email-address>"
    ```
 
-3. Clone this repo to `~/.dotfiles` with:
+3. Clone this repo to `~/.dotfiles` with (You might be asked to install XCode Tools):
 
     ```zsh
     git clone --recursive git@github.com:GiorgioMendieta/dotfiles.git ~/.dotfiles

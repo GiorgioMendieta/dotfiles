@@ -1,0 +1,70 @@
+{
+    "protocol-version": "1.0",
+    "general-settings": {
+        "app-language": "en-US",
+        "allow-acceptable-ads": false,
+        "show-app-updated-disabled": false,
+        "update-filters-period": 48,
+        "show-tray-icon": false,
+        "launch-at-login": true,
+        "verbose-logging": false,
+        "hardware-acceleration-disabled": false
+    },
+    "filters": {
+        "enabled-groups": [
+            1,
+            2,
+            3,
+            4,
+            0
+        ],
+        "enabled-filters": [
+            2,
+            3,
+            118,
+            122
+        ],
+        "custom-filters": [
+            {
+                "filterId": 1000,
+                "customUrl": "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_17_TrackParam/filter.txt",
+                "enabled": true,
+                "title": "https://raw.githubusercontent.com/AdguardTeam/FiltersRegistry/master/filters/filter_17_TrackParam/filter.txt",
+                "trusted": true
+            }
+        ],
+        "user-filter": {
+            "enabled": true,
+            "rules": "! Youtube shorts\nyoutube.com###content > ytd-rich-shelf-renderer.style-scope.ytd-rich-section-renderer\nyoutube.com###contents > ytd-reel-shelf-renderer\nyoutube.com##ytd-mini-guide-entry-renderer.ytd-mini-guide-renderer.style-scope:nth-of-type(2)\nyoutube.com##ytd-guide-entry-renderer.ytd-guide-section-renderer.style-scope:nth-of-type(2)\nyoutube.com##.ytd-rich-section-renderer.style-scope > .ytd-rich-shelf-renderer.style-scope\nyoutube.com##ytd-reel-shelf-renderer.ytd-item-section-renderer.style-scope\nyoutube.com##ytd-video-renderer:has(a[href*=\"/shorts/\"])\nyoutube.com##yt-chip-cloud-chip-renderer.yt-chip-cloud-renderer.style-scope:nth-of-type(2)\nyoutube.com##ytd-rich-shelf-renderer[is-shorts]\n! YT Homepage and Subscriptions (Grid View) - Hide the Shorts section\nyoutube.com##[is-shorts]\n! YT Menu - Hide the Shorts button\nwww.youtube.com###guide [title=\"Shorts\"], .ytd-mini-guide-entry-renderer[title=\"Shorts\"]\n! YT Search - Hide Shorts\nwww.youtube.com##ytd-search ytd-video-renderer:has([overlay-style=\"SHORTS\"])\n! YT Search, Channels, Subscriptions (List View) and Sidebar/Below Player Recommendations - Hide the Shorts sections\nwww.youtube.com##ytd-reel-shelf-renderer\n! YT Channels - Hide the Shorts tab\nwww.youtube.com##[tab-title=\"Shorts\"]\n! YT Subscriptions - Hide Shorts - Grid View\nwww.youtube.com##ytd-browse[page-subtype=\"subscriptions\"] ytd-grid-video-renderer:has([overlay-style=\"SHORTS\"])\n! YT Subscriptions - Hide Shorts - List View\nwww.youtube.com##ytd-browse[page-subtype=\"subscriptions\"] ytd-video-renderer:has([overlay-style=\"SHORTS\"])\n! YT Subscriptions - New Layout - Hide Shorts\nwww.youtube.com##ytd-browse[page-subtype=\"subscriptions\"] ytd-rich-item-renderer:has([overlay-style=\"SHORTS\"])\n! YT Sidebar - Hide Shorts\nwww.youtube.com###related ytd-compact-video-renderer:has([overlay-style=\"SHORTS\"])\n! YT Mobile - Hide the Shorts Menu button\nm.youtube.com##ytm-pivot-bar-item-renderer:has(>.pivot-shorts)\n! YT Mobile - Hide the Shorts sections\nm.youtube.com##ytm-reel-shelf-renderer\nm.youtube.com##ytm-rich-section-renderer:has([d^=\"M17.77,10.32l-1.2\"])\n! YT Mobile - Hide Shorts in search results\nm.youtube.com##ytm-search ytm-video-with-context-renderer:has([data-style=\"SHORTS\"])\n! YT Mobile - Hide the Shorts button on Channels\nm.youtube.com##[tab-title=\"Shorts\"]\n! YT Home - Hide Videos Below 1K Views\nwww.youtube.com##ytd-browse[page-subtype=\"home\"] ytd-rich-item-renderer:has(#video-title-link:not(:is([aria-label*=\",0\"],[aria-label*=\",1\"],[aria-label*=\",2\"],[aria-label*=\",3\"],[aria-label*=\",4\"],[aria-label*=\",5\"],[aria-label*=\",6\"],[aria-label*=\",7\"],[aria-label*=\",8\"],[aria-label*=\",9\"])))\n! YT Sidebar - Hide Videos Below 1K Views\nwww.youtube.com##ytd-compact-video-renderer:has(#video-title:not(:is([aria-label*=\",0\"],[aria-label*=\",1\"],[aria-label*=\",2\"],[aria-label*=\",3\"],[aria-label*=\",4\"],[aria-label*=\",5\"],[aria-label*=\",6\"],[aria-label*=\",7\"],[aria-label*=\",8\"],[aria-label*=\",9\"])))\n! YT Player End Cards - Hide Videos Below 1K Views\nwww.youtube.com##.ytp-videowall-still:not(:is([aria-label*=\",0\"],[aria-label*=\",1\"],[aria-label*=\",2\"],[aria-label*=\",3\"],[aria-label*=\",4\"],[aria-label*=\",5\"],[aria-label*=\",6\"],[aria-label*=\",7\"],[aria-label*=\",8\"],[aria-label*=\",9\"]))\n! Annotations\n/annotations_module.js$script,xhr,important,domain=youtube.com\n!----\nleboncoin.fr##.styles_ad__TwvnY\nleboncoin.fr##.styles_ad__UbObc\nleboncoin.fr###lht-space-ad\nleboncoin.fr###home-top-banner\nleboncoin.fr##li[style*=\"advertising-na\"]\nleboncoin.fr##li[style*=\"advertising-vl\"]\n!----\ninstagram.com##article:has-text(Suggested for you):style(visibility: hidden !important; height: 300px !important; overflow: hidden !important)\ninstagram.com##div.x1n2onr6.xzkaem6:last-child\ninstagram.com##._ab8q, ._ab8w, ._ab94, ._ab99, ._ab9c, ._ab9h, ._ab9m, ._ab9p, ._abbg, ._abby, ._ab9-, ._abab, ._abcf, ._abcg, ._abci, ._abck, ._aa5t, ._abcm\ninstagram.com##div.x1n2onr6.xzkaem6:last-child > div.x9f619.x1n2onr6.x1ja2u2z:first-child > div.x78zum5.xdt5ytf.xippug5.xg6iff7.x1n2onr6 > div.x1uvtmcs.x4k7w5x.x1h91t0o.x1beo9mf.xaigb6o.x12ejxvf.x3igimt.xarpa2k.xedcshv.x1lytzrv.x1t2pt76.x7ja8zs.x1n2onr6.x1qrby5j.x1jfb8zj:nth-child(2) > div.x1qjc9v5.x9f619.x78zum5.xdt5ytf.x1iyjqo2.xl56j7k > div.x1cy8zhl.x9f619.x78zum5.xl56j7k.x2lwn1j.xeuugli.x47corl > div.x1ja2u2z.x1afcbsf.x1a2a7pz.x6ikm8r.x10wlt62.x71s49j.x6s0dn4.x78zum5.xdt5ytf.xl56j7k.x1n2onr6 > div.xs83m0k.x1sy10c2.x1h5jrl4.xieb3on.xmn8rco.x1iy3rx.x1n2onr6.x1j9u4d2.x1klvvdw.x1wqampe.xw8ag78.x1v7wizp.xc7qz2s.xa3vuyk > div.x7r02ix.xf1ldfh.x131esax.xdajt7p.xxfnqb6.xb88tzc.xw2csxc.x1odjw0f.x5fp0pe:last-child > div > div.x9f619.xjbqb8w.x78zum5.x168nmei.x13lgxp2.x5pf9jr.xo71vjh.x1n2onr6.xw2csxc.x1odjw0f.x1c4vz4f.x2lah0s.xdt5ytf.xqjyukv.x1qjc9v5.x1oa3qoh.x1nhvcw1:last-child > div.x1qjc9v5.xvbhtw8.x107yiy2.xv8uw2v.x1tfwpuw.x2g32xy.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x78zum5.xdt5ytf.x2lah0s.xk390pu.xdj266r.xkrivgy.xat24cr.x1gryazu.x1j9u4d2.x6ikm8r.x10wlt62.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x11njtxf.xh8yej3\n!---- Reddit\n! Reddit Mouseover popups\nwww.reddit.com##[id$=\"hover-id\"]\n! Reddit Rpan broadcasts\nwww.reddit.com##.scrollerItem:has(div>a[href=\"/rpan/\"]>p))\nwww.reddit.com##.scrollerItem:has-text(Top broadcast right now)\n! Reddit General Stuff https://www.reddit.com\nwww.reddit.com##._12Ewyh01Y1cMPB3Ri_F1C4\nwww.reddit.com##._25n1vjWrHyVcdDkuLwR2Y-\nwww.reddit.com###t3_ptrz1k > ._1poyrkZ7g36PawDueRza-J > ._2XDITKxlj4y3M99thqyCsO > ._1Y6dfr4zLlrygH-FLmr8x- > .Ywkt6EDfNWINeTr9lP29H > .UEPNkU0rd1-nvbkOcBatc._10BQ7pjWbeYP63SAPNS8Ts._2iuoyPiKHN3kfOoeIQalDT._2r87gmhJ9n0MsylKHkgDcp\nwww.reddit.com##.UEPNkU0rd1-nvbkOcBatc._10BQ7pjWbeYP63SAPNS8Ts._2iuoyPiKHN3kfOoeIQalDT._2r87gmhJ9n0MsylKHkgDcp\nwww.reddit.com##.YfUlQeQY0xbmCv-So3isP\nwww.reddit.com##._1cubpGNEaCAVnpJl1KBPcO.cmR5BF4NpBUm3DBMZCmJS\n! ------\n! Google consent, \"before you continue\"\nwww.google.*##^script:has-text(consentCookiePayload)\nwww.google.*##+js(acis, document.cookie, YES+)\ngoogle.*##+js(aeld, DOMContentLoaded, CONSENT)\n||consent.google.com^\ngoogle.com##.hdzaWe\nhttps://st.chatango.com/h5/gz/r0924241845/id.html$domain=crackstreams.cx\ncinepolis.com###tk-video\nold.reddit.com##.badge-count\n192.168.1.20###panel-1150\nold.reddit.com###notifications\nold.reddit.com###chat-v2",
+            "disabled-rules": ""
+        },
+        "allowlist": {
+            "enabled": true,
+            "inverted": false,
+            "domains": [
+                "fo.visale.fr",
+                "www.crunchyroll.com",
+                "www.howtogeek.com",
+                "www.makeuseof.com",
+                "s.pathe.fr",
+                "www.programiz.com",
+                "kissasian.fm",
+                "app.prolific.com",
+                "auth.leboncoin.fr",
+                "browserleaks.com",
+                "candidates.makipeople.com",
+                "www.pass-jeux.gouv.fr",
+                "survey.ise.tu-darmstadt.de",
+                "www.surveymonkey.com",
+                "rezka.ag",
+                "play.hbomax.com",
+                "tickets.parisladefense-arena.com",
+                "www.blackmagicdesign.com",
+                "jellyfin.giorgiobox.local",
+                "geizhals.eu",
+                "jsfiddle.net"
+            ],
+            "inverted-domains": []
+        }
+    }
+}

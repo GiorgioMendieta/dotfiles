@@ -173,3 +173,9 @@ Host rpi
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
+Host pve
+  User root
+  Hostname 192.168.1.20
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519

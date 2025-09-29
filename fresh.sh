@@ -82,14 +82,14 @@ osascript -e 'tell application "System Preferences" to quit'
 
 getAdminPassword
 
-chapter "Test chapter"
-step "test step [Y/n]: "
-exit
+#chapter "Test chapter"
+#step "test step [Y/n]: "
+#exit
 
-# function getUserInfo() {
-#   read -p "What is your name? " NAME
-#   read -p "What is your email address? " EMAIL
-# }
+function getUserInfo() {
+  read -p "What is your name? " NAME
+  read -p "What is your email address? " EMAIL
+}
 
 ##############################################
 chapter "Adjusting general settings"
@@ -103,6 +103,8 @@ run sudo scutil --set ComputerName "'$computer_name'"
 run sudo scutil --set HostName "'$computer_name'"
 run sudo scutil --set LocalHostName "'$computer_name'"
 run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "'$computer_name'"
+
+exit
 
 step "Disable OS X Gate Keeper? (You'll be able to install any app you want from here on, not just Mac App Store apps) [Y/n]: "
 case $(
@@ -673,26 +675,26 @@ chapter "Symlinking dotfiles…"
 DOTFILES="${HOME}/.dotfiles"
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
 step ".zshrc config file"
-run rm -rf $HOME/.zshrc
+run rm -f $HOME/.zshrc
 run ln -s $DOTFILES/.zshrc $HOME/.zshrc
 
 step "Seting Vim and Nano config files"
-run rm -rf $HOME/.vimrc
-run ln -s $DOTFILES/.vimrc $HOME/.vimrc
-run rm -rf $HOME/.nanorc
+run rm -f $HOME/.vimrc
+run ln -s $DOTFILES/vim/.vimrc $HOME/.vimrc
+run rm -f $HOME/.nanorc
 run ln -s $DOTFILES/.nanorc $HOME/.nanorc
-run rm -rf $HOME/.vim
+run rm -f $HOME/.vim
 run ln -s $DOTFILES/.vim $HOME/.vim
 
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
 run mkdir -p ~/.ssh && chmod 700 $HOME/.ssh
-run rm -rf $HOME/.ssh/config
-run ln -s $DOTFILES/sshconfig $HOME/.ssh/config
+run rm -f $HOME/.ssh/config
+run ln -s $DOTFILES/ssh/ssh_config $HOME/.ssh/config
 run chmod 600 $HOME/.ssh/config
 
 step "Mackup config file"
-run rm -rf $HOME/.mackup.cfg
+run rm -f $HOME/.mackup.cfg
 run ln -s $DOTFILES/.mackup.cfg $HOME/.mackup.cfg
 
 ##############################################
@@ -726,8 +728,8 @@ case $(
   echo ""
   run sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
   run git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  run rm -rf $HOME/.p10k.zsh
-  run ln -s .p10k.zsh $HOME/.p10k.zsh
+  run rm -f $HOME/.p10k.zsh
+  run ln -s $DOTFILES/.p10k.zsh $HOME/.p10k.zsh
   ;;
 esac
 
