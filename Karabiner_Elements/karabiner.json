@@ -10,23 +10,6 @@
                 "parameters": { "basic.to_if_held_down_threshold_milliseconds": 300 },
                 "rules": [
                     {
-                        "description": "Fn → Emoji picker w/Raycast (Fn if alone)",
-                        "manipulators": [
-                            {
-                                "from": { "apple_vendor_top_case_key_code": "keyboard_fn" },
-                                "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }],
-                                "to_if_alone": [
-                                    {
-                                        "hold_down_milliseconds": 100,
-                                        "key_code": "e",
-                                        "modifiers": ["left_command", "left_control", "left_option", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "Left Shift tap → '('",
                         "manipulators": [
                             {
@@ -99,60 +82,6 @@
                     }
                 ]
             },
-            "devices": [
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "non_us_backslash" }]
-                        },
-                        {
-                            "from": { "key_code": "non_us_backslash" },
-                            "to": [{ "key_code": "grave_accent_and_tilde" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 2045,
-                        "vendor_id": 1118
-                    },
-                    "ignore": true
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 143,
-                        "vendor_id": 9494
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
-                        },
-                        {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "right_command" },
-                            "to": [{ "key_code": "right_option" }]
-                        },
-                        {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_command" }]
-                        }
-                    ]
-                }
-            ],
-            "fn_function_keys": [
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [{ "key_code": "f5" }]
-                }
-            ],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": {
