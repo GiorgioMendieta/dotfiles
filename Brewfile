@@ -1,14 +1,12 @@
 # ------------------------------------------------------------------------------
 # Taps
 # ------------------------------------------------------------------------------
-tap "homebrew/bundle"
 tap "homebrew/services"
 
 # ------------------------------------------------------------------------------
 # CLI tools
 # ------------------------------------------------------------------------------
 brew "asitop"
-brew "python@3.12"
 brew "autoconf"
 brew "automake"
 brew "bat"
@@ -37,6 +35,7 @@ brew "py3cairo"
 brew "pyenv"
 brew "python@3.10"
 brew "python@3.11"
+brew "python@3.12"
 brew "speedtest-cli"
 brew "tmux"
 brew "tree"

@@ -9,7 +9,7 @@ addEntries() {
   if defaults read com.apple.universalaccess com.apple.custommenu.apps >/dev/null 2>&1; then
     defaults delete com.apple.universalaccess com.apple.custommenu.apps
   fi
-  defaults write com.apple.universalaccess com.apple.custommenu.apps -array
+  # defaults write com.apple.universalaccess com.apple.custommenu.apps -array
 
   # write all apps to custommenu
   defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add $(echo -e "$appList")
@@ -74,12 +74,10 @@ createKeyboardShortcuts() {
     bundleid=$(get_BundleId "$app")
     appList+="$bundleid\n"
     defaults write "$bundleid" NSUserKeyEquivalents "{
-            'Hide Bookmarks Sidebar' = '${CMD}$b';
             'Open Location...' = '\\Uf709';
             'Quit Safari' = '${CMD}${OPT}q';
             'Reload Page' = '\\b';
             'Reload Page From Origin' = '$\\b';
-            'Show Bookmarks Sidebar' = '${CMD}$b';
             'Show Sidebar' = '${CMD}$\\U00f1';
             'Show Reader' = '${HYPER}r';
             'Hide Reader' = '${HYPER}r';
@@ -89,7 +87,7 @@ createKeyboardShortcuts() {
   fi
 
   # Mail
-  app=$HOME/Applications/Mail.app
+  app=/Applications/Mail.app
   if [ -a "$app" ]; then
     bundleid=$(get_BundleId "$app")
     echo "Adding: $app"
@@ -102,14 +100,14 @@ createKeyboardShortcuts() {
   fi
 
   # Mela
-  app=$HOME/Applications/Mela.app
+  app=/Applications/Mela.app
   if [ -a "$app" ]; then
     bundleid=$(get_BundleId "$app")
     echo "Adding: $app"
     appList+="$bundleid\n"
     defaults write "$bundleid" NSUserKeyEquivalents "{
-            'Hide Sidebar' = '${CMD}$b';
-            'Show Sidebar' = '${CMD}$b';
+            'Hide Sidebar' = '${CMD}b';
+            'Show Sidebar' = '${CMD}b';
         }"
     defaults read "$bundleid" NSUserKeyEquivalents
     echo

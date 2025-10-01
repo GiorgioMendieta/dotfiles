@@ -95,16 +95,14 @@ function getUserInfo() {
 chapter "Adjusting general settings"
 ##############################################
 
-step "Setting your computer name (as done via System Preferences → Sharing)."
-echo -ne "  What would you like it to be? (e.g. <name>-Macbook) ${bold}"
-read computer_name
-echo -e "${reset}"
-run sudo scutil --set ComputerName "'$computer_name'"
-run sudo scutil --set HostName "'$computer_name'"
-run sudo scutil --set LocalHostName "'$computer_name'"
-run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "'$computer_name'"
-
-exit
+#step "Setting your computer name (as done via System Preferences → Sharing)."
+#echo -ne "  What would you like it to be? (e.g. <name>-Macbook) ${bold}"
+#read computer_name
+#echo -e "${reset}"
+#run sudo scutil --set ComputerName "'$computer_name'"
+#run sudo scutil --set HostName "'$computer_name'"
+#run sudo scutil --set LocalHostName "'$computer_name'"
+#run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "'$computer_name'"
 
 step "Disable OS X Gate Keeper? (You'll be able to install any app you want from here on, not just Mac App Store apps) [Y/n]: "
 case $(
@@ -135,9 +133,6 @@ case $(
   ;;
 esac
 
-# Flash clock time separators every second
-run defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "true"
-
 # Prevent Photos from opening automatically when devices are plugged in
 run defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
@@ -162,9 +157,6 @@ run defaults write com.apple.TextEdit RichText -int 0
 # Disable shadow in screenshots
 run defaults write com.apple.screencapture disable-shadow -bool true
 
-# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
-run defaults write com.apple.universalaccess com.apple.custommenu.apps -array-add 'com.apple.mail'
-run defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
 ##############################################
 chapter "Adjusting input device settings"
@@ -665,6 +657,7 @@ case $(
   ;;
 [yY] | *)
   echo ""
+  run chmod +x ./scripts/add-macos-keyboard-shortcuts.sh
   run ./scripts/add-macos-keyboard-shortcuts.sh
   ;;
 esac
@@ -673,29 +666,41 @@ esac
 chapter "Symlinking dotfiles…"
 ##############################################
 DOTFILES="${HOME}/.dotfiles"
+
+# Function to create a symlink, creating parent directories if needed
+link_dotfile () {
+    # Get the target directory
+    target_dir=$(dirname "$2")
+    # Create target directory chain if it doesn't exist
+    mkdir -p "$target_dir"
+    # Remove existing file
+    rm -f "$2"
+    # Create symlink
+    ln -sf "$1" "$2"
+}
+
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
 step ".zshrc config file"
-run rm -f $HOME/.zshrc
-run ln -s $DOTFILES/.zshrc $HOME/.zshrc
+link_dotfile "$DOTFILES/.zshrc" "$HOME/.zshrc"
 
-step "Seting Vim and Nano config files"
-run rm -f $HOME/.vimrc
-run ln -s $DOTFILES/vim/.vimrc $HOME/.vimrc
-run rm -f $HOME/.nanorc
-run ln -s $DOTFILES/.nanorc $HOME/.nanorc
-run rm -f $HOME/.vim
-run ln -s $DOTFILES/.vim $HOME/.vim
+step "Setting Vim and Nano config files"
+link_dotfile "$DOTFILES/vim/.vimrc" "$HOME/.vimrc"
+link_dotfile "$DOTFILES/vim/.vim" "$HOME/.vim"
+link_dotfile "$DOTFILES/.nanorc" "$HOME/.nanorc"
 
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
-run mkdir -p ~/.ssh && chmod 700 $HOME/.ssh
-run rm -f $HOME/.ssh/config
-run ln -s $DOTFILES/ssh/ssh_config $HOME/.ssh/config
-run chmod 600 $HOME/.ssh/config
+link_dotfile "$DOTFILES/.ssh/ssh_config" "$HOME/.ssh/config"
+run chmod 700 $HOME/.ssh && chmod 600 $HOME/.ssh/config
 
 step "Mackup config file"
-run rm -f $HOME/.mackup.cfg
-run ln -s $DOTFILES/.mackup.cfg $HOME/.mackup.cfg
+link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
+
+step "Karabiner-Elements config file"
+link_dotfile "$DOTFILES/Karabiner_Elements/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+
+step "linearmouse config file"
+link_dotfile "$DOTFILES/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
 ##############################################
 chapter "Installing CLI tools"
@@ -711,7 +716,7 @@ fi
 step "Installing Homebrew"
 if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>$HOME/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
@@ -728,8 +733,7 @@ case $(
   echo ""
   run sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
   run git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  run rm -f $HOME/.p10k.zsh
-  run ln -s $DOTFILES/.p10k.zsh $HOME/.p10k.zsh
+  link_dotfile "$DOTFILES/.p10k.zsh" "$HOME/.p10k.zsh"
   ;;
 esac
 
@@ -774,10 +778,8 @@ if test ! $(which git); then
 fi
 
 step "Symlink Git config files"
-run rm -rf $HOME/.gitconfig
-run ln -s $DOTFILES/.gitconfig $HOME/.gitconfig
-run rm -rf $HOME/.gitignore_global
-run ln -s $DOTFILES/.gitignore_global $HOME/.gitignore_global
+link_dotfile "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
+link_dotfile "$DOTFILES/.gitignore_global" "$HOME/.gitignore_global"
 
 step "Clone Github repositories\n"
 run ./clone.sh
@@ -824,6 +826,3 @@ else
   # Randomize port on launch
   run defaults write ${bundleid} RandomPort -bool true
 fi
-
-# Karabiner-Elements config
-run cp ./karabiner.json $HOME/.config/karabiner/karabiner.json

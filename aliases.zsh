@@ -7,7 +7,7 @@ alias aliasconfig="vim $DOTFILES/aliases.zsh; omz reload"
 alias vimconfig="vim $DOTFILES/.vimrc"
 alias sshconfig="vim $HOME/.ssh/config"
 # alias reloadshell="source $HOME/.zshrc"
-alias reloadshell="omz reload"
+alias rsh="omz reload"
 
 # Search aliases using fzf
 alias salias="alias | fzf"
@@ -121,11 +121,7 @@ alias lab="cd $HOME/docker"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
-# alias vlsi="cd $HOME/Developer/Sorbonne_Universite/VLSI-TPs"
-# alias pscr="cd $HOME/Developer/Sorbonne_Universite/PSCR-TME"
-# alias ioc="cd $HOME/Developer/Sorbonne_Universite/IOC-TME"
-# alias multi="cd $HOME/Developer/Sorbonne_Universite/MULTI-TPs"
-alias mobj="cd $HOME/Developer/Sorbonne_Universite/MOBJ"
+# alias mobj="cd $HOME/Developer/Sorbonne_Universite/MOBJ"
 
 # Directory navigation
 up() {
@@ -186,7 +182,6 @@ normal=$(tput sgr0)
 alias bri="brew install"
 alias bric="brew install --cask"
 alias brewgraph="brew deps --installed --graph"
-alias brewdeps="brew uses --recursive --installed"
 
 ## Apt
 alias sai="sudo apt install"
