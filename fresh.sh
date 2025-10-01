@@ -764,8 +764,8 @@ link_dotfile "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karab
 step "linearmouse config file"
 link_dotfile "$DOTFILES/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
-step "Rectangle config file"
-link_dotfile "$DOTFILES/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
+#step "Rectangle config file"
+#link_dotfile "$DOTFILES/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
 
 step "Setting bat theme"
 run mkdir -p "$(bat --config-dir)/themes"
@@ -774,6 +774,9 @@ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 run bat cache --build
+
+step "Raycast config file"
+echo "Open Raycast > Settings > Advanced > Import/Export > Import and load the file located at $HOME/dotfiles/Raycast/"
 
 step "Adguard for Safari config file"
 echo "Open Adguard for Safari > General > Import Settings and load the file located at $HOME/dotfiles/Adguard/"

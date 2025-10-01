@@ -97,7 +97,7 @@ cask "qlmarkdown"
 cask "qlvideo"
 
 cask "raycast"
-cask "rectangle"
+# cask "rectangle" # Replaced by Raycast
 cask "reflex-app"
 cask "rustdesk"
 
