@@ -693,17 +693,8 @@ step "Setting ssh config file"
 link_dotfile "$DOTFILES/.ssh/ssh_config" "$HOME/.ssh/config"
 run chmod 700 $HOME/.ssh && chmod 600 $HOME/.ssh/config
 
-step "Mackup config file"
-link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
-
-step "Karabiner-Elements config file"
-link_dotfile "$DOTFILES/Karabiner_Elements/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
-
-step "linearmouse config file"
-link_dotfile "$DOTFILES/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
-
 ##############################################
-chapter "Installing CLI tools"
+chapter "Installing OMZ and Brew"
 ##############################################
 
 # Check for Oh My Zsh and install if we don't have it
@@ -758,8 +749,37 @@ step "Homebrew formulae and casks\n"
 # Update Homebrew recipes
 run brew update
 # Install all our dependencies with homebrew bundle (See Brewfile)
-run brew tap homebrew/bundle
 run brew bundle --file ./Brewfile
+
+
+##############################################
+chapter "Installing App settings"
+##############################################
+step "Mackup config file"
+link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
+
+step "Karabiner-Elements config file"
+link_dotfile "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+
+step "linearmouse config file"
+link_dotfile "$DOTFILES/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
+
+step "Rectangle config file"
+link_dotfile "$DOTFILES/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
+
+step "Setting bat theme"
+run mkdir -p "$(bat --config-dir)/themes"
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+run bat cache --build
+
+step "Adguard for Safari config file"
+echo "Open Adguard for Safari > General > Import Settings and load the file located at $HOME/dotfiles/Adguard/"
+
+step "Little Snitch config file"
+echo "Open Little Snitch Configuration and load the file located at $HOME/dotfiles/Little_Snitch/"
 
 ##############################################
 chapter "Directories"

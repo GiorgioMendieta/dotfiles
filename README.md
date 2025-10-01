@@ -4,7 +4,7 @@ Based on [Dries Vints dotfiles](https://github.com/driesvints/dotfiles)
 
 ## A Fresh macOS Setup
 
-These instructions are for setting up nvew Mac devices. Instead, if you want to get started building your own dotfiles, you can [find those instructions below](#your-own-dotfiles).
+These instructions are for setting up new Mac devices. Instead, if you want to get started building your own dotfiles, you can [find those instructions below](#your-own-dotfiles).
 
 ### Backup your data
 
