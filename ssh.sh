@@ -18,7 +18,7 @@ if [ ! -f ~/.ssh/config ]; then
 fi
 
 echo "Adding your SSH key to the ssh-agent..."
-ssh-add -K ~/.ssh/id_ed25519
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 # Adding your SSH key to your GitHub account
 # https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
@@ -26,8 +26,10 @@ pbcopy <~/.ssh/id_ed25519.pub
 echo "The public key has been copied to keyboard. (pbcopy < ~/.ssh/id_ed25519.pub)"
 echo "Please follow the following steps to add your SSH key to your GitHub account:"
 echo ""
+
 steps=1
 link=https://github.com/settings/profile
+
 echo "$((steps++)). Go to the following link (cmd + double click): ${link}"
 echo "$((steps++)). In the 'Access' section of the sidebar, click SSH and GPG keys."
 echo "$((steps++)). Click New SSH key or Add SSH key."
