@@ -674,13 +674,13 @@ step "Mackup config file"
 link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
 
 step "Karabiner-Elements config file"
-link_dotfile "$DOTFILES/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
+link_dotfile "$DOTFILES/Apps/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
 
 step "linearmouse config file"
-link_dotfile "$DOTFILES/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
+link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
 #step "Rectangle config file"
-#link_dotfile "$DOTFILES/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
+#link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
 
 step "Setting bat theme"
 run mkdir -p "$(bat --config-dir)/themes"
@@ -697,20 +697,20 @@ wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw
 wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
 wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-mocha.conf
 # Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
-link_dotfile "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
-link_dotfile "$DOTFILES/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/.config/ghostty/config"
+link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 
 step "Raycast config file"
-echo "Open Raycast > Settings > Advanced > Import/Export > Import and load the file located at $HOME/dotfiles/Raycast/"
+echo "Open Raycast > Settings > Advanced > Import/Export > Import and load the file located at $DOTFILES/Apps/Raycast/"
 
 step "Adguard for Safari config file"
-echo "Open Adguard for Safari > General > Import Settings and load the file located at $HOME/dotfiles/Adguard/"
+echo "Open Adguard for Safari > General > Import Settings and load the file located at $DOTFILES/Apps/Adguard/"
 
 step "Little Snitch config file"
-echo "Open Little Snitch > File > Restore from Backup… and load the file located at $HOME/dotfiles/Little_Snitch/"
+echo "Open Little Snitch > File > Restore from Backup… and load the file located at $DOTFILES/Apps/Little_Snitch/"
 
 step "iStat Menus config file"
-echo "Open iStat Menus > File > Import Settings… and load the file located at $HOME/dotfiles/iStat_Menus/"
+echo "Open iStat Menus > File > Import Settings… and load the file located at $DOTFILES/Apps/iStat_Menus/"
 
 ##############################################
 chapter "Directories"
