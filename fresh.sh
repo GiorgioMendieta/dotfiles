@@ -792,7 +792,10 @@ step "Adguard for Safari config file"
 echo "Open Adguard for Safari > General > Import Settings and load the file located at $HOME/dotfiles/Adguard/"
 
 step "Little Snitch config file"
-echo "Open Little Snitch Configuration and load the file located at $HOME/dotfiles/Little_Snitch/"
+echo "Open Little Snitch > File > Restore from Backup… and load the file located at $HOME/dotfiles/Little_Snitch/"
+
+step "iStat Menus config file"
+echo "Open iStat Menus > File > Import Settings… and load the file located at $HOME/dotfiles/iStat_Menus/"
 
 ##############################################
 chapter "Directories"

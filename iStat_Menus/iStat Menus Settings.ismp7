@@ -134,11 +134,11 @@
 		<key>Combined.Menubar.Items</key>
 		<array/>
 		<key>Device.Auth-Identifier</key>
-		<string>5535D03A-5316-4FEF-A452-E001B1ACCCB6</string>
+		<string>D35A50F9-F9B0-4545-8B0A-2A9C956D86DA</string>
 		<key>Device.Device</key>
 		<string>0ad6f3da71a29caec9b6e4c8dd38098c937e31b1</string>
 		<key>Device.Model</key>
-		<string>Mac14,2</string>
+		<string>Mac16,1</string>
 		<key>Memory.Menu.Graph.Compressed.Color</key>
 		<string>0.9686274509803922 0.3098039215686275 0.6196078431372549 1</string>
 		<key>Memory.Menu.Graph.Wired.Color</key>
@@ -282,6 +282,8 @@
 		<string>semibold</string>
 		<key>Network.Menubar.Mode.Bandwidth.Upload.Value.Dark.Text.Color</key>
 		<string>0.9254901960784314 0.5333333333333333 1 1</string>
+		<key>Network.Menubar.Ping.Custom</key>
+		<string>192.168.1.20</string>
 		<key>Notifications.Items</key>
 		<array>
 			<dict>
@@ -441,21 +443,6 @@
 				<integer>7</integer>
 			</dict>
 		</array>
-		<key>Profiles.Settings.default.Sensors.Menubar.Sensors</key>
-		<array>
-			<dict>
-				<key>ShowUnits</key>
-				<true/>
-				<key>key</key>
-				<string>a37f0a9a58ada616aed32e5aff218c4e4affe40e</string>
-				<key>name</key>
-				<string>CPU</string>
-				<key>source</key>
-				<integer>2</integer>
-				<key>type</key>
-				<integer>1</integer>
-			</dict>
-		</array>
 		<key>Profiles.Settings.default.Time.Menubar.Clocks</key>
 		<array>
 			<dict>
@@ -467,7 +454,7 @@
 							<key>type</key>
 							<string>string</string>
 							<key>value</key>
-							<string>🇫🇷</string>
+							<string>🇲🇽 </string>
 						</dict>
 						<dict>
 							<key>format</key>
@@ -495,25 +482,25 @@
 					<key>location</key>
 					<dict>
 						<key>city</key>
-						<string>Paris</string>
+						<string>Aguascalientes</string>
 						<key>country</key>
-						<string>France</string>
+						<string>Mexico</string>
 						<key>countrycode</key>
-						<string>FR</string>
+						<string>MX</string>
 						<key>identifier</key>
-						<integer>2988507</integer>
+						<integer>4019233</integer>
 						<key>latitude</key>
-						<real>48.853409999999997</real>
+						<real>21.882339999999999</real>
 						<key>longitude</key>
-						<real>2.3488000000000002</real>
+						<real>-102.28259</real>
 						<key>name</key>
-						<string>Paris</string>
+						<string>Aguascalientes</string>
 						<key>region</key>
-						<string>Paris</string>
+						<string>Aguascalientes</string>
 						<key>state</key>
-						<string>Île-de-France</string>
+						<string>Aguascalientes</string>
 						<key>timezone</key>
-						<string>Europe/Paris</string>
+						<string>America/Mexico_City</string>
 					</dict>
 				</dict>
 				<key>lines</key>
@@ -597,10 +584,45 @@
 		<real>7.0999999046325684</real>
 		<key>Time.Global.Calendars.Dismissed</key>
 		<true/>
+		<key>Time.Global.Events</key>
+		<integer>0</integer>
 		<key>Time.Global.FirstWeekday</key>
 		<integer>1</integer>
+		<key>Time.Global.WeekNumberType</key>
+		<integer>0</integer>
+		<key>Time.Menu.Calendar.ShowWeeks</key>
+		<integer>0</integer>
+		<key>Time.Menu.Calendar.Type</key>
+		<integer>2</integer>
+		<key>Time.Menu.Calendars.Disabled</key>
+		<array>
+			<string>2718995E-1CC5-48B1-AB66-743D6BCFC14E</string>
+			<string>592B36A7-4F4D-460D-AF77-9754686C8DCB</string>
+			<string>28B4749F-36A1-460F-A8EA-71D09FEB4964</string>
+			<string>2508B2A0-6C78-4151-8030-9DF757D65E07</string>
+		</array>
 		<key>Time.Menu.Cities.Items</key>
 		<array>
+			<dict>
+				<key>city</key>
+				<string>Aguascalientes</string>
+				<key>country</key>
+				<string>Mexico</string>
+				<key>countrycode</key>
+				<string>MX</string>
+				<key>identifier</key>
+				<integer>4019233</integer>
+				<key>latitude</key>
+				<real>21.882339999999999</real>
+				<key>longitude</key>
+				<real>-102.28259</real>
+				<key>region</key>
+				<string>Aguascalientes</string>
+				<key>state</key>
+				<string>Aguascalientes</string>
+				<key>timezone</key>
+				<string>America/Mexico_City</string>
+			</dict>
 			<dict>
 				<key>city</key>
 				<string>Current Location</string>
@@ -627,38 +649,20 @@
 				<key>timezone</key>
 				<string>Europe/Paris</string>
 			</dict>
-			<dict>
-				<key>city</key>
-				<string>Aguascalientes</string>
-				<key>country</key>
-				<string>Mexico</string>
-				<key>countrycode</key>
-				<string>MX</string>
-				<key>identifier</key>
-				<integer>4019233</integer>
-				<key>latitude</key>
-				<real>21.882339999999999</real>
-				<key>longitude</key>
-				<real>-102.28259</real>
-				<key>region</key>
-				<string>Aguascalientes</string>
-				<key>state</key>
-				<string>Aguascalientes</string>
-				<key>timezone</key>
-				<string>America/Mexico_City</string>
-			</dict>
 		</array>
+		<key>Time.Menu.Cities.Sorting</key>
+		<integer>2</integer>
 		<key>Time.Menu.State</key>
 		<array>
 			<dict>
 				<key>enabled</key>
-				<false/>
+				<true/>
 				<key>key</key>
 				<string>time-calendar</string>
 			</dict>
 			<dict>
 				<key>enabled</key>
-				<false/>
+				<true/>
 				<key>key</key>
 				<string>time-events</string>
 			</dict>
@@ -677,6 +681,57 @@
 		</array>
 		<key>Time.Menubar.Mode.SingleValue.Font.Size</key>
 		<integer>0</integer>
+		<key>Weather.Global.AvailableProviders</key>
+		<array>
+			<dict>
+				<key>key</key>
+				<string>apple</string>
+				<key>name</key>
+				<string>🌍 Apple Weather</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>accuweather</string>
+				<key>name</key>
+				<string>🌍 AccuWeather</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>aeris</string>
+				<key>name</key>
+				<string>🌍 Xweather (formerly Aeris)</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>apple</string>
+				<key>name</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>environmentcanada</string>
+				<key>name</key>
+				<string>🇨🇦 Environment Canada</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>willyweather</string>
+				<key>name</key>
+				<string>🇦🇺 WillyWeather (BoM)</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>dwd</string>
+				<key>name</key>
+				<string>🇩🇪 DWD</string>
+			</dict>
+			<dict>
+				<key>key</key>
+				<string>meteofrance</string>
+				<key>name</key>
+				<string>🇫🇷 Meteo France</string>
+			</dict>
+		</array>
 	</dict>
 	<key>version</key>
 	<string>7</string>
