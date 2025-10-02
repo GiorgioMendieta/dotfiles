@@ -775,6 +775,16 @@ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 run bat cache --build
 
+step "Setting ghostty"
+run mkdir -p "$HOME/.config/ghostty/themes"
+wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf
+wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-frappe.conf
+wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
+wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-mocha.conf
+# Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
+link_dotfile "$DOTFILES/ghostty/config" "$HOME/.config/ghostty/config"
+link_dotfile "$DOTFILES/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+
 step "Raycast config file"
 echo "Open Raycast > Settings > Advanced > Import/Export > Import and load the file located at $HOME/dotfiles/Raycast/"
 
