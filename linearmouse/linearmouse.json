@@ -1,33 +1,33 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.2",
-  "schemes" : [
-    {
-      "if" : {
-        "device" : {
-          "category" : "mouse",
-          "productID" : "0x7fd",
-          "productName" : "Microsoft Nano Transceiver 1.1",
-          "vendorID" : "0x45e"
+    "$schema": "https:\/\/schema.linearmouse.app\/0.10.2",
+    "schemes": [
+        {
+            "if": {
+                "device": {
+                    "category": "mouse",
+                    "productID": "0x7fd",
+                    "productName": "Microsoft Nano Transceiver 1.1",
+                    "vendorID": "0x45e"
+                }
+            },
+            "pointer": {
+                "acceleration": 1.25,
+                "disableAcceleration": true
+            },
+            "scrolling": {
+                "acceleration": {
+                    "vertical": 1
+                },
+                "distance": {
+                    "vertical": "90px"
+                },
+                "reverse": {
+                    "vertical": true
+                },
+                "speed": {
+                    "vertical": 0
+                }
+            }
         }
-      },
-      "pointer" : {
-        "acceleration" : 1.2,
-        "disableAcceleration" : true
-      },
-      "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1
-        },
-        "distance" : {
-          "vertical" : 3
-        },
-        "reverse" : {
-          "vertical" : true
-        },
-        "speed" : {
-          "vertical" : 0
-        }
-      }
-    }
-  ]
+    ]
 }
