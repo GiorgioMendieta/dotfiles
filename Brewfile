@@ -44,11 +44,12 @@ brew "wget"
 brew "onefetch"
 brew "clang-format"
 brew "tldr"
+brew "xquartz" # X Graphics server for ssh -X sessions
 
 # ------------------------------------------------------------------------------
 # Casks
 # ------------------------------------------------------------------------------
-cask "aerial"
+# cask "aerial" # Prefer built-in screensavers  
 cask "aldente"
 cask "alt-tab"
 cask "android-platform-tools"
@@ -58,7 +59,7 @@ cask "balenaetcher"
 cask "betterdisplay"
 # cask "bitwarden" # Prefer Mac App Store version (Touch ID support)
 cask "bluesnooze"
-
+ 
 cask "cork"
 
 cask "daisydisk"
@@ -118,51 +119,6 @@ cask "whisky"
 # ------------------------------------------------------------------------------
 cask "font-meslo-lg-nerd-font"
 cask "font-fira-code"
-
-# ------------------------------------------------------------------------------
-# VS Code extensions
-# ------------------------------------------------------------------------------
-vscode "angablue.asm-formatter"
-vscode "catppuccin.catppuccin-vsc"
-vscode "cschlosser.doxdocgen"
-vscode "danielpinto8zz6.c-cpp-compile-run"
-vscode "davidanson.vscode-markdownlint"
-vscode "esbenp.prettier-vscode"
-vscode "github.copilot"
-vscode "github.copilot-chat"
-vscode "gruntfuggly.todo-tree"
-vscode "jeff-hykin.better-cpp-syntax"
-vscode "kdarkhan.mips"
-vscode "ms-python.black-formatter"
-vscode "ms-python.debugpy"
-vscode "ms-python.isort"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-vscode-remote.remote-containers"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode.cmake-tools"
-vscode "ms-vscode.cpptools"
-vscode "ms-vscode.cpptools-extension-pack"
-vscode "ms-vscode.cpptools-themes"
-vscode "ms-vscode.makefile-tools"
-vscode "ms-vscode.remote-explorer"
-vscode "ms-vscode.remote-server"
-vscode "ms-vscode.vscode-serial-monitor"
-vscode "ms-vsliveshare.vsliveshare"
-vscode "mshr-h.veriloghdl"
-vscode "puorc.awesome-vhdl"
-vscode "redhat.vscode-xml"
-vscode "timonwong.shellcheck"
-vscode "tomoki1207.pdf"
-vscode "twxs.cmake"
-vscode "visualstudioexptteam.intellicode-api-usage-examples"
-vscode "visualstudioexptteam.vscodeintellicode"
-vscode "wayou.vscode-todo-highlight"
-vscode "whizkydee.material-palenight-theme"
-vscode "yzane.markdown-pdf"
-vscode "yzhang.markdown-all-in-one"
 
 # ------------------------------------------------------------------------------
 # Mac App Store
