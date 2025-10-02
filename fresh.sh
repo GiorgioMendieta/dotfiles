@@ -178,19 +178,8 @@ case $(
   ;;
 esac
 
-step "Enable full keyboard access for all controls? (e.g. enable Tab in modal dialogs) [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
-  ;;
-esac
+# Enable full keyboard access for all controls? (e.g. enable Tab in modal dialogs)
+run defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 step "Disable press-and-hold for keys in favor of key repeat? [Y/n]: "
 case $(
@@ -206,20 +195,9 @@ case $(
   ;;
 esac
 
-step "Use scroll gesture with the Ctrl (^) modifier key to zoom? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-  run defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-  ;;
-esac
+# Use scroll gesture with the Ctrl (^) modifier key to zoom
+run defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
+run defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
 step "Disable auto-correct? [Y/n]: "
 case $(
@@ -261,19 +239,8 @@ case $clickweight in
   ;;
 esac
 
-step "Enable three finger drag? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool true
-  ;;
-esac
+# Enable three finger drag
+run defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool true
 
 ###############################################################################
 chapter "Energy saving settings"
@@ -337,22 +304,11 @@ esac
 chapter "Adjusting Finder settings"
 ##############################################
 
-step "Show icons for hard drives, servers, and removable media on the desktop? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-  run defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
-  run defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
-  run defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
-  ;;
-esac
+# Show icons for hard drives, servers, and removable media on the desktop
+run defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
+run defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
+run defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
+run defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
 # Finder: disable window animations and Get Info animations
 run defaults write com.apple.finder DisableAllAnimations -bool true
@@ -383,20 +339,6 @@ run defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
 run defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
-step "Enable AirDrop over Ethernet and on unsupported Macs running Lion? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
-  ;;
-esac
-
 # Show the ~/Library folder
 run chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
@@ -426,19 +368,8 @@ run /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconS
 chapter "Adjusting Dock, Dashboard, and hot corners"
 ##############################################
 
-step "Set Dock orientation to the left?: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.dock orientation -string "left"
-  ;;
-esac
+# Set Dock orientation to the left
+run defaults write com.apple.dock orientation -string "left"
 
 step "Change the icon size (in px) of Dock items? [54/n]: "
 read tilesize
@@ -464,23 +395,12 @@ case $largesize in
   ;;
 esac
 
-step "Automatically hide and show the Dock? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.dock autohide -bool true
-  # Speed-up or remove the animation when hiding/showing the Dock
-  run defaults write com.apple.dock autohide-delay -float 0
-  # Speed-up or remove the animation when hiding/showing the Dock
-  run defaults write com.apple.dock autohide-time-modifier -float 0.15
-  ;;
-esac
+# Automatically hide and show the Dock?
+run defaults write com.apple.dock autohide -bool true
+# Speed-up or remove the animation when hiding/showing the Dock
+run defaults write com.apple.dock autohide-delay -float 0
+# Speed-up or remove the animation when hiding/showing the Dock
+run defaults write com.apple.dock autohide-time-modifier -float 0.15
 
 # Change minimize/maximize window effect
 run defaults write com.apple.dock mineffect -string "scale"
@@ -569,22 +489,11 @@ case $(
   ;;
 esac
 
-step "Disable AutoFill? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.Safari AutoFillFromAddressBook -bool false
-  run defaults write com.apple.Safari AutoFillPasswords -bool false
-  run defaults write com.apple.Safari AutoFillCreditCardData -bool false
-  run defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
-  ;;
-esac
+#Disable AutoFill (in favor of Bitwarden)
+run defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+run defaults write com.apple.Safari AutoFillPasswords -bool false
+run defaults write com.apple.Safari AutoFillCreditCardData -bool false
+run defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 
 # Restore session at launch
 run defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch -bool true
@@ -711,6 +620,12 @@ if test ! $(which brew); then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+step "Veryfing git installation\n"
+if test ! $(which git); then
+  echo "Git is not installed, installing it now...\n"
+  run brew install git
+fi
+
 # Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
 step "Install Powerlevel 10k theme? [y/n]"
 case $(
@@ -749,7 +664,7 @@ step "Homebrew formulae and casks\n"
 # Update Homebrew recipes
 run brew update
 # Install all our dependencies with homebrew bundle (See Brewfile)
-run brew bundle --file ./Brewfile
+run brew bundle --file "$DOTFILES/Brewfile"
 
 
 ##############################################
@@ -805,13 +720,8 @@ step "Creating directories\n"
 run mkdir $HOME/Developer
 
 ##############################################
-chapter "GitHub configuration"
+chapter "Git configuration"
 ##############################################
-step "Veryfing git installation\n"
-if test ! $(which git); then
-  echo "Git is not installed, installing it now...\n"
-  run brew install git
-fi
 
 step "Symlink Git config files"
 link_dotfile "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
