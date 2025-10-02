@@ -179,3 +179,6 @@ Host pve
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
+
+Host *
+  SetEnv TERM=xterm-256color
