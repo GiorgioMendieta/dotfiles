@@ -31,28 +31,28 @@ link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
 
 echo "Setting bat theme"
 mkdir -p "$(bat --config-dir)/themes"
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_latte.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_frappe.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_macchiato.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_mocha.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 link_dotfile "$DOTFILES/Apps/bat/config" "$(bat --config-file)"
 run bat cache --build
 
 
 echo "Setting btop theme"
 mkdir -p "$HOME/.config/btop/themes"
-wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_latte.theme
-wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_frappe.theme
-wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_macchiato.theme
-wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_mocha.theme
+curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_latte.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_latte.theme
+curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_frappe.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_frappe.theme
+curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_macchiato.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_macchiato.theme
+curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_mocha.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_mocha.theme
 link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
 
 echo "Setting ghostty"
 mkdir -p "$HOME/.config/ghostty/themes"
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-frappe.conf
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-mocha.conf
+curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_latte.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf
+curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_frappe.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-frappe.conf
+curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_macchiato.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
+curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_mocha.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-mocha.conf
 # Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
 link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/.config/ghostty/config"
 link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
