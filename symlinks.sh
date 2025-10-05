@@ -30,15 +30,24 @@ link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
 #link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
 
 echo "Setting bat theme"
-run mkdir -p "$(bat --config-dir)/themes"
+mkdir -p "$(bat --config-dir)/themes"
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 run bat cache --build
 
+echo "Setting btop theme"
+mkdir -p "$HOME/.config/btop/themes"
+wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_latte.theme
+wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_frappe.theme
+wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_macchiato.theme
+wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_mocha.theme
+# Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
+link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
+
 echo "Setting ghostty"
-run mkdir -p "$HOME/.config/ghostty/themes"
+mkdir -p "$HOME/.config/ghostty/themes"
 wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf
 wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-frappe.conf
 wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
