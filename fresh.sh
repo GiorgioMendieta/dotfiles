@@ -635,6 +635,10 @@ link_dotfile "$DOTFILES/Apps/karabiner/karabiner.json" "$HOME/.config/karabiner/
 step "linearmouse config file"
 link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
+
+step "neofetch config file"
+link_dotfile "$DOTFILES/Apps/neofetch/config.conf" "$HOME/.config/neofetch/config.conf"
+
 #step "Rectangle config file"
 #link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
 
