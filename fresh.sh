@@ -549,8 +549,8 @@ step ".zshrc config file"
 link_dotfile "$DOTFILES/.zshrc" "$HOME/.zshrc"
 
 step "Setting Vim and Nano config files"
-link_dotfile "$DOTFILES/vim/.vimrc" "$HOME/.vimrc"
-link_dotfile "$DOTFILES/vim/.vim" "$HOME/.vim"
+link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.vimrc"
+link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
 link_dotfile "$DOTFILES/.nanorc" "$HOME/.nanorc"
 
 step "Setting ssh config file"
@@ -638,6 +638,9 @@ link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linear
 
 step "neofetch config file"
 link_dotfile "$DOTFILES/Apps/neofetch/config.conf" "$HOME/.config/neofetch/config.conf"
+
+step "nvim config file"
+link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
 
 #step "Rectangle config file"
 #link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
