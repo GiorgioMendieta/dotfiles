@@ -36,7 +36,7 @@ curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_frappe.tmTheme" https://git
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_macchiato.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_mocha.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
 link_dotfile "$DOTFILES/Apps/bat/config" "$(bat --config-file)"
-run bat cache --build
+bat cache --build
 
 
 echo "Setting btop theme"
