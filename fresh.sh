@@ -181,63 +181,19 @@ esac
 # Enable full keyboard access for all controls? (e.g. enable Tab in modal dialogs)
 run defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-step "Disable press-and-hold for keys in favor of key repeat? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-  ;;
-esac
+# Disable press-and-hold for keys in favor of key repeat
+run defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Use scroll gesture with the Ctrl (^) modifier key to zoom
 run defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
 run defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
 
-step "Disable auto-correct? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-  ;;
-esac
+# Disable auto-correct
+run defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-step "Stop iTunes from responding to the keyboard media keys? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2>/dev/null
-  ;;
-esac
 
-step "Set click weight (0, 1, 2): "
-read clickweight
-case $clickweight in
-[nN])
-  echo ""
-  ;;
-*)
-  echo ""
-  run defaults write com.apple.AppleMultitouchTrackpad "FirstClickThreshold" -int ${clickweight:-0}
-  ;;
-esac
+# Set click weight (0, 1, 2)
+run defaults write com.apple.AppleMultitouchTrackpad "FirstClickThreshold" -int 1
 
 # Enable three finger drag
 run defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool true

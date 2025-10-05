@@ -1,5 +1,7 @@
 theme = Catppuccin Macchiato
 font-family = "Fira Code"
+# Disable font ligatures
+font-feature = -calt
 font-size = 14
 # Style of Titlebar - MacOS specific
 macos-titlebar-style = transparent
