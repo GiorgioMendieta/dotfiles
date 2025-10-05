@@ -35,7 +35,9 @@ wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+link_dotfile "$DOTFILES/Apps/bat/config" "$(bat --config-file)"
 run bat cache --build
+
 
 echo "Setting btop theme"
 mkdir -p "$HOME/.config/btop/themes"
@@ -43,7 +45,6 @@ wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/
 wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_frappe.theme
 wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_macchiato.theme
 wget -P "$HOME/.config/btop/themes" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_mocha.theme
-# Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
 link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
 
 echo "Setting ghostty"
