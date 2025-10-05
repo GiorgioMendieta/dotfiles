@@ -191,7 +191,6 @@ run defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 2621
 # Disable auto-correct
 run defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
-
 # Set click weight (0, 1, 2)
 run defaults write com.apple.AppleMultitouchTrackpad "FirstClickThreshold" -int 1
 
@@ -204,7 +203,10 @@ chapter "Energy saving settings"
 ###############################################################################
 
 # The −a, −b, −c, −u flags determine whether the settings apply to:
-# battery ( −b ), AC power ( −c ), UPS ( −u ) or all ( −a ).
+# - Battery ( −b ), 
+# - AC power ( −c ), 
+# - UPS ( −u ) or 
+# - All ( −a ).
 
 # Disable low power mode
 run sudo pmset -a lowpower 0
@@ -429,21 +431,10 @@ esac
 chapter "Safari & WebKit settings"
 ##############################################
 
-step "Enable the Developer menu and the Web Inspector in Safari? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.Safari IncludeDevelopMenu -bool true
-  run defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
-  run defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
-  ;;
-esac
+# Enable the Developer menu and the Web Inspector in Safari
+run defaults write com.apple.Safari IncludeDevelopMenu -bool true
+run defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
+run defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
 #Disable AutoFill (in favor of Bitwarden)
 run defaults write com.apple.Safari AutoFillFromAddressBook -bool false
@@ -592,6 +583,7 @@ case $(
   ;;
 esac
 
+
 ##############################################
 chapter "Installing Homebrew formulae and casks…"
 ##############################################
@@ -640,6 +632,7 @@ link_dotfile "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
 link_dotfile "$DOTFILES/.gitignore_global" "$HOME/.gitignore_global"
 
 step "Clone Github repositories\n"
+run chmod +x ./clone.sh
 run ./clone.sh
 
 ##############################################
