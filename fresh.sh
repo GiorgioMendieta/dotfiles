@@ -527,40 +527,19 @@ case $(
   ;;
 esac
 
-##############################################
-chapter "Symlinking dotfiles…"
-##############################################
-DOTFILES="${HOME}/.dotfiles"
 
-# Function to create a symlink, creating parent directories if needed
-link_dotfile () {
-    # Get the target directory
-    target_dir=$(dirname "$2")
-    # Create target directory chain if it doesn't exist
-    mkdir -p "$target_dir"
-    # Remove existing file
-    rm -f "$2"
-    # Create symlink
-    ln -sf "$1" "$2"
-}
+##############################################
+chapter "Installing CLI utilities"
+##############################################
 
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
-step ".zshrc config file"
-link_dotfile "$DOTFILES/.zshrc" "$HOME/.zshrc"
-
-step "Setting Vim and Nano config files"
-link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.vimrc"
-link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
-link_dotfile "$DOTFILES/.nanorc" "$HOME/.nanorc"
+source "$DOTFILES/scripts/helper_scripts.sh"
+DOTFILES="${HOME}/.dotfiles"
 
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
 link_dotfile "$DOTFILES/.ssh/ssh_config" "$HOME/.ssh/config"
 run chmod 700 $HOME/.ssh && chmod 600 $HOME/.ssh/config
-
-##############################################
-chapter "Installing OMZ and Brew"
-##############################################
 
 # Check for Oh My Zsh and install if we don't have it
 step "Installing Oh My Zsh\n"
@@ -624,44 +603,14 @@ run brew bundle --file "$DOTFILES/Brewfile"
 
 
 ##############################################
+chapter "Symlinking dotfiles…"
+##############################################
+
+./symlinks.sh
+
+##############################################
 chapter "Installing App settings"
 ##############################################
-step "Mackup config file"
-link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
-
-step "Karabiner-Elements config file"
-link_dotfile "$DOTFILES/Apps/karabiner/karabiner.json" "$HOME/.config/karabiner/karabiner.json"
-
-step "linearmouse config file"
-link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
-
-
-step "neofetch config file"
-link_dotfile "$DOTFILES/Apps/neofetch/config.conf" "$HOME/.config/neofetch/config.conf"
-
-step "nvim config file"
-link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
-
-#step "Rectangle config file"
-#link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
-
-step "Setting bat theme"
-run mkdir -p "$(bat --config-dir)/themes"
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-run bat cache --build
-
-step "Setting ghostty"
-run mkdir -p "$HOME/.config/ghostty/themes"
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-frappe.conf
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
-wget -P "$HOME/.config/ghostty/themes" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-mocha.conf
-# Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
-link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/.config/ghostty/config"
-link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 
 step "Raycast config file"
 echo "Open Raycast > Settings > Advanced > Import/Export > Import and load the file located at $DOTFILES/Apps/Raycast/"
