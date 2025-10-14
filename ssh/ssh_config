@@ -2,6 +2,31 @@
 # ssh-copy-id username@remotehost
 # Then verify by ssh'ing into the remote host
 
+#Tailscale
+Host ts-imesmacmini
+  User dra.carmenorozco
+  HostName Imes-Mac-Mini
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host ts-imesimac
+  User imelda
+  HostName imes-imac
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host ts-rpi
+  User giorgio
+  HostName raspberrypi
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host ts-macair
+  User giorgio
+  HostName giorgios-macbook-air
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
 # GitHub
 Host *.github.com
   AddKeysToAgent yes
@@ -155,15 +180,6 @@ Host ppti20
   ForwardX11 yes
   ProxyJump sorbonne
   
-## Raspberry Pi 25
-## IOC
-# Host pi
-#   User pi
-#   Hostname peri
-#   Port 62225
-#   ProxyJump bartok
-#   ForwardAgent yes
-#   IdentityFile ~/.ssh/id_ed25519.pub
 
 ## Raspberry Pi Giorgio
 Host rpi

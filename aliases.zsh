@@ -100,13 +100,12 @@ alias mymac="networksetup -listallhardwareports | grep Wi-Fi -A 3 | grep 'Ethern
 # Python & Virtual Environments
 # ------------------------------------------------------------------------------
 # Create python virtual environmnet
-alias pvenv='python3 -m venv ./venv'
-alias pvenv2="virtualenv -p python2 ./venv"
-# alias pvenv2="virtualenv -p `which python2.6` ./venv"
+alias venv='python3 -m venv ./.venv'
+alias venv2="virtualenv -p python2 ./.venv"
 
 # Activate venv
-alias avenv='source ./venv/bin/activate'
-alias avenv2='source ./venv2/bin/activate'
+alias avenv='source ./.venv/bin/activate'
+alias avenv2='source ./.venv2/bin/activate'
 alias pip2="python2 -m pip"
 
 # ------------------------------------------------------------------------------
