@@ -11,6 +11,7 @@ alias rsh="omz reload"
 
 # Search aliases using fzf
 alias salias="alias | fzf"
+
 alias hxtutor="hx --tutor"
 
 # SSH
@@ -29,7 +30,7 @@ alias mnt='mount | grep -E ^/dev | column -t'
 alias vsc="code ."
 
 # Performance monitoring CLI tool for Apple Silicon
-alias asitop='sudo asitop'
+alias mactop='sudo mactop'
 
 # Avoid accidental deletions by enabling interactive mode
 alias rm='rm -i'
@@ -42,35 +43,7 @@ setopt rm_star_silent
 # List users formatted as a table
 alias lsusers='cat /etc/passwd | column -t -s ":" -N USERNAME,PW,UID,GUID,COMMENT,HOME,INTERPRETER'
 
-# alias rm='safedelete'
-# function safedelete {
-#   if command -v gio > /dev/null; then
-#     for f in "$@"
-#     do
-#       gio trash -f "$f"
-#     done
-
-#   elif command -v gvfs-trash > /dev/null; then
-#     for f in "$@"
-#     do
-#       gvfs-trash "$f"
-#     done
-
-#   elif [ -d "$HOME/.local/share/Trash/files" ]; then
-#     for f in "$@"
-#     do
-#       mv "$f" "$HOME/.local/share/Trash/files"
-#     done
-
-#   else
-#     for f in "$@"
-#     do
-#       # shellcheck disable=SC1012
-#       \rm "$f"
-#     done
-#   fi
-# }
-
+alias immich="rsync -chavzP --stats --mkpath ~/Desktop/tmp/ pve:/mnt/pve/myhdd/photos/2026/02/; ssh pve 'immich'; open https://immich.home.arpa/admin/queues"
 # ------------------------------------------------------------------------------
 # Networking
 # ------------------------------------------------------------------------------
@@ -108,6 +81,16 @@ alias avenv='source ./.venv/bin/activate'
 alias avenv2='source ./.venv2/bin/activate'
 alias pip2="python2 -m pip"
 
+#Additional kernels can be installed into the shared jupyter directory
+#  /opt/homebrew/etc/jupyter
+#
+#To start jupyterlab now and restart at login:
+#  brew services start jupyterlab
+#Or, if you don't want/need a background service you can just run:
+# /opt/homebrew/opt/jupyterlab/bin/jupyter-lab
+alias jupyter=/opt/homebrew/opt/jupyterlab/bin/jupyter-lab
+
+
 # ------------------------------------------------------------------------------
 # Directory shortcuts
 # ------------------------------------------------------------------------------
@@ -117,10 +100,9 @@ alias library="cd $HOME/Library"
 alias dev="cd $HOME/Developer"
 alias lab="cd $HOME/docker"
 
-
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
-# alias mobj="cd $HOME/Developer/Sorbonne_Universite/MOBJ"
+alias smc="cd $HOME/Developer/Sorbonne_Universite/SMC-TPs"
 
 # Directory navigation
 up() {

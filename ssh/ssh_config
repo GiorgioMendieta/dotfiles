@@ -22,8 +22,8 @@ Host ts-rpi
   IdentityFile ~/.ssh/id_ed25519
 
 Host ts-macair
-  User giorgio
-  HostName giorgios-macbook-air
+  User dra.carmenorozco
+  HostName imes-macbook-air
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 

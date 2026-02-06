@@ -6,7 +6,6 @@ tap "homebrew/services"
 # ------------------------------------------------------------------------------
 # CLI tools
 # ------------------------------------------------------------------------------
-brew "asitop"
 brew "autoconf"
 brew "automake"
 brew "bat"
@@ -23,6 +22,7 @@ brew "openssl"
 brew "http-server"
 brew "jq"
 brew "mackup"
+brew "mactop"
 brew "mas"
 brew "meson"
 brew "mosquitto"
@@ -36,10 +36,12 @@ brew "pyenv"
 brew "python@3.10"
 brew "python@3.11"
 brew "python@3.12"
+brew "rsync" # Replaces old implementation of openrsync by Apple
 brew "speedtest-cli"
 brew "tmux"
 brew "tree"
 brew "typst"
+brew "wakeonlan"
 brew "wget"
 brew "onefetch"
 brew "clang-format"
@@ -55,7 +57,7 @@ cask "alt-tab"
 cask "android-platform-tools"
 cask "apparency"
 
-cask "balenaetcher"
+# cask "balenaetcher"
 cask "betterdisplay"
 # cask "bitwarden" # Prefer Mac App Store version (Touch ID support)
 cask "bluesnooze"
@@ -104,6 +106,7 @@ cask "rustdesk"
 
 cask "shottr"
 # cask "stats" # Replaced by iStat Menus
+cask "sony-ps-remote-play"
 cask "syntax-highlight"
 
 cask "tradingview"
