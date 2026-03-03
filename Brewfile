@@ -2,6 +2,7 @@
 # Taps
 # ------------------------------------------------------------------------------
 tap "homebrew/services"
+tap "RhetTbull/osxphotos"
 
 # ------------------------------------------------------------------------------
 # CLI tools
@@ -47,6 +48,7 @@ brew "onefetch"
 brew "clang-format"
 brew "tldr"
 brew "xquartz" # X Graphics server for ssh -X sessions
+brew "osxphotos"
 
 # ------------------------------------------------------------------------------
 # Casks

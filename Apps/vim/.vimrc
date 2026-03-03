@@ -1,3 +1,7 @@
+" set runtimepath^=~/.vim runtimepath+=~/.vim/after
+" let &packpath = &runtimepath
+" source ~/.vimrc
+
 set nocompatible            " Disable compatibility with vi which can cause unexpected issues
 filetype on                 " Enable type file detection.
 filetype plugin on          " Enable plugins and load plugin for the detected file type
@@ -11,7 +15,7 @@ set softtabstop=4           " See multiple spaces as tabstops so <BS> does the r
 set expandtab               " Converts tabs to white space
 set shiftwidth=4            " Width for autoindents
 set autoindent              " Indent a new line the same amount as the line just typed
-set cc=120                  " Set a vertical border for good coding style (in nb of chars)
+set cc=100                  " Set a vertical border for good coding style (in nb of chars)
 syntax on                   " Enable syntax highlighting
 set cursorline              " Highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim

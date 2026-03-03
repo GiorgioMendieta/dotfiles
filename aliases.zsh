@@ -43,7 +43,38 @@ setopt rm_star_silent
 # List users formatted as a table
 alias lsusers='cat /etc/passwd | column -t -s ":" -N USERNAME,PW,UID,GUID,COMMENT,HOME,INTERPRETER'
 
-alias immich="rsync -chavzP --stats --mkpath ~/Desktop/tmp/ pve:/mnt/pve/myhdd/photos/2026/02/; ssh pve 'immich'; open https://immich.home.arpa/admin/queues"
+# alias immich="rsync -chavzP --stats --mkpath ~/Desktop/tmp/ pve:/mnt/pve/myhdd/photos/2026/02/; ssh pve 'immich'; open https://immich.home.arpa/admin/queues"
+
+[ -f $DOTFILES/Apps/immich/env ] && source $DOTFILES/Apps/immich/env
+_immich_scan() {
+    # Use Immich API 
+    curl -L -X POST "https://immich.home.arpa/api/libraries/${IMMICH_LIBRARY_ID}/scan" \
+	    -H "Content-Type: application/json" \
+	    -H "Accept: application/json" \
+	    -H "x-api-key: ${IMMICH_API_KEY}"
+}
+
+immich() {
+    local dest="$1"
+
+    if [ -z "$dest" ]; then
+        echo "Usage: immich YYYY/MM"
+        return 1
+    fi
+
+    rsync -chavzP --stats --mkpath \
+        ~/Desktop/tmp/ \
+        "pve:/mnt/pve/myhdd/photos/$dest/" \
+
+    ssh pve immich
+    echo "Permissions set for photos directory"
+
+    _immich_scan()
+    echo "Scanning library for changes"
+    # Open with Safari
+    open "https://immich.home.arpa/admin/queues"
+}
+
 # ------------------------------------------------------------------------------
 # Networking
 # ------------------------------------------------------------------------------
@@ -103,21 +134,7 @@ alias lab="cd $HOME/docker"
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
 alias smc="cd $HOME/Developer/Sorbonne_Universite/SMC-TPs"
-
-# Directory navigation
-up() {
-    if [[ "$#" < 1 ]]; then
-        # Navigate up one level
-        cd ..
-    else
-        # Navigate up multiple levels
-        CDSTR=""
-        for i in {1..$1}; do
-            CDSTR="../$CDSTR"
-        done
-        cd $CDSTR
-    fi
-}
+alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 # Create dir and immediately cd into it
 mkcd() {
@@ -186,8 +203,9 @@ alias vim="nvim"
 # Bat is a cat clone with syntax highlighting and Git integration
 # Ubuntu compatibility
 if [[ "$(uname -s)" == "Linux" ]]; then
-    MANPAGER=less
+    export MANPAGER=less
 fi
+
 
 if [ -x "$(command -v bat)" ]; then
     # Replace cat with bat
@@ -254,13 +272,17 @@ if [ -x "$(command -v eza)" ]; then
     }
 fi
 
+
+if [ -x "$(command -v fzf)" ]; then
+	# fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
+fi
 # Set up fzf key bindings and fuzzy completion (useful for searching command history with ctrl + r)
 # ** + tab to search for files
 source <(fzf --zsh)
 
+# Show files (ls) after changing directory (cd)
 cd() {
     builtin cd "$@"
-    # Show files (ls) after changing directory (cd)
     echo ""
     ls
 }
@@ -283,35 +305,6 @@ man2pdf() {
     else
         # Lower than Ventura
         man -t "${1}" | open -f -F -n -a /System/Applications/Preview.app
-    fi
-}
-
-_calcram() {
-    local sum
-    sum=0
-    for i in $(ps aux | grep -i "$1" | grep -v "grep" | awk '{print $6}'); do
-        sum=$(($i + $sum))
-    done
-    sum=$(echo "scale=2; $sum / 1024.0" | bc)
-    echo $sum
-}
-
-# Show how much RAM application uses.
-# e.g. $ ram safari
-# # => safari uses 154.69 MBs of RAM
-ram() {
-    local sum
-    local app="$1"
-    if [ -z "$app" ]; then
-        echo "First argument - pattern to grep from processes"
-        return 0
-    fi
-
-    sum=$(_calcram $app)
-    if [[ $sum != "0" ]]; then
-        echo "${fg[blue]}${app}${reset_color} uses ${fg[green]}${sum}${reset_color} MBs of RAM"
-    else
-        echo "No active processes matching pattern '${fg[blue]}${app}${reset_color}'"
     fi
 }
 

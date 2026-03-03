@@ -99,7 +99,6 @@ plugins=(
   git
   fzf-tab
   zsh-autosuggestions 
-  colored-man-pages 
   zsh-syntax-highlighting
   )
 
@@ -154,7 +153,7 @@ export LANG=en_US.UTF-8
 # Set the default theme for bat
 export BAT_THEME="Catppuccin Macchiato"
 # Use bat as the default pager for man pages
-# export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 
 #####################################
@@ -225,6 +224,11 @@ setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry
 #####################################
 ## NVIM
 #####################################
-export NVIM_APPNAME=lazyvim
+
+# Uncomment if using lazyvim
+# export NVIM_APPNAME=lazyvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# osxphotos completion
+. /Users/giorgio/.local/share/osxphotos/shell-completion/osxphotos-completion.zsh

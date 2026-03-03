@@ -1,6 +1,5 @@
 {
     "global": {
-        "check_for_updates_on_startup": false,
         "enable_notification_window": false,
         "show_in_menu_bar": false
     },
@@ -112,12 +111,12 @@
                             "to": [{ "key_code": "left_command" }]
                         },
                         {
-                            "from": { "key_code": "right_option" },
-                            "to": [{ "key_code": "right_command" }]
-                        },
-                        {
                             "from": { "key_code": "right_command" },
                             "to": [{ "key_code": "right_option" }]
+                        },
+                        {
+                            "from": { "key_code": "right_option" },
+                            "to": [{ "key_code": "right_command" }]
                         }
                     ]
                 }
