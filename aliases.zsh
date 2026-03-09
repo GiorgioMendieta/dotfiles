@@ -4,7 +4,7 @@
 # Quick config shortcuts
 alias zshconfig="vim $HOME/.zshrc; omz reload"
 alias aliasconfig="vim $DOTFILES/aliases.zsh; omz reload" 
-alias vimconfig="vim $DOTFILES/.vimrc"
+alias vimconfig="vim $DOTFILES/Apps/vim/.vimrc"
 alias sshconfig="vim $HOME/.ssh/config"
 # alias reloadshell="source $HOME/.zshrc"
 alias rsh="omz reload"

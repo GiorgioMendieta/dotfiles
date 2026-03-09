@@ -21,8 +21,8 @@ set cursorline              " Highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 
 " use fzf (installed via homebrew on Apple silicon)
-" Using vim-plug instead
-" set rtp+=/opt/homebrew/opt/fzf 
+" Comment if using vim-plug instead
+set rtp+=/opt/homebrew/opt/fzf 
 
 " System clipboard
 if system('uname -s') == "Darwin\n"
@@ -43,8 +43,8 @@ endif
 call plug#begin()
 
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 
 call plug#end()
 

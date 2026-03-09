@@ -28,7 +28,7 @@ link_dotfile "$DOTFILES/.nanorc" "$HOME/.nanorc"
 
 echo "Setting nvim config file"
 link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
-nvim --headless +PlugInstall +q # Install plugins
+nvim --headless +PlugInstall +qa # Install NVIM plugins, then quit the process
 
 #echo "Rectangle config file"
 #link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
