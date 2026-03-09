@@ -3,6 +3,9 @@ name = Giorgio Mendieta
 email = 31053658+GiorgioMendieta@users.noreply.github.com
 signingkey = ~/.ssh/id_ed25519.pub
 
+[include]
+path = ~/.dotfiles/Apps/delta/themes.gitconfig
+
 [init]
 defaultBranch = main
 
@@ -27,8 +30,12 @@ pager = delta
 diffFilter = delta --color-only
 
 [delta]
+# cf. path in [include] for the list of available themes    
+# features = mellow-barbet
+features = arctic-fox
 navigate = true
 line-numbers = true
+true-color = always
 
 [merge]
 conflictstyle = diff3
