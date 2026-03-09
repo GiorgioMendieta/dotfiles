@@ -9,7 +9,10 @@ font-family = "Fira Code"
 
 # Window styling
 macos-titlebar-style = transparent
-background-opacity = 0.9
-background-blur-radius = 40
+background-opacity = 0.95
+background-blur-radius = 64
 window-padding-x = 8
 window-padding-y = 8
+
+# Treat left option key as alt
+macos-option-as-alt = left
