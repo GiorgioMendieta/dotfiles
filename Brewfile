@@ -11,16 +11,18 @@ brew "autoconf"
 brew "automake"
 brew "bat"
 brew "btop"
+brew "clang-format"
 brew "cmake"
 brew "cmatrix"
 brew "eza"
 brew "fzf"
+brew "ffmpeg"
 brew "git"
 brew "git-delta"
-brew "helix"
 brew "htop"
 brew "openssl"
 brew "http-server"
+brew "immich-go"
 brew "jq"
 brew "mackup"
 brew "mactop"
@@ -31,24 +33,23 @@ brew "nano"
 brew "neofetch"
 brew "neovim"
 brew "nvm"
-brew "npm"
+# brew "npm"
+brew "onefetch"
 brew "py3cairo"
 brew "pyenv"
 brew "python@3.10"
 brew "python@3.11"
 brew "python@3.12"
+brew "rhettbull/osxphotos/osxphotos"
 brew "rsync" # Replaces old implementation of openrsync by Apple
 brew "speedtest-cli"
+brew "tldr"
 brew "tmux"
 brew "tree"
 brew "typst"
 brew "wakeonlan"
 brew "wget"
-brew "onefetch"
-brew "clang-format"
-brew "tldr"
 brew "xquartz" # X Graphics server for ssh -X sessions
-brew "osxphotos"
 
 # ------------------------------------------------------------------------------
 # Casks
@@ -56,18 +57,22 @@ brew "osxphotos"
 # cask "aerial" # Prefer built-in screensavers  
 cask "aldente"
 cask "alt-tab"
-cask "android-platform-tools"
+# cask "android-platform-tools"
 cask "apparency"
 
 # cask "balenaetcher"
 cask "betterdisplay"
 # cask "bitwarden" # Prefer Mac App Store version (Touch ID support)
 cask "bluesnooze"
- 
+
+cask "cool-retro-term"
 cask "cork"
 
 cask "daisydisk"
 cask "dolphin@dev"
+
+cask "firefox"
+cask "fliqlo" # Clock wallpaper
 
 cask "ghostty"
 cask "google-chrome"
@@ -75,8 +80,8 @@ cask "google-chrome"
 cask "iina"
 cask "iterm2"
 
-cask "jordanbaird-ice"
 cask "jellyfin-media-player"
+cask "jordanbaird-ice"
 
 cask "karabiner-elements"
 cask "keka"
@@ -84,7 +89,7 @@ cask "keka"
 cask "latest"
 cask "linearmouse"
 cask "localsend"
-cask "lookaway"
+#cask "lookaway"
 
 #cask "macwhisper"
 #cask "moonlight"
@@ -92,8 +97,9 @@ cask "lookaway"
 cask "numi"
 
 cask "obsidian"
-#cask "onyx"
+cask "onyx"
 
+cask "pcsx2"
 cask "pearcleaner"
 cask "ppsspp-emulator"
 cask "protonvpn"
@@ -102,7 +108,6 @@ cask "qlmarkdown"
 cask "qlvideo"
 
 cask "raycast"
-# cask "rectangle" # Replaced by Raycast
 cask "reflex-app"
 cask "rustdesk"
 
@@ -111,19 +116,24 @@ cask "shottr"
 cask "sony-ps-remote-play"
 cask "syntax-highlight"
 
+cask "tailscale-app"
 cask "tradingview"
 cask "transmission"
 cask "trex"
+
+cask "upscayl"
 
 cask "visual-studio-code"
 
 cask "whisky"
 
+# cask "xquartz" # X11 graphics support (ssh)
+
 # ------------------------------------------------------------------------------
 # Fonts 
 # ------------------------------------------------------------------------------
-cask "font-meslo-lg-nerd-font"
 cask "font-fira-code"
+cask "font-meslo-lg-nerd-font"
 
 # ------------------------------------------------------------------------------
 # Mac App Store
