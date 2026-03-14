@@ -75,14 +75,14 @@ Host ppti02
 ## Raspberry Pi Giorgio
 Host rpi
   User giorgio
-  Hostname 192.168.1.12
+  Hostname 192.168.10.12
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
 Host pve
   User root
-  Hostname 192.168.1.20
+  Hostname 192.168.10.20
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519

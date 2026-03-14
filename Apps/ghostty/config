@@ -16,3 +16,8 @@ window-padding-y = 8
 
 # Treat left option key as alt
 macos-option-as-alt = left
+
+# Notify on long commands
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = no-bell,notify
+notify-on-command-finish-after = 30s

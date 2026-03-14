@@ -12,13 +12,10 @@ alias rsh="omz reload"
 # Search aliases using fzf
 alias salias="alias | fzf"
 
-alias hxtutor="hx --tutor"
+alias hgrep="history | grep"
 
 # SSH
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
-
-# Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
-alias path='echo ${PATH} | tr ":" "\n"'
 
 # Re-run last command as sudo
 alias please='sudo $(fc -ln -1)'
@@ -43,44 +40,10 @@ setopt rm_star_silent
 # List users formatted as a table
 alias lsusers='cat /etc/passwd | column -t -s ":" -N USERNAME,PW,UID,GUID,COMMENT,HOME,INTERPRETER'
 
-# alias immich="rsync -chavzP --stats --mkpath ~/Desktop/tmp/ pve:/mnt/pve/myhdd/photos/2026/02/; ssh pve 'immich'; open https://immich.home.arpa/admin/queues"
-
-[ -f $DOTFILES/Apps/immich/env ] && source $DOTFILES/Apps/immich/env
-_immich_scan() {
-    # Use Immich API 
-    curl -L -X POST "https://immich.home.arpa/api/libraries/${IMMICH_LIBRARY_ID}/scan" \
-	    -H "Content-Type: application/json" \
-	    -H "Accept: application/json" \
-	    -H "x-api-key: ${IMMICH_API_KEY}"
-}
-
-immich() {
-    local dest="$1"
-
-    if [ -z "$dest" ]; then
-        echo "Usage: immich YYYY/MM"
-        return 1
-    fi
-
-    rsync -chavzP --stats --mkpath \
-        ~/Desktop/tmp/ \
-        "pve:/mnt/pve/myhdd/photos/$dest/" \
-
-    ssh pve immich
-    echo "Permissions set for photos directory"
-
-    _immich_scan()
-    echo "Scanning library for changes"
-    # Open with Safari
-    open "https://immich.home.arpa/admin/queues"
-}
-
 # ------------------------------------------------------------------------------
 # Networking
 # ------------------------------------------------------------------------------
 # Show current IP address
-
-
 if [[ "$(uname -s)" == "Linux" ]]; then
   alias myip='hostname -I'
 fi
@@ -119,8 +82,7 @@ alias pip2="python2 -m pip"
 #  brew services start jupyterlab
 #Or, if you don't want/need a background service you can just run:
 # /opt/homebrew/opt/jupyterlab/bin/jupyter-lab
-alias jupyter=/opt/homebrew/opt/jupyterlab/bin/jupyter-lab
-
+# alias jupyter=/opt/homebrew/opt/jupyterlab/bin/jupyter-lab
 
 # ------------------------------------------------------------------------------
 # Directory shortcuts
@@ -146,6 +108,22 @@ mkcd() {
         mkdir -p $1 && cd $1
     fi
 }
+
+# ------------------------------------------------------------------------------
+# Path 
+# ------------------------------------------------------------------------------
+
+# Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
+alias path='echo ${PATH} | tr ":" "\n"'
+
+# Add directories to the PATH and prevent to add the same directory multiple times upon shell reload.
+add_to_path() {
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+    export PATH="$1:$PATH"
+  fi
+}
+
+# add_to_path "${DOTFILES}/scripts"
 
 # ------------------------------------------------------------------------------
 # Git
