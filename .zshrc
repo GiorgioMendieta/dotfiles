@@ -1,6 +1,9 @@
 # Path to your dotfiles.
 export DOTFILES="$HOME/.dotfiles"
 
+# Source personal functions
+source ${DOTFILES}/bin/helper_scripts.sh
+
 if [[ "$(uname -s)" == "Linux" ]]; then
   export EDITOR="/usr/bin/vim"
 fi

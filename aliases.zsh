@@ -115,15 +115,8 @@ mkcd() {
 
 # Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
 alias path='echo ${PATH} | tr ":" "\n"'
-
-# Add directories to the PATH and prevent to add the same directory multiple times upon shell reload.
-add_to_path() {
-  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-    export PATH="$1:$PATH"
-  fi
-}
-
-# add_to_path "${DOTFILES}/scripts"
+# Add personal scripts to path
+add_to_path "${DOTFILES}/bin"
 
 # ------------------------------------------------------------------------------
 # Git

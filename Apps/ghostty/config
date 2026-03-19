@@ -1,5 +1,9 @@
-theme = Catppuccin Macchiato
+# Check out the following link for an easier config
+# http://ghostty.zerebos.com/settings/application
+# Option reference
+# https://ghostty.org/docs/config/reference
 
+theme = Catppuccin Macchiato
 term = xterm-256color
 
 # Disable font ligatures
@@ -8,11 +12,16 @@ font-size = 13
 font-family = "Fira Code"
 
 # Window styling
+window-subtitle = working-directory
 macos-titlebar-style = transparent
-background-opacity = 0.95
-background-blur-radius = 64
 window-padding-x = 8
 window-padding-y = 8
+#background-opacity = 0.95
+#background-blur-radius = 64
+
+# Initial size
+window-height = 30
+window-width = 100
 
 # Treat left option key as alt
 macos-option-as-alt = left
@@ -21,3 +30,8 @@ macos-option-as-alt = left
 notify-on-command-finish = unfocused
 notify-on-command-finish-action = no-bell,notify
 notify-on-command-finish-after = 30s
+
+# Update policy
+# auto-update-channel = tip
+auto-update = check
+

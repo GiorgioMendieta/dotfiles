@@ -1,5 +1,5 @@
 #!/bin/bash
-source "$DOTFILES/scripts/helper_scripts.sh"
+source "$DOTFILES/bin/helper_scripts.sh"
 
 echo ".zshrc config file"
 link_dotfile "$DOTFILES/.zshrc" "$HOME/.zshrc"
@@ -22,6 +22,9 @@ link_dotfile "$DOTFILES/Apps/neofetch/config.conf" "$HOME/.config/neofetch/confi
 echo "Setting Vim config files"
 link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.vimrc"
 link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
+
+echo "Setting tmux config files"
+link_dotfile "$DOTFILES/Apps/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
 echo "Setting Nano config files"
 link_dotfile "$DOTFILES/.nanorc" "$HOME/.nanorc"
