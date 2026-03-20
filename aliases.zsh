@@ -110,6 +110,18 @@ mkcd() {
 }
 
 # ------------------------------------------------------------------------------
+# tmux 
+# ------------------------------------------------------------------------------
+
+# Attaches tmux to the last session; creates a new session if none exists
+alias t="tmux attach || tmux new-session"
+# Attaches tmux to a session (example: ta portal)
+alias ta="tmux attach -t"
+# Creates a new session
+alias tn="tmux new-session"
+
+
+# ------------------------------------------------------------------------------
 # Path 
 # ------------------------------------------------------------------------------
 
@@ -254,8 +266,17 @@ source <(fzf --zsh)
 # Show files (ls) after changing directory (cd)
 cd() {
     builtin cd "$@"
-    echo ""
     ls
+}
+
+# Find file
+ff() {
+    find . -path ./.git -prune -o -type f -iname "*${1}*" 2>/dev/null
+}
+
+# Find directory
+fd() {
+    find . -path ./.git -prune -o -type d -iname "*${1}*" 2>/dev/null
 }
 
 # ------------------------------------------------------------------------------
