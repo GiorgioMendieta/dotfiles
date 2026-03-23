@@ -127,6 +127,7 @@ alias tn="tmux new-session"
 
 # Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
 alias path='echo ${PATH} | tr ":" "\n"'
+
 # Add personal scripts to path
 add_to_path "${DOTFILES}/bin"
 
@@ -175,6 +176,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   alias outdated='brew update >/dev/null 2>&1; brew outdated'
 fi
 
+alias broc="brew outdated --cask --greedy"
 # ------------------------------------------------------------------------------
 # Useful replacements
 # ------------------------------------------------------------------------------
