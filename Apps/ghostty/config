@@ -6,6 +6,9 @@
 theme = Catppuccin Macchiato
 term = xterm-256color
 
+#macos-icon = custom
+#macos-custom-icon = ~/.dotfiles/Apps/ghostty/ghostty-catppuccin-macchiato.icns
+
 # Disable font ligatures
 font-feature = -calt
 font-size = 13
@@ -16,8 +19,8 @@ window-subtitle = working-directory
 macos-titlebar-style = transparent
 window-padding-x = 8
 window-padding-y = 8
-#background-opacity = 0.95
-#background-blur-radius = 64
+background-opacity = 0.95
+background-blur-radius = 64
 
 # Initial size
 window-height = 30

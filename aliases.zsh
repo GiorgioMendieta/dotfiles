@@ -91,12 +91,12 @@ alias pip2="python2 -m pip"
 alias dot="cd $DOTFILES"
 alias library="cd $HOME/Library"
 alias dev="cd $HOME/Developer"
-alias lab="cd $HOME/docker"
+#alias lab="cd $HOME/docker"
+alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
+alias obsidianvault="cd $HOME/Developer/Obsidian-vault"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
-alias smc="cd $HOME/Developer/Sorbonne_Universite/SMC-TPs"
-alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 
 # Create dir and immediately cd into it
 mkcd() {
@@ -177,6 +177,7 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 fi
 
 alias broc="brew outdated --cask --greedy"
+
 # ------------------------------------------------------------------------------
 # Useful replacements
 # ------------------------------------------------------------------------------
@@ -281,6 +282,28 @@ fd() {
     find . -path ./.git -prune -o -type d -iname "*${1}*" 2>/dev/null
 }
 
+# Extract a variety of compressed file types
+extract () {
+     if [ -f $1 ] ; then
+         case $1 in
+             *.tar.bz2)   tar xjf $1    ;;
+             *.tar.gz)    tar xzf $1    ;;
+             *.bz2)       bunzip2 $1    ;;
+             *.rar)       unrar e $1    ;;
+             *.gz)        gunzip $1     ;;
+             *.tar)       tar xf $1     ;;
+             *.tbz2)      tar xjf $1    ;;
+             *.tgz)       tar xzf $1    ;;
+             *.zip)       unzip $1      ;;
+             *.Z)         uncompress $1 ;;
+             *.7z)        7z x $1       ;;
+             *)           echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
+
 # ------------------------------------------------------------------------------
 # Misc
 # ------------------------------------------------------------------------------
@@ -324,16 +347,21 @@ applyclangformat() {
     echo "Done!"
 }
 
-# ------------------------------------------------------------------------------
-# Raspberry pi aliases
-# ------------------------------------------------------------------------------
+alias colortest="msgcat --color=test"
 
-# alias mountusb='sudo mount /dev/sda1 /mnt/usb'
-# alias unmountusb='sudo umount /mnt/usb'
-# # List files in a human readable format
-# alias ll='ls -alF'
-# alias bashrc="nano ~/.bashrc " # edit bashrc
+# ------------------------------------------------------------------------------
+# History
+# ------------------------------------------------------------------------------
+HISTIGNORE="(ls|ll|la|cd|pwd|exit|cd ..)"
 
+
+#zshaddhistory() {
+#  emulate -L zsh
+#  ## uncomment if HISTORY_IGNORE
+#  ## should use EXTENDED_GLOB syntax
+#  # setopt extendedglob
+#  [[ $1 != ${~HISTORY_IGNORE} ]]
+#}
 
 
 # ------------------------------------------------------------------------------

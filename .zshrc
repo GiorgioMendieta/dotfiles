@@ -9,7 +9,7 @@ if [[ "$(uname -s)" == "Linux" ]]; then
 fi
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  export EDITOR="/opt/homebrew/bin/vim"
+  export EDITOR="/opt/homebrew/bin/nvim"
 fi
 
 export VISUAL="$EDITOR"
@@ -222,7 +222,7 @@ setopt HIST_VERIFY            # Do not execute immediately upon history expansio
 setopt APPEND_HISTORY         # append to history file
 setopt HIST_NO_STORE          # Don't store history commands
 setopt HIST_REDUCE_BLANKS     # Remove superfluous blanks before recording entry.
-
+HISTIGNORE="(ls|ll|la|cd|pwd|exit|cd ..)"
 
 #####################################
 ## NVIM
