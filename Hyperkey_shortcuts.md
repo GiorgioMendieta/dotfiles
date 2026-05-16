@@ -13,7 +13,7 @@ These shortcuts work in tandem with Raycast hotkeys to quickly launch apps.
 | ✦ + E | Emoji | Open Raycast emoji search (configuration with Karabiner Elements) |
 | ✦ + F | Finder | Open new finder window | (number row for favorites)
 | ✦ + G | | |
-| ✦ + H | | |
+| ✦ + H | Clipboard History | (Raycast utility) |
 | ✦ + I | Ice | Search items in menu bar | (utility)
 | ✦ + J | | |
 | ✦ + K | Klack | Toggle Klack (mechanical keyboard audio) | (utility)
