@@ -23,7 +23,7 @@ st = status -sb
 
 [core]
 excludesfile = ~/.gitignore_global
-editor = code --wait
+editor = nvim
 pager = delta
 
 [interactive]
