@@ -94,6 +94,7 @@ alias dev="cd $HOME/Developer"
 #alias lab="cd $HOME/docker"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias obsidianvault="cd $HOME/Developer/Obsidian-vault"
+alias dusk="cd $HOME/Developer/dusklight"
 
 # Sorbonne Université
 alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
@@ -156,27 +157,18 @@ add_to_path "${DOTFILES}/bin"
 # ------------------------------------------------------------------------------
 # Packages & Apps
 # ------------------------------------------------------------------------------
-# Update homebrew (hide output) and show outdated formulae
-bold=$(tput bold)
-normal=$(tput sgr0)
-
 # Homebrew
-alias bri="brew install"
-alias bric="brew install --cask"
 alias brewgraph="brew deps --installed --graph"
+alias bo='brew update >/dev/null 2>&1; brew outdated'
+alias boc="brew outdated --cask --greedy"
 
-## Apt
+# Apt
 alias sai="sudo apt install"
 
 if [[ "$(uname -s)" == "Linux" ]]; then
   alias outdated="sudo apt update >/dev/null 2>&1; apt list --upgradeable | tail -n +2 | awk '{print \$1, \$6, \$2}' | tr -d ']' | column -t -N 'PACKAGE NAME','OLD VERSION','NEW VERSION'"
 fi
 
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  alias outdated='brew update >/dev/null 2>&1; brew outdated'
-fi
-
-alias broc="brew outdated --cask --greedy"
 
 # ------------------------------------------------------------------------------
 # Useful replacements
