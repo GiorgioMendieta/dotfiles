@@ -203,9 +203,9 @@ chapter "Energy saving settings"
 ###############################################################################
 
 # The −a, −b, −c, −u flags determine whether the settings apply to:
-# - Battery ( −b ), 
-# - AC power ( −c ), 
-# - UPS ( −u ) or 
+# - Battery ( −b ),
+# - AC power ( −c ),
+# - UPS ( −u ) or
 # - All ( −a ).
 
 # Disable low power mode
@@ -634,6 +634,9 @@ link_dotfile "$DOTFILES/.gitignore_global" "$HOME/.gitignore_global"
 step "Clone Github repositories\n"
 run chmod +x ./clone.sh
 run ./clone.sh
+
+step "Set GitHub signing key"
+echo "Open https://github.com/settings/keys and add your SSH public key located at $HOME/.ssh/id_ed25519.pub"
 
 ##############################################
 chapter "Transmission.app settings"

@@ -33,6 +33,8 @@ These shortcuts work in tandem with Raycast hotkeys to quickly launch apps.
 | ✦ + Y | | |
 | ✦ + Z | | |
 
-+ 1 : Open downloads folder 
+Quick Finder shortcuts
 
-double shift for utilities ?
+|  Key  |  Description |
+|-------|--------------|
+| ✦ + 1 | Open downloads folder |

@@ -2,10 +2,10 @@
 # General
 # ------------------------------------------------------------------------------
 # Quick config shortcuts
-alias zshconfig="vim $HOME/.zshrc; omz reload"
-alias aliasconfig="vim $DOTFILES/aliases.zsh; omz reload" 
-alias vimconfig="vim $DOTFILES/Apps/vim/.vimrc"
-alias sshconfig="vim $HOME/.ssh/config"
+alias zshcfg="vim $HOME/.zshrc; omz reload"
+alias aliascfg="vim $DOTFILES/aliases.zsh; omz reload" 
+alias vimcfg="vim $DOTFILES/Apps/vim/.vimrc"
+alias sshcfg="vim $HOME/.ssh/config"
 # alias reloadshell="source $HOME/.zshrc"
 alias rsh="omz reload"
 
@@ -159,8 +159,9 @@ add_to_path "${DOTFILES}/bin"
 # ------------------------------------------------------------------------------
 # Homebrew
 alias brewgraph="brew deps --installed --graph"
-alias bo='brew update >/dev/null 2>&1; brew outdated'
+alias bo="brew update >/dev/null 2>&1; brew outdated"
 alias boc="brew outdated --cask --greedy"
+alias bu="brew upgrade"
 
 # Apt
 alias sai="sudo apt install"
@@ -363,3 +364,10 @@ alias dps='docker ps --format "table {{.Names}}\t{{.Status}}"'
 alias dcu='docker compose up -d'
 alias dcd='docker compose down'
 alias dcl='docker compose logs -f'
+
+# ------------------------------------------------------------------------------
+# Dusklight aliases
+# ------------------------------------------------------------------------------
+
+alias bdusk="cmake --build --preset macos-default-relwithdebinfo"
+alias ldusk="./build/macos-default-relwithdebinfo/Dusklight.app/Contents/MacOS/Dusklight"

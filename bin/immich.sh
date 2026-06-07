@@ -16,7 +16,7 @@ _immich_scan_library() {
 
     # Sends a POST request to trigger library scan using Immich API /send endpoint
     # Fail and show error in case of problem
-    curl -fsSL -X POST "https://immich.home.arpa/api/libraries/${IMMICH_LIBRARY_ID}/scan" \
+    curl -fsSL -X POST "https://immich.giorgiomendieta.com/api/libraries/${IMMICH_LIBRARY_ID}/scan" \
 	    -H "Content-Type: application/json" \
 	    -H "Accept: application/json" \
 	    -H "x-api-key: ${IMMICH_API_KEY}"
@@ -77,7 +77,7 @@ _cleanup_empty_dirs() {
 
     echo "-> [INFO] Removing empty folders from source directory..."
     # Delete only empty subdirectories and keep SRC_DIR itself.
-    find "$SRC_DIR" -depth -mindepth 1 -type d -empty -delete
+    find "$SRC_DIR" -depth -type d -empty -delete
 }
 
 immich() {
@@ -114,7 +114,7 @@ immich() {
 
     # Optional: Only open Safari if in a GUI session
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        open "https://immich.home.arpa/admin/queues"
+        open "https://immich.giorgiomendieta.com/admin/queues"
     fi
 
     echo "-> [SUCCESS] Done"
