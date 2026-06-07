@@ -65,6 +65,8 @@
 		<string>1 0.7764705882352941 0 1</string>
 		<key>CPU.Menu.Graph.Performance.Color</key>
 		<string>0.9686274509803922 0.3098039215686275 0.6196078431372549 1</string>
+		<key>CPU.Menu.Graph.User.Color</key>
+		<string>0.9686274509803922 0.3098039215686275 0.6196078431372549 1</string>
 		<key>CPU.Menu.Launcher</key>
 		<array>
 			<dict/>
@@ -196,6 +198,8 @@
 		<string>system</string>
 		<key>Menubar.Global.ReducePadding</key>
 		<integer>1</integer>
+		<key>Menubar.Theme.Dark</key>
+		<string>pink</string>
 		<key>Migration.CombinedPowerItems</key>
 		<true/>
 		<key>Migration.Profiles</key>
@@ -204,6 +208,23 @@
 		<false/>
 		<key>Network.Global.Addresses.Public.IPv6.Enabled</key>
 		<false/>
+		<key>Network.Menu.Filtering</key>
+		<array>
+			<dict>
+				<key>identifier</key>
+				<string>1B1B6351-6658-4E10-B190-5F04D222FACA</string>
+				<key>name</key>
+				<string>Wi-Fi</string>
+				<key>type</key>
+				<string>real</string>
+			</dict>
+		</array>
+		<key>Network.Menu.Graph.Download.Color</key>
+		<string>0.2980392156862745 0.6196078431372549 1 1</string>
+		<key>Network.Menu.Graph.Icons.Color</key>
+		<string>0.9686274509803922 0.3098039215686275 0.6196078431372549 1</string>
+		<key>Network.Menu.Graph.Upload.Color</key>
+		<string>0.9254901960784314 0.5333333333333333 1 1</string>
 		<key>Network.Menu.Ping.Items</key>
 		<array>
 			<dict>
@@ -237,7 +258,7 @@
 			</dict>
 			<dict>
 				<key>enabled</key>
-				<false/>
+				<true/>
 				<key>key</key>
 				<string>network-addresses-public</string>
 			</dict>
@@ -255,13 +276,13 @@
 			</dict>
 			<dict>
 				<key>enabled</key>
-				<true/>
+				<false/>
 				<key>key</key>
 				<string>network-ping</string>
 			</dict>
 			<dict>
 				<key>enabled</key>
-				<false/>
+				<true/>
 				<key>key</key>
 				<string>network-processes</string>
 			</dict>
@@ -282,6 +303,10 @@
 		<string>semibold</string>
 		<key>Network.Menubar.Mode.Bandwidth.Upload.Value.Dark.Text.Color</key>
 		<string>0.9254901960784314 0.5333333333333333 1 1</string>
+		<key>Network.Menubar.Mode.Flag.Show.VPN</key>
+		<true/>
+		<key>Network.Menubar.Mode.VPN.Disconnected.Show</key>
+		<false/>
 		<key>Network.Menubar.Ping.Custom</key>
 		<string>192.168.1.20</string>
 		<key>Notifications.Items</key>
@@ -298,7 +323,7 @@
 			</dict>
 			<dict>
 				<key>enabled</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>source</key>
 				<string>daylightsaving</string>
 				<key>time</key>
@@ -362,7 +387,7 @@
 				<key>internal</key>
 				<true/>
 				<key>key</key>
-				<string>F8Y22950P7H10X2A6</string>
+				<string>F8YHL1G07CR00000E5</string>
 				<key>name</key>
 				<string>Internal Battery</string>
 			</dict>
@@ -371,6 +396,15 @@
 		<integer>0</integer>
 		<key>Profiles.Settings.default.Battery.Menubar.Enabled</key>
 		<integer>1</integer>
+		<key>Profiles.Settings.default.Battery.Menubar.Items.Bluetooth</key>
+		<array>
+			<dict>
+				<key>source</key>
+				<integer>12</integer>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+		</array>
 		<key>Profiles.Settings.default.Battery.Menubar.Items.Standard</key>
 		<array>
 			<dict>
@@ -512,9 +546,36 @@
 		<key>Profiles.Settings.default.Weather.Menubar.Enabled</key>
 		<integer>0</integer>
 		<key>Sensors.Global.Degrees.Format</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>Sensors.Global.DetailLevel</key>
 		<integer>0</integer>
+		<key>Sensors.Global.Fans.Curves.all.curve</key>
+		<array>
+			<dict>
+				<key>speed</key>
+				<integer>0</integer>
+				<key>temperature</key>
+				<integer>0</integer>
+			</dict>
+			<dict>
+				<key>speed</key>
+				<integer>0</integer>
+				<key>temperature</key>
+				<real>0.45000000000000001</real>
+			</dict>
+			<dict>
+				<key>speed</key>
+				<real>1</real>
+				<key>temperature</key>
+				<real>0.94999999999999996</real>
+			</dict>
+			<dict>
+				<key>speed</key>
+				<real>1</real>
+				<key>temperature</key>
+				<real>1</real>
+			</dict>
+		</array>
 		<key>Sensors.Menu.Filtering</key>
 		<array>
 			<string>9ec1a902c0fdd3fa2ae63ef2dc25332040ca944b</string>
@@ -601,8 +662,59 @@
 			<string>28B4749F-36A1-460F-A8EA-71D09FEB4964</string>
 			<string>2508B2A0-6C78-4151-8030-9DF757D65E07</string>
 		</array>
+		<key>Time.Menu.Cities.Format.0.Line1</key>
+		<array>
+			<dict>
+				<key>format</key>
+				<string>offset2</string>
+				<key>format-type</key>
+				<string>offset</string>
+				<key>type</key>
+				<string>token</string>
+			</dict>
+		</array>
 		<key>Time.Menu.Cities.Items</key>
 		<array>
+			<dict>
+				<key>city</key>
+				<string>Current Location</string>
+				<key>country</key>
+				<string></string>
+				<key>countrycode</key>
+				<string></string>
+				<key>identifier</key>
+				<integer>-7</integer>
+				<key>latitude</key>
+				<integer>0</integer>
+				<key>longitude</key>
+				<integer>0</integer>
+				<key>region</key>
+				<string></string>
+				<key>state</key>
+				<string></string>
+				<key>timezone</key>
+				<string></string>
+			</dict>
+			<dict>
+				<key>city</key>
+				<string>Paris</string>
+				<key>country</key>
+				<string>France</string>
+				<key>countrycode</key>
+				<string>FR</string>
+				<key>identifier</key>
+				<integer>2988507</integer>
+				<key>latitude</key>
+				<real>48.853409999999997</real>
+				<key>longitude</key>
+				<real>2.3488000000000002</real>
+				<key>region</key>
+				<string>Paris</string>
+				<key>state</key>
+				<string>Île-de-France</string>
+				<key>timezone</key>
+				<string>Europe/Paris</string>
+			</dict>
 			<dict>
 				<key>city</key>
 				<string>Aguascalientes</string>
@@ -625,29 +737,41 @@
 			</dict>
 			<dict>
 				<key>city</key>
-				<string>Current Location</string>
+				<string>Bali</string>
+				<key>country</key>
+				<string>Indonesia</string>
+				<key>countrycode</key>
+				<string>ID</string>
 				<key>identifier</key>
-				<integer>-7</integer>
+				<integer>1650534</integer>
+				<key>latitude</key>
+				<real>-8.3333300000000001</real>
+				<key>longitude</key>
+				<integer>115</integer>
+				<key>region</key>
+				<string></string>
+				<key>state</key>
+				<string>Bali</string>
+				<key>timezone</key>
+				<string>Asia/Makassar</string>
 			</dict>
 			<dict>
 				<key>city</key>
-				<string>Paris</string>
+				<string>Tokyo</string>
 				<key>country</key>
-				<string>France</string>
-				<key>countrycode</key>
-				<string>FR</string>
+				<string>Japan</string>
 				<key>identifier</key>
-				<integer>2988507</integer>
+				<integer>1850147</integer>
 				<key>latitude</key>
-				<real>48.853409999999997</real>
+				<real>35.689500000000002</real>
 				<key>longitude</key>
-				<real>2.3488000000000002</real>
+				<real>139.69171</real>
 				<key>region</key>
-				<string>Paris</string>
+				<string></string>
 				<key>state</key>
-				<string>Île-de-France</string>
+				<string>Tokyo</string>
 				<key>timezone</key>
-				<string>Europe/Paris</string>
+				<string>Asia/Tokyo</string>
 			</dict>
 		</array>
 		<key>Time.Menu.Cities.Sorting</key>
