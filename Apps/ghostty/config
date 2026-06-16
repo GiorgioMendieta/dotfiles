@@ -35,6 +35,6 @@ notify-on-command-finish-action = no-bell,notify
 notify-on-command-finish-after = 30s
 
 # Update policy
-# auto-update-channel = tip
+auto-update-channel = tip
 auto-update = check
 

@@ -55,21 +55,23 @@ brew "xquartz" # X Graphics server for ssh -X sessions
 # Casks
 # ------------------------------------------------------------------------------
 # cask "aerial" # Prefer built-in screensavers  
-cask "aldente"
-cask "alt-tab"
-# cask "android-platform-tools"
+# cask "aldente"
+# cask "alt-tab" # Replaced by dockdoor
 cask "apparency"
 
 # cask "balenaetcher"
 cask "betterdisplay"
+cask "bettermouse"
 # cask "bitwarden" # Prefer Mac App Store version (Touch ID support)
 cask "bluesnooze"
 
-cask "cool-retro-term"
+# cask "cool-retro-term"
 cask "cork"
 
 cask "daisydisk"
+cask "dockdoor"
 cask "dolphin@dev"
+cask "dusklight"
 
 cask "firefox"
 cask "fliqlo" # Clock wallpaper
@@ -87,10 +89,12 @@ cask "karabiner-elements"
 cask "keka"
 
 cask "latest"
-cask "linearmouse"
+# cask "linearmouse" # Replaced by bettermouse
 cask "localsend"
+cask "little-snitch"
 #cask "lookaway"
 
+cask "markedit"
 #cask "macwhisper"
 #cask "moonlight"
 
@@ -112,7 +116,7 @@ cask "reflex-app"
 cask "rustdesk"
 
 cask "shottr"
-# cask "stats" # Replaced by iStat Menus
+cask "stats" # Replaced by iStat Menus (reverted)
 cask "sony-ps-remote-play"
 cask "syntax-highlight"
 
