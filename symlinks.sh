@@ -10,7 +10,7 @@ link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
 echo "Setting Karabiner-Elements config file"
 # For karabiner elements we need to link the whole directory
 # https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link
-ln -s "$DOTFILES/Apps/karabiner" "$HOME/.config"
+ln -s "$DOTFILES/Apps/karabiner-elements" "$HOME/.config/karabiner"
 launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
 
 echo "Setting Linearmouse config file"
