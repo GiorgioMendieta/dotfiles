@@ -43,7 +43,7 @@ brew "python@3.12"
 brew "rhettbull/osxphotos/osxphotos"
 brew "rsync" # Replaces old implementation of openrsync by Apple
 brew "speedtest-cli"
-brew "tldr"
+brew "tlrc"
 brew "tmux"
 brew "tree"
 brew "typst"
