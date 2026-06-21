@@ -58,11 +58,17 @@ _send_to_immich() {
     # -a: archive mode (preserves permissions, timestamps, etc.)
     # -h: human-readable output
     # -z: compress file data during transfer
-    # -P: show progress and keep partially transferred files
+    # -P: show progress and keep partially transferred files (deprecated)
+    # --partial: resumable transfers
+    # --info=progress2: overall progress bar
+    #   PROGRESS   Mention 1) per-file progress or 2) total transfer progress
+    # --stats: summary at the end
     # --exclude: ignores Apple/Windows metadata
     # --mkpath: ensures remote dir exists
 
-    rsync -chazP \
+    rsync -chaz \
+        --partial \
+        --info=progress2 \
         --exclude '.DS_Store' \
         --exclude '._*' \
         --exclude 'Thumbs.db' \
