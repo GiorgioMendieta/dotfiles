@@ -157,6 +157,11 @@ run defaults write com.apple.TextEdit RichText -int 0
 # Disable shadow in screenshots
 run defaults write com.apple.screencapture disable-shadow -bool true
 
+# Increase time screenshots stay in the corner of the screen
+run defaults write com.apple.screencaptureui "thumbnailExpiration" -float 10
+
+# Move windows by clicking and dragging anywhere + ctrl + cmd
+defaults write -g NSWindowShouldDragOnGesture -bool true
 
 ##############################################
 chapter "Adjusting input device settings"
