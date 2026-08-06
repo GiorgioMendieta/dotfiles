@@ -4,17 +4,17 @@
 
 These shortcuts work in tandem with Raycast hotkeys to quickly launch apps.
 
-| Key | App | Description |
-|-----|-----|-------------|
+| Shortcut | App | Description |
+|----------|-----|-------------|
 | ✦ + A | | |
 | ✦ + B | Bitwarden | Open Bitwarden |
 | ✦ + C | Calculator | Open Numi Calculator |
 | ✦ + D | DeepL | DeepL Translate |
 | ✦ + E | Emoji | Open Raycast emoji search (configuration with Karabiner Elements) |
 | ✦ + F | Finder | Open new finder window | (number row for favorites)
-| ✦ + G | | |
-| ✦ + H | Clipboard History | (Raycast utility) |
-| ✦ + I | Ice | Search items in menu bar | (utility)
+| ✦ + G | Raycast* | Google search highlighted text |
+| ✦ + H | Raycast* | Clipboard History |
+| ✦ + I | | |
 | ✦ + J | | |
 | ✦ + K | Klack | Toggle Klack (mechanical keyboard audio) | (utility)
 | ✦ + L | | |
@@ -35,6 +35,6 @@ These shortcuts work in tandem with Raycast hotkeys to quickly launch apps.
 
 Quick Finder shortcuts
 
-|  Key  |  Description |
-|-------|--------------|
-| ✦ + 1 | Open downloads folder |
+|  Shortcut  |  Description |
+|------------|--------------|
+|   ✦ + 1    | Open downloads folder |
