@@ -86,10 +86,39 @@ _cleanup_empty_dirs() {
     find "$SRC_DIR" -depth -type d -empty -delete
 }
 
+_usage() {
+        cat <<'EOF'
+Usage:
+    immich.sh [DESTINATION]
+
+Options:
+    -h, --help   Show this help text and exit
+    --scan       Trigger external library scan
+
+Arguments:
+    DESTINATION  Optional subdirectory under /mnt/pve/myhdd/photos
+
+Examples:
+    immich.sh
+    immich.sh events/2026
+EOF
+}
+
 immich() {
     # Define source and destination directories
     local SRC_DIR="${HOME}/Desktop/send_to_immich"
     local CUSTOM_DST="${1:-}"
+
+        case "$CUSTOM_DST" in
+                -h|--help)
+                        _usage
+                        return 0
+                        ;;
+                --scan)
+                        _immich_scan_library
+                        return 0
+                        ;;
+        esac
 
     # 1. Sanity Check: Does the source directory actually exist?
     if [ ! -d "$SRC_DIR" ]; then
@@ -129,5 +158,12 @@ immich() {
 
 # If script is executed directly, call the immich function with first arg
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    case "${1:-}" in
+        -h|--help)
+            _usage
+            exit 0
+            ;;
+    esac
+
     immich "${1:-}"
 fi
