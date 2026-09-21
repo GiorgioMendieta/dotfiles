@@ -1,27 +1,27 @@
-# To prevent typing each time the password, run from the host terminal 
+# To prevent typing each time the password, run from the host terminal
 # ssh-copy-id username@remotehost
 # Then verify by ssh'ing into the remote host
 
 #Tailscale
-Host ts-imesmacmini
+Host ime 
   User dra.carmenorozco
   HostName Imes-Mac-Mini
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
-Host ts-imesimac
+Host imac
   User imelda
   HostName imes-imac
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
 Host ts-rpi
-  User giorgio
+  User dietpi
   HostName raspberrypi
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 
-Host ts-macair
+Host macair
   User dra.carmenorozco
   HostName imes-macbook-air
   UseKeychain yes
@@ -40,7 +40,7 @@ Host sesi
    AddKeysToAgent yes
    UseKeychain yes
    IdentityFile ~/.ssh/id_ed25519
-  
+
 ## SESI chopin
 Host chopin
   User mendieta
@@ -58,23 +58,9 @@ Host sorbonne
   ForwardX11 yes
   IdentityFile ~/.ssh/id_ed25519
 
-## Plateforme pédagogique et technique d’informatique (PPTI)
-## Proxy jump from sorbonne (ssh.ufr-info-p6.jussieu.fr) directly into ppti-14-302-xx
-Host ppti01
-  HostName ppti-14-302-01.ufr-info-p6.jussieu.fr
-  User 21304469
-  ForwardX11 yes
-  ProxyJump sorbonne
-
-Host ppti02
-  HostName ppti-14-302-02.ufr-info-p6.jussieu.fr
-  User 21304469
-  ForwardX11 yes
-  ProxyJump sorbonne
-
 ## Raspberry Pi Giorgio
 Host rpi
-  User giorgio
+  User dietpi
   Hostname 192.168.10.12
   AddKeysToAgent yes
   UseKeychain yes
@@ -90,6 +76,13 @@ Host pve
 Host pbs
   User root
   Hostname 192.168.10.201
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+
+Host ubuntu
+  User giorgio
+  Hostname 192.168.10.200
   AddKeysToAgent yes
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
