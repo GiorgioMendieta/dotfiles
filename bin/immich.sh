@@ -2,9 +2,39 @@
 
 set -euo pipefail
 
+if [[ -t 1 ]]; then
+    readonly COLOR_RESET=$'\033[0m'
+    readonly COLOR_INFO=$'\033[36m'
+    readonly COLOR_WARN=$'\033[33m'
+    readonly COLOR_ERROR=$'\033[31m'
+    readonly COLOR_OK=$'\033[32m'
+else
+    readonly COLOR_RESET=''
+    readonly COLOR_INFO=''
+    readonly COLOR_WARN=''
+    readonly COLOR_ERROR=''
+    readonly COLOR_OK=''
+fi
+
+_log() {
+    local level="$1"
+    local message="$2"
+    local color
+
+    case "$level" in
+        INFO) color="$COLOR_INFO" ;;
+        WARN) color="$COLOR_WARN" ;;
+        ERROR) color="$COLOR_ERROR" ;;
+        OK) color="$COLOR_OK" ;;
+        *) color="$COLOR_RESET" ;;
+    esac
+
+    printf '%s[ %s ]%s %s\n' "$color" "$level" "$COLOR_RESET" "$message"
+}
+
 # Ensure the dotfiles root is available before loading environment variables.
 if [ -z "${DOTFILES:-}" ]; then
-    echo "-> [ERROR] DOTFILES is not set."
+    _log ERROR "DOTFILES is not set."
     exit 1
 fi
 
@@ -12,7 +42,7 @@ fi
 [ -f "${DOTFILES}/Apps/immich/env" ] && source "${DOTFILES}/Apps/immich/env"
 
 _immich_scan_library() {
-    echo "-> [INFO] Triggering Immich library scan..."
+    _log INFO "Triggering Immich library scan..."
 
     # Sends a POST request to trigger library scan using Immich API /send endpoint
     # Fail and show error in case of problem
@@ -25,7 +55,7 @@ _immich_scan_library() {
 _organize_files() {
     local SRC_DIR="$1"
 
-    echo "-> [INFO] Organizing files with exiftool..."
+    _log INFO "Organizing files with exiftool..."
     # Organize files into YYYY/MM directory structure based on CreateDate
     # while keeping original filenames unchanged.
     exiftool \
@@ -50,8 +80,8 @@ _send_to_immich() {
         DST_DIR="${BASE_DIR}"
     fi
 
-    echo "-> [INFO] Sending files to NAS with rsync..."
-    echo "-> [INFO] Destination: pve:${DST_DIR}"
+    _log INFO "Sending files to NAS with rsync..."
+    _log INFO "Destination: pve:${DST_DIR}"
 
     # rsync options explained:
     # -c: checksum to ensure file integrity
@@ -66,7 +96,7 @@ _send_to_immich() {
     # --exclude: ignores Apple/Windows metadata
     # --mkpath: ensures remote dir exists
 
-    rsync -chaz \
+    /opt/homebrew/bin/rsync -chaz \
         --partial \
         --info=progress2 \
         --exclude '.DS_Store' \
@@ -81,7 +111,7 @@ _send_to_immich() {
 _cleanup_empty_dirs() {
     local SRC_DIR="$1"
 
-    echo "-> [INFO] Removing empty folders from source directory..."
+    _log INFO "Removing empty folders from source directory..."
     # Delete only empty subdirectories and keep SRC_DIR itself.
     find "$SRC_DIR" -depth -type d -empty -delete
 }
@@ -122,7 +152,7 @@ immich() {
 
     # 1. Sanity Check: Does the source directory actually exist?
     if [ ! -d "$SRC_DIR" ]; then
-        echo "-> [ERROR] Local directory $SRC_DIR does not exist."
+        _log ERROR "Local directory $SRC_DIR does not exist."
         return 1
     fi
 
@@ -131,7 +161,7 @@ immich() {
         # Organize files into YYYY/MM structure
         _organize_files "$SRC_DIR"
     else
-        echo "-> [INFO] Custom destination specified, skipping exiftool organization"
+        _log INFO "Custom destination specified, skipping exiftool organization"
     fi
 
     # Send files to NAS and remove source files after successful transfer
@@ -142,7 +172,7 @@ immich() {
 
     # Set correct permissions for remote directory
     ssh pve set_photo_permissions
-    echo "-> [INFO] Permissions set for photos directory in NAS"
+    _log INFO "Permissions set for photos directory in NAS"
 
     # Trigger immich library scan
     _immich_scan_library
@@ -152,7 +182,7 @@ immich() {
         open "https://immich.giorgiomendieta.com/admin/queues"
     fi
 
-    echo "-> [SUCCESS] Done"
+    _log OK "Done"
     return 0
 }
 
