@@ -4,7 +4,7 @@ eval "$(dircolors)"
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 alias l='ls $LS_OPTIONS -lA'
-alias l. ='ls
+alias l. ='ls -d .*'
 
 # Some more alias to avoid making mistakes:
 # alias rm='rm -i'
@@ -17,11 +17,32 @@ bind 'TAB:menu-complete'
 bind '"\e[Z": menu-complete-backward'
 
 alias ..='cd ../'
+alias path="echo ${PATH} | tr ':' '\n'"
+
+alias grep="grep --color=auto"
 
 alias hgrep='history | grep'
 
+cd() {
+    builtin cd "$@"
+    ls
+}
+
+ff() {
+    find . -path ./.git -prune -o -type f -iname "*${1}*" 2>/dev/null
+}
+
+
+fd() {
+    find . -path ./.git -prune -o -type d -iname "*${1}*" 2>/dev/null
+}
+
 # History configuration
-HISTIGNORE='ls *:l:ll *:..:tree *:pwd:man *:history'
+HISTIGNORE='ls *:l:ll *:tree *:pwd:man *:history'
 HISTCONTROL='ignoredups:ignorespace'
 
-
+# tmux
+alias t="tmux attach || tmux new-session"
+alias ta="tmux attach -t"
+alias tn="tmux new-session"
+alias tl="tmux list-sessions"
