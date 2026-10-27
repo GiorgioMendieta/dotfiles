@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+    <head>
+        <title>Feeds</title>
+    </head>
+    <body>
+        <outline xmlUrl="https://aubsebian.net/feed.xml" type="rss" htmlUrl="https://aubsebian.net"
+            text="aubsebian.net" title="aubsebian.net"/>
+        <outline title="Basic Apple Guy" text="Basic Apple Guy" htmlUrl="https://basicappleguy.com/"
+            type="rss" xmlUrl="https://basicappleguy.com/basicappleblog?format=rss"/>
+        <outline title="Bitwarden Release Notes" htmlUrl="https://bitwarden.com/help/releasenotes/"
+            xmlUrl="https://bitwarden.com/help/releasenotes/feed.xml"
+            type="rss" text="Bitwarden Release Notes"/>
+        <outline title="FoxxMD Blog" xmlUrl="https://blog.foxxmd.dev/rss.xml" text="FoxxMD Blog"
+            htmlUrl="https://blog.foxxmd.dev" type="rss"/>
+        <outline title="Immich Blog" type="rss" text="Immich Blog" htmlUrl="https://immich.app/blog"
+            xmlUrl="https://immich.app/blog/atom.xml"/>
+        <outline xmlUrl="https://jellyfin.org/posts/atom.xml" type="rss" text="Jellyfin Blog"
+            title="Jellyfin Blog" htmlUrl="https://jellyfin.org/posts"/>
+        <outline text="Mitchell Hashimoto" xmlUrl="https://mitchellh.com/feed.xml" type="rss"
+            htmlUrl="https://mitchellh.com" title="Mitchell Hashimoto"/>
+        <outline xmlUrl="https://selfh.st/tag/weekly/rss" text="Self-Host Weekly"
+            title="Self-Host Weekly" type="rss" htmlUrl="https://selfh.st/"/>
+        <outline text="Typst Blog" title="Typst Blog" type="rss" htmlUrl="https://typst.app/blog/"
+            xmlUrl="https://typst.app/blog/atom.xml"/>
+        <outline text="Android 📱" title="Android 📱">
+            <outline type="rss" text="ReadYou" title="ReadYou"
+                htmlUrl="https://github.com/ReadYouApp/ReadYou/releases"
+                xmlUrl="https://github.com/Ashinch/ReadYou/releases.atom"/>
+            <outline type="rss" htmlUrl="https://github.com/beemdevelopment/Aegis/releases"
+                title="Aegis" xmlUrl="https://github.com/beemdevelopment/Aegis/releases.atom"
+                text="Aegis"/>
+            <outline htmlUrl="https://github.com/Jays2Kings/tachiyomiJ2K/releases"
+                title="TachiyomiJ2K" text="TachiyomiJ2K" type="rss"
+                xmlUrl="https://github.com/Jays2Kings/tachiyomiJ2K/releases.atom"/>
+            <outline type="rss" text="Symfonium" htmlUrl="https://symfonium.app/" title="Symfonium"
+                xmlUrl="https://symfonium.app/rss.xml"/>
+            <outline htmlUrl="https://github.com/zhanghai/MaterialFiles/releases"
+                xmlUrl="https://github.com/zhanghai/MaterialFiles/releases.atom"
+                text="MaterialFiles" title="MaterialFiles" type="rss"/>
+        </outline>
+        <outline title="Emulators 🕹️" text="Emulators 🕹️">
+            <outline xmlUrl="https://dolphin-emu.org/blog/feeds/"
+                htmlUrl="https://dolphin-emu.org/blog/" title="Dolphin Blog" type="rss"
+                text="Dolphin Blog"/>
+            <outline title="RPCS3" text="RPCS3" type="rss" xmlUrl="https://rpcs3.net/blog/feed/"
+                htmlUrl="https://rpcs3.net/blog"/>
+            <outline text="PCSX2 Blog" type="rss" title="PCSX2 Blog"
+                htmlUrl="https://pcsx2.net/blog" xmlUrl="https://pcsx2.net/blog/rss.xml"/>
+            <outline htmlUrl="https://www.ppsspp.org/news/rss.xml" title="PPSSPP" type="rss"
+                xmlUrl="https://www.ppsspp.org/blog/rss.xml" text="PPSSPP"/>
+            <outline title="Dusklight" htmlUrl="https://github.com/TwilitRealm/dusklight/releases"
+                type="rss" xmlUrl="https://github.com/TwilitRealm/dusklight/releases.atom"
+                text="Dusklight"/>
+        </outline>
+        <outline text="iOS 📱" title="iOS 📱">
+            <outline text="Ruddar" title="Ruddar" type="rss"
+                htmlUrl="https://github.com/ruddarr/app/releases"
+                xmlUrl="https://github.com/ruddarr/app/releases.atom"/>
+            <outline xmlUrl="https://github.com/0xCUB3/wBlock/releases.atom" title="wBlock"
+                text="wBlock" type="rss" htmlUrl="https://github.com/0xCUB3/wBlock/releases"/>
+            <outline type="rss" text="streamyfin" title="streamyfin"
+                htmlUrl="https://github.com/streamyfin/streamyfin/releases"
+                xmlUrl="https://github.com/streamyfin/streamyfin/releases.atom"/>
+        </outline>
+        <outline title="MacOS 💻" text="MacOS 💻">
+            <outline text="Stats" title="Stats" htmlUrl="https://github.com/exelban/stats/releases"
+                xmlUrl="https://github.com/exelban/stats/releases.atom" type="rss"/>
+            <outline htmlUrl="https://github.com/waydabber/BetterDisplay/releases"
+                xmlUrl="https://github.com/waydabber/BetterDisplay/releases.atom"
+                text="BetterDisplay" type="rss" title="BetterDisplay"/>
+            <outline xmlUrl="https://github.com/transmission/transmission/releases.atom"
+                title="Transmission" htmlUrl="https://github.com/transmission/transmission/releases"
+                text="Transmission" type="rss"/>
+            <outline title="Iina" xmlUrl="https://github.com/iina/iina/releases.atom" text="Iina"
+                type="rss" htmlUrl="https://github.com/iina/iina/releases"/>
+            <outline type="rss" xmlUrl="https://github.com/rxhanson/Rectangle/releases.atom"
+                title="Rectangle" htmlUrl="https://github.com/rxhanson/Rectangle/releases"
+                text="Rectangle"/>
+            <outline type="rss" htmlUrl="https://github.com/mangerlahn/Latest/releases"
+                title="Latest" xmlUrl="https://github.com/mangerlahn/latest/releases.atom"
+                text="Latest"/>
+            <outline title="Obsidian Changelog" type="rss"
+                htmlUrl="https://obsidian.md/changelog.xml"
+                xmlUrl="https://obsidian.md/changelog.xml" text="Obsidian Changelog"/>
+            <outline text="Alt-tab-macos" type="rss"
+                xmlUrl="https://github.com/lwouis/alt-tab-macos/releases.atom" title="Alt-tab-macos"
+                htmlUrl="https://github.com/lwouis/alt-tab-macos/releases"/>
+            <outline type="rss" htmlUrl="https://github.com/rustdesk/rustdesk/releases"
+                xmlUrl="https://github.com/rustdesk/rustdesk/releases.atom" text="RustDesk"
+                title="RustDesk"/>
+            <outline title="BetterMouse" xmlUrl="https://better-mouse.com/rss" text="BetterMouse"
+                type="rss" htmlUrl="https://better-mouse.com"/>
+            <outline text="DockDoor" title="DockDoor" type="rss"
+                htmlUrl="https://github.com/ejbills/DockDoor/releases"
+                xmlUrl="https://github.com/ejbills/DockDoor/releases.atom"/>
+        </outline>
+        <outline text="Selfhosted 🛜" title="Selfhosted 🛜">
+            <outline title="Jellyfin" type="rss"
+                htmlUrl="https://github.com/jellyfin/jellyfin/releases"
+                xmlUrl="https://github.com/jellyfin/jellyfin/releases.atom" text="Jellyfin"/>
+            <outline text="Immich" title="Immich" type="rss"
+                htmlUrl="https://github.com/immich-app/immich/releases"
+                xmlUrl="https://github.com/immich-app/immich/releases.atom"/>
+            <outline title="Radarr" text="Radarr" type="rss"
+                xmlUrl="https://github.com/Radarr/Radarr/releases.atom"
+                htmlUrl="https://github.com/Radarr/Radarr/releases"/>
+            <outline xmlUrl="https://github.com/pi-hole/pi-hole/releases.atom"
+                htmlUrl="https://github.com/pi-hole/pi-hole/releases" type="rss" text="Pi-hole"
+                title="Pi-hole"/>
+            <outline title="RomM" text="RomM" htmlUrl="https://github.com/rommapp/romm/releases"
+                xmlUrl="https://github.com/rommapp/romm/releases.atom" type="rss"/>
+            <outline title="Pocket ID" text="Pocket ID"
+                xmlUrl="https://github.com/pocket-id/pocket-id/releases.atom" type="rss"
+                htmlUrl="https://github.com/pocket-id/pocket-id/releases"/>
+            <outline xmlUrl="https://github.com/moghtech/komodo/releases.atom" text="Komodo"
+                type="rss" title="Komodo" htmlUrl="https://github.com/moghtech/komodo/releases"/>
+        </outline>
+        <outline title="Windows 🖥️" text="Windows 🖥️">
+            <outline xmlUrl="https://github.com/sumatrapdfreader/sumatrapdf/releases.atom"
+                title="Sumatrapdf" htmlUrl="https://github.com/sumatrapdfreader/sumatrapdf/releases"
+                text="Sumatrapdf" type="rss"/>
+            <outline title="Nicotine-plus"
+                xmlUrl="https://github.com/nicotine-plus/nicotine-plus/releases.atom"
+                text="Nicotine-plus"
+                htmlUrl="https://github.com/nicotine-plus/nicotine-plus/releases" type="rss"/>
+            <outline xmlUrl="https://github.com/qarmin/czkawka/releases.atom" type="rss"
+                htmlUrl="https://github.com/qarmin/czkawka/releases" title="Czkawka" text="Czkawka"/>
+        </outline>
+    </body>
+</opml>
