@@ -32,15 +32,14 @@
     diffFilter = delta --color-only
 
 [delta]
-    # cf. path in [include] for the list of available themes    
-    # features = mellow-barbet
-    features = arctic-fox
+    # cf. $DOTFILES/Apps/delta/themes.gitconfig for the list of available themes
+    features = villsau
     navigate = true
     line-numbers = true
     true-color = always
 
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [fetch]
     # Automatically remove remote tracking branches that no longer exist
@@ -57,3 +56,6 @@
 
 [gpg]
 	format = ssh
+
+[push]
+	autoSetupRemote = true
