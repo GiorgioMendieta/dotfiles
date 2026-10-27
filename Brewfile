@@ -49,7 +49,6 @@ brew "tree"
 brew "typst"
 brew "wakeonlan"
 brew "wget"
-brew "xquartz" # X Graphics server for ssh -X sessions
 
 # ------------------------------------------------------------------------------
 # Casks
@@ -62,10 +61,9 @@ cask "apparency"
 # cask "balenaetcher"
 cask "betterdisplay"
 cask "bettermouse"
-# cask "bitwarden" # Prefer Mac App Store version (Touch ID support)
+# cask "bitwarden" # Prefer Mac App Store version
 cask "bluesnooze"
 
-# cask "cool-retro-term"
 cask "cork"
 
 cask "daisydisk"
@@ -88,15 +86,10 @@ cask "jordanbaird-ice"
 cask "karabiner-elements"
 cask "keka"
 
-cask "latest"
-# cask "linearmouse" # Replaced by bettermouse
 cask "localsend"
 cask "little-snitch"
-#cask "lookaway"
 
 cask "markedit"
-#cask "macwhisper"
-#cask "moonlight"
 
 cask "numi"
 
@@ -116,7 +109,7 @@ cask "reflex-app"
 cask "rustdesk"
 
 cask "shottr"
-cask "stats" # Replaced by iStat Menus (reverted)
+cask "stats"
 cask "sony-ps-remote-play"
 cask "syntax-highlight"
 
@@ -126,12 +119,13 @@ cask "transmission"
 cask "trex"
 
 cask "upscayl"
+cask "updatest"
 
 cask "visual-studio-code"
 
-cask "whisky"
+cask "wblock" 
 
-# cask "xquartz" # X11 graphics support (ssh)
+# cask "xquartz" # X Graphics server for ssh -X sessions
 
 # ------------------------------------------------------------------------------
 # Fonts 
