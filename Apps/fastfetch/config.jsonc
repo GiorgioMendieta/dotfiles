@@ -1,0 +1,115 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "type": "file-raw",
+        "source": "~/.config/fastfetch/invader.txt",
+        "padding": {
+            "top": 4,
+            "left": 3,
+            "right": 3
+        }
+    },
+    "display": {
+        "separator": " ",
+        "color": {
+            "keys": "38;5;180",
+            "title": "38;5;120"
+        },
+        "bar": {
+            "width": 10,
+            "char": {
+                "elapsed": "━",
+                "total": "─"
+            },
+            "border": {
+                "left": "",
+                "right": ""
+            },
+            "color": {
+                "elapsed": "38;5;223",
+                "total": "38;5;66",
+                "border": "38;5;240"
+            }
+        },
+        "size": {
+            "spaceBeforeUnit": "never",
+            "ndigits": 1
+        }
+    },
+    "modules": [
+        "title",
+        {
+            "type": "custom",
+            "format": "\u001b[38;5;240m─────────────────────────────────────────────\u001b[0m"
+        },
+        {
+            "type": "os",
+            "key": "OS     ",
+            "format": "{name} {version-id}"
+        },
+        {
+            "type": "kernel",
+            "key": "Kernel ",
+            "format": "{release}"
+        },
+        {
+            "type": "shell",
+            "key": "Shell  ",
+            "format": "{pretty-name}"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[38;5;240m─────────────────────────────────────────────\u001b[0m"
+        },
+        {
+            "type": "cpu",
+            "key": "CPU    ",
+            "format": "{name} ({cores-logical}c)",
+            "temp": false
+        },
+        {
+            "type": "memory",
+            "key": "RAM    ",
+            "format": "{percentage-bar}  {used} / {total}",
+            "percent": {
+                "type": 2
+            }
+        },
+        {
+            "type": "swap",
+            "key": "Swap   ",
+            "format": "{percentage-bar}  {used} / {total}",
+            "percent": {
+                "type": 2
+            }
+        },
+        {
+            "type": "disk",
+            "key": "Disk   ",
+            "folders": "/",
+            "format": "{size-percentage-bar}  {size-used} / {size-total}",
+            "percent": {
+                "type": 2
+            }
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[38;5;240m─────────────────────────────────────────────\u001b[0m"
+        },
+        {
+            "type": "uptime",
+            "key": "Uptime ",
+            "format": "{days}d {hours}h {minutes}m"
+        },
+        {
+            "type": "localip",
+            "key": "IP     ",
+            "showPrefixLen": false
+        },
+        {
+            "type": "colors",
+            "symbol": "circle",
+            "paddingLeft": 0
+        }
+    ]
+}

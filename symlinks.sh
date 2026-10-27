@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# This script is used to create symlinks for various configuration files in the user's home directory.
+
 source "$DOTFILES/bin/helper_scripts.sh"
 
 echo ".zshrc config file"
@@ -16,8 +19,9 @@ launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_use
 echo "Setting Linearmouse config file"
 link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
-echo "Setting Neofetch config file"
-link_dotfile "$DOTFILES/Apps/neofetch/config.conf" "$HOME/.config/neofetch/config.conf"
+echo "Setting Fastfetch config file"
+link_dotfile "$DOTFILES/Apps/fastfetch/config.jsonc" "$HOME/.config/fastfetch/config.jsonc"
+link_dotfile "$DOTFILES/Apps/fastfetch/invader.txt" "$HOME/.config/fastfetch/invader.txt"
 
 echo "Setting Vim config files"
 link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.vimrc"
@@ -53,6 +57,7 @@ curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_frappe.theme" https://github
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_macchiato.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_macchiato.theme
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_mocha.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_mocha.theme
 link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
+
 
 echo "Setting ghostty"
 mkdir -p "$HOME/.config/ghostty/themes"
