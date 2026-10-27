@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 # Quick config shortcuts
 alias zshcfg="vim $HOME/.zshrc; omz reload"
-alias aliascfg="vim $DOTFILES/aliases.zsh; omz reload" 
+alias aliascfg="vim $DOTFILES/aliases.zsh; omz reload"
 alias vimcfg="vim $DOTFILES/Apps/vim/.vimrc"
 alias sshcfg="vim $HOME/.ssh/config"
 # alias reloadshell="source $HOME/.zshrc"
@@ -40,6 +40,8 @@ setopt rm_star_silent
 # List users formatted as a table
 alias lsusers='cat /etc/passwd | column -t -s ":" -N USERNAME,PW,UID,GUID,COMMENT,HOME,INTERPRETER'
 
+# Obsidian vault
+alias pushobsidian="git add -u && git commit -m 'Manual backup' && git push"
 # ------------------------------------------------------------------------------
 # Networking
 # ------------------------------------------------------------------------------
@@ -93,7 +95,7 @@ alias library="cd $HOME/Library"
 alias dev="cd $HOME/Developer"
 #alias lab="cd $HOME/docker"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
-alias obsidianvault="cd $HOME/Developer/Obsidian-vault"
+alias obsidianvault="cd $HOME/Documents/Obsidian-vault"
 alias dusk="cd $HOME/Developer/dusklight"
 
 # Sorbonne Université
@@ -111,7 +113,7 @@ mkcd() {
 }
 
 # ------------------------------------------------------------------------------
-# tmux 
+# tmux
 # ------------------------------------------------------------------------------
 
 # Attaches tmux to the last session; creates a new session if none exists
@@ -123,7 +125,7 @@ alias tn="tmux new-session"
 
 
 # ------------------------------------------------------------------------------
-# Path 
+# Path
 # ------------------------------------------------------------------------------
 
 # Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
@@ -259,6 +261,8 @@ fi
 # ** + tab to search for files
 source <(fzf --zsh)
 
+alias tldr='tldr --list | fzf --preview "tldr --color=always {1}" --preview-window=right,60% | xargs tldr'
+
 # Show files (ls) after changing directory (cd)
 cd() {
     builtin cd "$@"
@@ -369,5 +373,10 @@ alias dcl='docker compose logs -f'
 # Dusklight aliases
 # ------------------------------------------------------------------------------
 
-alias bdusk="cmake --build --preset macos-default-relwithdebinfo"
-alias ldusk="./build/macos-default-relwithdebinfo/Dusklight.app/Contents/MacOS/Dusklight"
+#alias pdusk="cmake --preset macos-default-relwithdebinfo"
+#alias bdusk="cmake --build --preset macos-default-relwithdebinfo"
+alias bdusk="ninja -C build/macos-default-relwithdebinfo dusklight"
+alias bduska="ninja -C build/macos-default-relwithdebinfo"
+#alias bduskm="ninja -C build/macos-default-relwithdebinfo mods"
+alias ldusk="./build/macos-default-relwithdebinfo/Dusklight.app/Contents/MacOS/Dusklight" # --log-level warning"
+alias bmod="cmake --build build && /bin/cp -f ./build/mods/*.dusk /Users/giorgio/Library/Application\ Support/TwilitRealm/Dusklight/mods/"
