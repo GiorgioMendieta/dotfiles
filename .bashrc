@@ -4,7 +4,7 @@ eval "$(dircolors)"
 alias ls='ls $LS_OPTIONS'
 alias ll='ls $LS_OPTIONS -l'
 alias l='ls $LS_OPTIONS -lA'
-alias l. ='ls -d .*'
+alias l.='ls -d .*'
 
 # Some more alias to avoid making mistakes:
 # alias rm='rm -i'
@@ -20,7 +20,6 @@ alias ..='cd ../'
 alias path="echo ${PATH} | tr ':' '\n'"
 
 alias grep="grep --color=auto"
-
 alias hgrep='history | grep'
 
 cd() {

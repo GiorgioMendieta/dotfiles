@@ -6,7 +6,6 @@ alias zshcfg="vim $HOME/.zshrc; omz reload"
 alias aliascfg="vim $DOTFILES/aliases.zsh; omz reload"
 alias vimcfg="vim $DOTFILES/Apps/vim/.vimrc"
 alias sshcfg="vim $HOME/.ssh/config"
-# alias reloadshell="source $HOME/.zshrc"
 alias rsh="omz reload"
 
 # Search aliases using fzf
@@ -93,13 +92,9 @@ alias pip2="python2 -m pip"
 alias dot="cd $DOTFILES"
 alias library="cd $HOME/Library"
 alias dev="cd $HOME/Developer"
-#alias lab="cd $HOME/docker"
 alias icloud="cd $HOME/Library/Mobile\ Documents/com~apple~CloudDocs"
 alias obsidianvault="cd $HOME/Documents/Obsidian-vault"
 alias dusk="cd $HOME/Developer/dusklight"
-
-# Sorbonne Université
-alias sorbonne="cd $HOME/Developer/Sorbonne_Universite"
 
 # Create dir and immediately cd into it
 mkcd() {
@@ -130,6 +125,7 @@ alias tn="tmux new-session"
 
 # Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
 alias path='echo ${PATH} | tr ":" "\n"'
+
 
 # ------------------------------------------------------------------------------
 # Git
