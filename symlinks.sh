@@ -2,7 +2,7 @@
 
 # This script is used to create symlinks for various configuration files in the user's home directory.
 
-source "$DOTFILES/bin/helper_scripts.sh"
+source "$DOTFILES/bin/link_dotfiles.sh"
 
 echo ".zshrc config file"
 link_dotfile "$DOTFILES/.zshrc" "$HOME/.zshrc"
@@ -10,7 +10,7 @@ link_dotfile "$DOTFILES/.zshrc" "$HOME/.zshrc"
 echo "Setting Mackup config file"
 link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
 
-echo "Setting Karabiner-Elements config file"
+echo "Setting Karabiner-Elements config files"
 # For karabiner elements we need to link the whole directory
 # https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link
 ln -s "$DOTFILES/Apps/karabiner-elements" "$HOME/.config/karabiner"
@@ -19,19 +19,19 @@ launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_use
 echo "Setting Linearmouse config file"
 link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
-echo "Setting Fastfetch config file"
+echo "Setting fastfetch config files"
 link_dotfile "$DOTFILES/Apps/fastfetch/config.jsonc" "$HOME/.config/fastfetch/config.jsonc"
 link_dotfile "$DOTFILES/Apps/fastfetch/invader.txt" "$HOME/.config/fastfetch/invader.txt"
 
-echo "Setting Vim config files"
+echo "Setting vim config files"
 link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.vimrc"
 link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
 
-echo "Setting tmux config files"
+echo "Setting tmux config file"
 link_dotfile "$DOTFILES/Apps/tmux/.tmux.conf" "$HOME/.tmux.conf"
 
-echo "Setting Nano config files"
-link_dotfile "$DOTFILES/.nanorc" "$HOME/.nanorc"
+echo "Setting nano config file"
+link_dotfile "$DOTFILES/Apps/nano/.nanorc" "$HOME/.nanorc"
 
 echo "Setting nvim config file"
 link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
@@ -40,31 +40,37 @@ nvim --headless +PlugInstall +qa # Install NVIM plugins, then quit the process
 #echo "Rectangle config file"
 #link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
 
-echo "Setting bat theme"
+echo "Setting bat config and themes"
+# Config
+link_dotfile "$DOTFILES/Apps/bat/config" "$(bat --config-file)"
+# Themes
 mkdir -p "$(bat --config-dir)/themes"
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_latte.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_frappe.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_macchiato.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_mocha.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-link_dotfile "$DOTFILES/Apps/bat/config" "$(bat --config-file)"
 bat cache --build
 
 
-echo "Setting btop theme"
+echo "Setting btop config and themes"
+# Config
+link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
+# Themes
 mkdir -p "$HOME/.config/btop/themes"
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_latte.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_latte.theme
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_frappe.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_frappe.theme
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_macchiato.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_macchiato.theme
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_mocha.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_mocha.theme
-link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
 
 
-echo "Setting ghostty"
+
+echo "Setting ghostty config and themes"
+# Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
+link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/.config/ghostty/config"
+link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+# Themes
 mkdir -p "$HOME/.config/ghostty/themes"
 curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_latte.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf
 curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_frappe.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-frappe.conf
 curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_macchiato.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-macchiato.conf
 curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_mocha.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-mocha.conf
-# Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
-link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/.config/ghostty/config"
-link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
