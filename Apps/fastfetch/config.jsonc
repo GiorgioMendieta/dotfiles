@@ -66,6 +66,10 @@
             "format": "{pretty-name} {version}"
         },
         {
+            "type": "terminal",
+            "format": "{pretty-name} {version}"
+        },
+        {
             "type": "custom",
             "format": "\u001b[38;5;240m─────────────────────────────────────────────\u001b[0m"
         },
