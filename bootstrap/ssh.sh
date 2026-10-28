@@ -27,9 +27,9 @@ echo "The public key has been copied to keyboard. (pbcopy < ~/.ssh/id_ed25519.pu
 echo "Please follow the following steps to add your SSH key to your GitHub account:"
 echo ""
 
-link=https://github.com/settings/profile
+LINK=https://github.com/settings/profile
 
-echo "1. Go to the following link (cmd + double click): ${link}"
+echo "1. Go to the following link (cmd + double click): ${LINK}"
 echo "2. In the 'Access' section of the sidebar, click SSH and GPG keys."
 echo "3. Click New SSH key or Add SSH key."
 echo "4. In the 'Title' field, add a descriptive label for the new key."
