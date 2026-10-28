@@ -535,24 +535,34 @@ DOTFILES="${HOME}/.dotfiles"
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
 link_dotfile "$DOTFILES/.ssh/ssh_config" "$HOME/.ssh/config"
-run chmod 700 $HOME/.ssh && chmod 600 $HOME/.ssh/config
+run chmod 700 "$HOME/.ssh" && chmod 600 "$HOME/.ssh/config"
+
+# Check if Xcode Command Line Tools are installed
+step "Installing Xcode Command Line Tools\n"
+if ! xcode-select -p &>/dev/null; then
+  echo "Xcode Command Line Tools not found. Installing..."
+  xcode-select --install
+else
+  echo "Xcode Command Line Tools already installed."
+fi
 
 # Check for Oh My Zsh and install if we don't have it
 step "Installing Oh My Zsh\n"
-if test ! $(which omz); then
+if ! command -v omz >/dev/null 2>&1; then
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
 fi
 
 # Check for Homebrew and install if we don't have it
 step "Installing Homebrew"
-if test ! $(which brew); then
+if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$HOME/.zprofile"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# Check for Git and install if we don't have it
 step "Veryfing git installation\n"
-if test ! $(which git); then
+if ! command -v git >/dev/null 2>&1; then
   echo "Git is not installed, installing it now...\n"
   run brew install git
 fi
@@ -612,21 +622,15 @@ chapter "Installing App settings"
 step "Raycast config file"
 echo "Open Raycast > Settings > Advanced > Import/Export > Import and load the file located at $DOTFILES/Apps/Raycast/"
 
-step "Adguard for Safari config file"
-echo "Open Adguard for Safari > General > Import Settings and load the file located at $DOTFILES/Apps/Adguard/"
-
 step "Little Snitch config file"
 echo "Open Little Snitch > File > Restore from Backup… and load the file located at $DOTFILES/Apps/Little_Snitch/"
-
-step "iStat Menus config file"
-echo "Open iStat Menus > File > Import Settings… and load the file located at $DOTFILES/Apps/iStat_Menus/"
 
 ##############################################
 chapter "Directories"
 ##############################################
 step "Creating directories\n"
 # Create a Developer directory
-run mkdir $HOME/Developer
+run mkdir "$HOME/Developer"
 
 ##############################################
 chapter "Git configuration"
