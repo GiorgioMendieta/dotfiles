@@ -1,12 +1,16 @@
+// More info about modules: https://github.com/fastfetch-cli/fastfetch-wiki/blob/master/Modules.md
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
-        "type": "file-raw",
+        "type": "file",
         "source": "~/.config/fastfetch/invader.txt",
         "padding": {
             "top": 4,
-            "left": 3,
-            "right": 3
+            "left": 4,
+            "right": 6
+        },
+        "color": {
+            "1": "38;5;180"
         }
     },
     "display": {
@@ -32,8 +36,12 @@
             }
         },
         "size": {
-            "spaceBeforeUnit": "never",
+            "spaceBeforeUnit": "always",
             "ndigits": 1
+        },
+        "key": {
+            "width": 12, // Aligns keys to this width
+            "type": "string"
         }
     },
     "modules": [
@@ -44,18 +52,18 @@
         },
         {
             "type": "os",
-            "key": "OS     ",
+            "key": "OS",
             "format": "{name} {version-id}"
         },
         {
             "type": "kernel",
-            "key": "Kernel ",
+            "key": "Kernel",
             "format": "{release}"
         },
         {
             "type": "shell",
-            "key": "Shell  ",
-            "format": "{pretty-name}"
+            "key": "Shell",
+            "format": "{pretty-name} {version}"
         },
         {
             "type": "custom",
@@ -63,13 +71,12 @@
         },
         {
             "type": "cpu",
-            "key": "CPU    ",
-            "format": "{name} ({cores-logical}c)",
-            "temp": false
+            "key": "CPU",
+            "format": "{name} ({core-types}c) @ {freq-max}"
         },
         {
             "type": "memory",
-            "key": "RAM    ",
+            "key": "RAM",
             "format": "{percentage-bar}  {used} / {total}",
             "percent": {
                 "type": 2
@@ -77,7 +84,7 @@
         },
         {
             "type": "swap",
-            "key": "Swap   ",
+            "key": "Swap",
             "format": "{percentage-bar}  {used} / {total}",
             "percent": {
                 "type": 2
@@ -85,7 +92,7 @@
         },
         {
             "type": "disk",
-            "key": "Disk   ",
+            "key": "Disk",
             "folders": "/",
             "format": "{size-percentage-bar}  {size-used} / {size-total}",
             "percent": {
@@ -98,7 +105,7 @@
         },
         {
             "type": "uptime",
-            "key": "Uptime ",
+            "key": "Uptime",
             "format": "{days}d {hours}h {minutes}m"
         },
         {
@@ -107,9 +114,13 @@
             "showPrefixLen": false
         },
         {
+            "type": "command",
+            "key": "Tailscale",
+            "text": "tailscale ip -4"
+        },
+        {
             "type": "colors",
-            "symbol": "circle",
-            "paddingLeft": 0
+            "symbol": "circle"
         }
     ]
 }
