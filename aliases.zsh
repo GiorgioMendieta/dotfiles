@@ -131,9 +131,6 @@ alias tn="tmux new-session"
 # Show PATH in readable view (Replace or (tr)anslate ':' with '\n')
 alias path='echo ${PATH} | tr ":" "\n"'
 
-# Add personal scripts to path
-add_to_path "${DOTFILES}/bin"
-
 # ------------------------------------------------------------------------------
 # Git
 # ------------------------------------------------------------------------------

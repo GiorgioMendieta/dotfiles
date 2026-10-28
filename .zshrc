@@ -1,10 +1,6 @@
 # Path to your dotfiles.
 export DOTFILES="$HOME/.dotfiles"
 
-# Source personal functions
-source ${DOTFILES}/bin/path.sh
-source ${DOTFILES}/bin/link_dotfiles.sh
-
 if [[ "$(uname -s)" == "Linux" ]]; then
   export EDITOR="/usr/bin/vim"
 fi
@@ -27,6 +23,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$DOTFILES/bin:${PATH}"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -102,7 +99,7 @@ ZSH_CUSTOM=$DOTFILES
 plugins=(
   git
   fzf-tab
-  zsh-autosuggestions 
+  zsh-autosuggestions
   zsh-syntax-highlighting
   )
 
@@ -169,7 +166,7 @@ export FZF_DEFAULT_OPTS=" \
 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
 --color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
 --color=selected-bg:#494d64 \
---multi" 
+--multi"
 
 ## fzf-tab
 # Use FZF_DEFAULT_OPTS
@@ -192,20 +189,6 @@ fi
 
 # Homebrew
 zstyle ':fzf-tab:complete:brew-(install|uninstall|search|info):*-argument-rest' fzf-preview 'brew info $word'
-
-#####################################
-## QT5
-#####################################
-#If you need to have qt@5 first in your PATH, run:
-# export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
-#For compilers to find qt@5 you may need to set:
-# export LDFLAGS="-L/opt/homebrew/opt/qt@5/lib"
-# export CPPFLAGS="-I/opt/homebrew/opt/qt@5/include"
-#For pkg-config to find qt@5 you may need to set:
-# export PKG_CONFIG_PATH="/opt/homebrew/opt/qt@5/lib/pkgconfig"
-# Fix for CMake
-# export CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5/lib/cmake/Qt5":$CMAKE_PREFIX_PATH
-# export Qt5_DIR="/opt/homebrew/opt/qt@5/lib/cmake/Qt5"
 
 #####################################
 ## History
