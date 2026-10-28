@@ -529,7 +529,7 @@ chapter "Installing CLI utilities"
 ##############################################
 
 # Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
-source "$DOTFILES/scripts/helper_scripts.sh"
+source "$DOTFILES/bin/link_dotfiles.sh"
 DOTFILES="${HOME}/.dotfiles"
 
 step "Setting ssh config file"
@@ -603,7 +603,7 @@ run brew bundle --file "$DOTFILES/Brewfile"
 chapter "Symlinking dotfiles…"
 ##############################################
 
-./symlinks.sh
+run ./bootstrap/symlinks.sh
 
 ##############################################
 chapter "Installing App settings"
@@ -637,8 +637,8 @@ link_dotfile "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
 link_dotfile "$DOTFILES/.gitignore_global" "$HOME/.gitignore_global"
 
 step "Clone Github repositories\n"
-run chmod +x ./clone.sh
-run ./clone.sh
+run chmod +x ./bootstrap/clone.sh
+run ./bootstrap/clone.sh
 
 step "Set GitHub signing key"
 echo "Open https://github.com/settings/keys and add your SSH public key located at $HOME/.ssh/id_ed25519.pub"

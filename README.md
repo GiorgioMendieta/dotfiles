@@ -36,7 +36,7 @@ After backing up your old Mac you may now follow these install instructions to s
 4. Run the installation with:
 
     ```zsh
-    cd ~/.dotfiles && ./fresh.sh
+    cd ~/.dotfiles && ./bootstrap/bootstrap.sh
     ```
 
 5. Follow the prompts appearing on screen
