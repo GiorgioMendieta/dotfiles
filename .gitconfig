@@ -13,15 +13,51 @@
 [color]
     ui = auto
 
+[pretty]
+	lo = tformat:%C(auto)%h%C(reset)%C(auto)%d%C(reset) %s %C(italic blue)%ad%C(reset) %C(241)%aN%C(reset)
+
 [alias]
-    # List available aliases
-    aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
-    # Display tree-like log, because default log is a pain…
-    lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cblue(%an - %C(bold)%ad)%Creset' -10
-    cm = commit -m
-    cam = commit -am
+    # Inspired by https://github.com/alfunx/.dotfiles/blob/master/.gitconfig
+    # Pretty log (default one is pretty bad)
+    l = log --graph --date=relative --pretty=lo
+    lr = log --graph --date=relative --pretty=lo -10 # log recent 10 commits
+
+    # Commit
+    cm  = commit -m
+    ca  = commit --amend
+	can = commit --amend --no-edit
+
+    # rebase
+	r  = rebase
+	ra = rebase --abort
+	rc = rebase --continue
+
+    # cherry-pick
+	cp  = cherry-pick
+	cpa = cherry-pick --abort
+	cpc = cherry-pick --continue
+	cpq = cherry-pick --quit
+
+    last-diff = diff HEAD~1 HEAD
     st = status -sb
     co = checkout
+    su = submodule update --init --recursive
+    d  = diff
+
+    # show authors and and commit counts
+	#    git thanks [<git-log-args>...]
+	thanks = "!f() { git log --pretty=tformat:'%aN <%aE>' \"$@\" | sort | uniq -c | sort -rn; }; f"
+
+    # Open GitHub repository in browser
+    #    git open [<remote>]
+    open = "!f() { \
+        URL=$(git remote get-url \"${1:-origin}\") || return; \
+        URL=${URL%.git}; \
+        URL=${URL#git@github.com:}; \
+        URL=\"${URL#https://github.com/}\"; \
+        case \"$URL\" in */*) ;; *) echo \"Unsupported remote URL: $URL\" >&2; return 1 ;; esac; \
+        open \"https://github.com/$URL\"; \
+    }; f"
 
 [core]
     excludesfile = ~/.gitignore_global
