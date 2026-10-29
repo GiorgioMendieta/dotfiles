@@ -168,39 +168,47 @@
     merge-conflict-theirs-diff-header-style = "#F1FA8C" bold
     merge-conflict-theirs-diff-header-decoration-style = "#434C5E" box
 
-[delta "mellow-barbet"]
-    # author: https://github.com/kvrohit
-    # To configure terminal colors see https://github.com/kvrohit/mellow.nvim#terminals
+[delta "giorgio"]
+    # author: https://github.com/GiorgioMendieta
+    # ref: https://github.com/dandavison/delta/blob/main/manual/src/full---help-output.md
     dark = true
-    syntax-theme = base16
+    syntax-theme = Catppuccin Macchiato
     line-numbers = true
     side-by-side = true
-    file-style = brightwhite
-    file-decoration-style = none
-    file-added-label = [+]
-    file-copied-label = [==]
-    file-modified-label = [*]
-    file-removed-label = [-]
-    file-renamed-label = [->]
-    hunk-header-decoration-style = "#3e3e43" box ul
-    plus-style = brightgreen black
-    plus-emph-style = bold darkgreen green
-    minus-style = brightred black
-    minus-emph-style = bold darkred red
-    line-numbers-minus-style = brightred
-    line-numbers-plus-style = brightgreen
-    line-numbers-left-style = "#3e3e43"
-    line-numbers-right-style = "#3e3e43"
-    line-numbers-zero-style = "#57575f"
-    zero-style = syntax
-    whitespace-error-style = black bold
-    blame-code-style = syntax
-    blame-palette = "#161617" "#1b1b1d" "#2a2a2d" "#3e3e43"
+    whitespace-error-style  = black bold
+    # Hunk header
+    hunk-header-style = omit
+    # File status
+    file-style              = brightwhite
+    file-decoration-style   = ul "#4e5563"
+    file-modified-label     = [M] # (M)odified
+    file-added-label        = [A] # (A)dded
+    file-removed-label      = [D] # (D)eleted
+    file-renamed-label      = [R] # (R)enamed
+    file-copied-label       = [C] # (C)opied
+    # Line changes
+    minus-style         = syntax "#433548"
+    minus-emph-style    = bold "#433548" brightred
+    plus-style          = syntax "#384149"
+    plus-emph-style     = bold "#384149" brightgreen
+    zero-style          = syntax
+    # Line numbers
+    line-numbers-minus-style    = brightred
+    line-numbers-plus-style     = brightgreen
+    line-numbers-left-style     = "#664658" # "#433548"
+    line-numbers-right-style    = "#4E5F58" # "#384149"
+    line-numbers-zero-style     = "#57575f"
+    line-numbers-left-format    = "{nm:>3}│" # Right align
+    line-numbers-right-format   = "{np:>3}│"
+    # Blame
+    blame-code-style    = syntax
+    blame-palette       = "#161617" "#1b1b1d" "#2a2a2d" "#3e3e43"
+    # Merge conflict
     merge-conflict-begin-symbol = ~
-    merge-conflict-end-symbol = ~
-    merge-conflict-ours-diff-header-style = yellow bold
-    merge-conflict-ours-diff-header-decoration-style = "#3e3e43" box
-    merge-conflict-theirs-diff-header-style = yellow bold
+    merge-conflict-end-symbol   = ~
+    merge-conflict-ours-diff-header-style   = bold yellow
+    merge-conflict-ours-diff-header-decoration-style   = "#3e3e43" box
+    merge-conflict-theirs-diff-header-style = bold yellow
     merge-conflict-theirs-diff-header-decoration-style = "#3e3e43" box
 
 [delta "arctic-fox"]
