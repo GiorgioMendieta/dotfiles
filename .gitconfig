@@ -33,7 +33,7 @@
 
 [delta]
     # cf. $DOTFILES/Apps/delta/themes.gitconfig for the list of available themes
-    features = villsau
+    features = mellow-barbet
     navigate = true
     line-numbers = true
     true-color = always
