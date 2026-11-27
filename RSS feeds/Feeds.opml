@@ -92,7 +92,7 @@
                 title="PCSX2 Blog"
                 type="rss"
                 xmlUrl="https://pcsx2.net/blog/rss.xml"/>
-            <outline htmlUrl="https://www.ppsspp.org/news/rss.xml"
+            <outline htmlUrl="https://www.ppsspp.org/news/"
                 text="PPSSPP"
                 title="PPSSPP"
                 type="rss"
@@ -213,6 +213,21 @@
                 title="Komodo"
                 type="rss"
                 xmlUrl="https://github.com/moghtech/komodo/releases.atom"/>
+            <outline htmlUrl="https://github.com/Freika/dawarich/releases"
+                text="Dawarich"
+                title="Dawarich"
+                type="rss"
+                xmlUrl="https://github.com/Freika/dawarich/releases.atom"/>
+            <outline htmlUrl="https://github.com/johanohly/AirTrail/releases"
+                text="AirTrail"
+                title="AirTrail"
+                type="rss"
+                xmlUrl="https://github.com/johanohly/AirTrail/releases.atom"/>
+            <outline htmlUrl="https://github.com/caddyserver/caddy/releases"
+                text="Caddy"
+                title="Caddy"
+                type="rss"
+                xmlUrl="https://github.com/caddyserver/caddy/releases.atom"/>
         </outline>
         <outline text="Windows 🖥️" title="Windows 🖥️">
             <outline htmlUrl="https://github.com/sumatrapdfreader/sumatrapdf/releases"
