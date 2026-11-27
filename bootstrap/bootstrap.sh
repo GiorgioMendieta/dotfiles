@@ -163,6 +163,20 @@ run defaults write com.apple.screencaptureui "thumbnailExpiration" -float 10
 # Move windows by clicking and dragging anywhere + ctrl + cmd
 defaults write -g NSWindowShouldDragOnGesture -bool true
 
+step "Enable using touch ID for pam authentication? [Y/n]: "
+case $(
+  read choice
+  echo $choice
+) in
+[nN])
+  echo ""
+  ;;
+[yY] | *)
+  echo ""
+  run echo "auth       sufficient     pam_tid.so" | sudo tee /private/etc/pam.d/sudo_local > /dev/null
+  ;;
+esac
+
 ##############################################
 chapter "Adjusting input device settings"
 ##############################################
