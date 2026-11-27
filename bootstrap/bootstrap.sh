@@ -2,6 +2,15 @@
 # Thanks to https://mths.be/macos
 # More info : https://macos-defaults.com
 
+set -Eeuo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES="$(cd "$SCRIPT_DIR/.." && pwd)"
+export DOTFILES
+
+# Load helper functions
+source "$DOTFILES/bin/link_dotfiles.sh"
+
 function getAdminPassword() {
   # Ask for the administrator password upfront.
   step "Admin password is required for install..."
@@ -13,6 +22,37 @@ function getAdminPassword() {
     sleep 60
     kill -0 "$$" || exit
   done 2>/dev/null &
+}
+
+confirm() {
+  local prompt="$1"
+  local default="${2:-no}"
+  local answer
+
+  while true; do
+    if [[ "$default" == "yes" ]]; then
+      step_prompt "$prompt [Y/n]: "
+    else
+      step_prompt "$prompt [y/N]: "
+    fi
+
+    answer=""
+    if ! IFS= read -r answer; then
+      printf '\n'
+      return 1
+    fi
+    case "${answer,,}" in
+      y|yes) return 0 ;;
+      n|no) return 1 ;;
+      "")
+        [[ "$default" == "yes" ]]
+        return
+        ;;
+      *)
+        printf 'Please answer yes or no.\n'
+        ;;
+    esac
+  done
 }
 
 # Script's color palette (https://misc.flogisoft.com/bash/tip_colors_and_formatting)
@@ -55,16 +95,54 @@ step() {
   fi
 }
 
+step_prompt() {
+  printf '%s%s' "$arrow" "$1"
+}
+
 # Print the executed command with a dim color
 run() {
-  echo -e "${dim}▹ $@ $reset"
-  eval $@
-  echo ""
+  local status
+
+  printf '%s▹' "$dim"
+  printf ' %q' "$@"
+  printf '%s\n' "$reset"
+  if "$@"; then
+    printf '\n'
+  else
+    status=$?
+    printf 'Command failed with status %d.\n' "$status" >&2
+    return "$status"
+  fi
 }
 
 _getBundleID() {
   mdls -raw -name kMDItemCFBundleIdentifier "$1"
 }
+
+clone_git_checkout() {
+  local repository="$1"
+  local destination="$2"
+
+  if [[ -d "$destination/.git" || -f "$destination/.git" ]]; then
+    return 0
+  fi
+  if [[ -e "$destination" ]]; then
+    printf 'Clone destination exists but is not a Git checkout: %s\n' "$destination" >&2
+    return 1
+  fi
+  run git clone --depth=1 "$repository" "$destination"
+}
+
+# Check for Xcode Command Line Tools before changing any system settings.
+step "Checking Xcode Command Line Tools\n"
+if ! xcode-select -p &>/dev/null; then
+  echo "Xcode Command Line Tools not found. Installing..."
+  xcode-select --install
+  echo "Complete the Command Line Tools installation, then run this bootstrap again."
+  exit 0
+else
+  echo "Xcode Command Line Tools already installed."
+fi
 
 ############################################################################################
 
@@ -76,20 +154,12 @@ headline "     Follow the prompts and you'll be fine.     "
 headline "                                                "
 echo ""
 
-# Close any open System Preferences panes, to prevent them from overriding
+# Close any open System Settings panes, to prevent them from overriding
 # settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
+osascript -e 'tell application "System Settings" to quit'
 
 getAdminPassword
 
-#chapter "Test chapter"
-#step "test step [Y/n]: "
-#exit
-
-function getUserInfo() {
-  read -p "What is your name? " NAME
-  read -p "What is your email address? " EMAIL
-}
 
 ##############################################
 chapter "Adjusting general settings"
@@ -104,34 +174,6 @@ chapter "Adjusting general settings"
 #run sudo scutil --set LocalHostName "'$computer_name'"
 #run sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "'$computer_name'"
 
-step "Disable OS X Gate Keeper? (You'll be able to install any app you want from here on, not just Mac App Store apps) [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run sudo spctl --master-disable
-  run sudo defaults write /var/db/SystemPolicy-prefs.plist enabled -string no
-  ;;
-esac
-
-step "Disable the “Are you sure you want to open this application?” dialog? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.LaunchServices LSQuarantine -bool false
-  ;;
-esac
 
 # Prevent Photos from opening automatically when devices are plugged in
 run defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
@@ -161,41 +203,21 @@ run defaults write com.apple.screencapture disable-shadow -bool true
 run defaults write com.apple.screencaptureui "thumbnailExpiration" -float 10
 
 # Move windows by clicking and dragging anywhere + ctrl + cmd
-defaults write -g NSWindowShouldDragOnGesture -bool true
+run defaults write -g NSWindowShouldDragOnGesture -bool true
 
-step "Enable using touch ID for pam authentication? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
+if confirm "Enable using Touch ID for sudo authentication?" yes; then
   run echo "auth       sufficient     pam_tid.so" | sudo tee /private/etc/pam.d/sudo_local > /dev/null
-  ;;
-esac
+fi
 
 ##############################################
 chapter "Adjusting input device settings"
 ##############################################
 
-step "Enable tap to click for this user and for the login screen? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
+if confirm "Enable tap to click for the trackpad?" yes; then
   run defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
   run defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
   run defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-  ;;
-esac
+fi
 
 # Enable full keyboard access for all controls? (e.g. enable Tab in modal dialogs)
 run defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
@@ -254,28 +276,18 @@ run sudo pmset -b sleep 5
 chapter "Adjusting locale settings"
 ##############################################
 
-step "Set custom language and text formats? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
+if confirm "Set custom language and text formats?" no; then
   # Note: Replace to your locale
-  run defaults write NSGlobalDomain AppleLanguages -array "en-MX" "es-MX" "ru-MX"
+  run defaults write NSGlobalDomain AppleLanguages -array "en-GB" "es-MX" "fr-MX" "ru-MX"
   run defaults write NSGlobalDomain AppleLocale -string "en_MX@currency=MXN"
   run defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
   run defaults write NSGlobalDomain AppleMetricUnits -bool true
   # Show language menu in the top right corner of the boot screen
   run sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
   # Set the timezone; see `sudo systemsetup -listtimezones` for other values
+  # Note: change to "America/Mexico_City" if needed
   run sudo systemsetup -settimezone "Europe/Paris" >/dev/null
-  # run sudo systemsetup -settimezone "America/Mexico_City" > /dev/null
-  ;;
-esac
+fi
 
 ##############################################
 chapter "Adjusting Finder settings"
@@ -317,7 +329,10 @@ run defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 run defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # Show the ~/Library folder
-run chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
+run chflags nohidden "$HOME/Library"
+if xattr -p com.apple.FinderInfo "$HOME/Library" >/dev/null 2>&1; then
+  run xattr -d com.apple.FinderInfo "$HOME/Library"
+fi
 
 # Expand the following File Info panes:
 # “General”, “Open with”, and “Sharing & Permissions”
@@ -348,27 +363,43 @@ chapter "Adjusting Dock, Dashboard, and hot corners"
 # Set Dock orientation to the left
 run defaults write com.apple.dock orientation -string "left"
 
-step "Change the icon size (in px) of Dock items? [54/n]: "
-read tilesize
+step_prompt "Change the icon size (in px) of Dock items? [54/n]: "
+tilesize=""
+read -r tilesize || true
 case $tilesize in
 [nN])
   echo ""
   ;;
+ "")
+  run defaults write com.apple.dock tilesize -int 54
+  ;;
 *)
-  echo ""
-  run defaults write com.apple.dock tilesize -int ${tilesize:-54}
+  if [[ "$tilesize" =~ ^[0-9]+$ ]]; then
+    run defaults write com.apple.dock tilesize -int "$tilesize"
+  else
+    printf 'Invalid Dock icon size: %s\n' "$tilesize" >&2
+    exit 1
+  fi
   ;;
 esac
 
-step "Change the magnification size (in px) of Dock items when hovering over them? [82/n]: "
-read largesize
+step_prompt "Change the magnification size (in px) of Dock items when hovering over them? [82/n]: "
+largesize=""
+read -r largesize || true
 case $largesize in
 [nN])
   echo ""
   ;;
+ "")
+  run defaults write com.apple.dock largesize -int 82
+  ;;
 *)
-  echo ""
-  run defaults write com.apple.dock largesize -int ${largesize:-82}
+  if [[ "$largesize" =~ ^[0-9]+$ ]]; then
+    run defaults write com.apple.dock largesize -int "$largesize"
+  else
+    printf 'Invalid Dock magnification size: %s\n' "$largesize" >&2
+    exit 1
+  fi
   ;;
 esac
 
@@ -418,16 +449,7 @@ run defaults write com.apple.dock show-recents -bool false
 # 12: Notification Center
 # 13: Lock Screen
 
-step "Set custom Hot corners? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
+if confirm "Set custom Hot corners?" yes; then
   echo "Top right screen corner → Mission Control"
   run defaults write com.apple.dock wvous-tr-corner -int 2
   defaults write com.apple.dock wvous-tr-modifier -int 0
@@ -443,8 +465,7 @@ case $(
   echo "Bottom right screen corner → Desktop"
   run defaults write com.apple.dock wvous-br-corner -int 4
   defaults write com.apple.dock wvous-br-modifier -int 0
-  ;;
-esac
+fi
 
 ##############################################
 chapter "Safari & WebKit settings"
@@ -476,94 +497,37 @@ run defaults write com.apple.AdLib forceLimitAdTracking -bool true
 chapter "Adjusting Mac App Store settings"
 ##############################################
 
-step "Enable the automatic update check? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
-  run defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-  ;;
-esac
+run defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -int 1
+run defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
-step "Download newly available updates in background? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
+if confirm "Download newly available updates in background?" yes; then
   run defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
-  ;;
-esac
+fi
 
-step "Install System data files & security updates? [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
-  ;;
-esac
+run defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
 
 ##############################################
 chapter "Custom App shortcuts"
 ##############################################
-step "Set custom App Shortcuts? (Keyboard → Keyboard Shortcuts → App Shortcuts) [Y/n]: "
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run chmod +x ./scripts/add-macos-keyboard-shortcuts.sh
-  run ./scripts/add-macos-keyboard-shortcuts.sh
-  ;;
-esac
+if confirm "Set custom App shortcuts? (Keyboard → Keyboard Shortcuts → App Shortcuts)" yes; then
+  run bash "$DOTFILES/scripts/add-macos-keyboard-shortcuts.sh"
+fi
 
 
 ##############################################
 chapter "Installing CLI utilities"
 ##############################################
 
-# Removes .{filename} from $HOME (if it exists) and symlinks the file from ~/.dotfiles
-source "$DOTFILES/bin/link_dotfiles.sh"
-DOTFILES="${HOME}/.dotfiles"
-
 step "Setting ssh config file"
 # More info : https://linuxize.com/post/using-the-ssh-config-file/
 link_dotfile "$DOTFILES/.ssh/ssh_config" "$HOME/.ssh/config"
-run chmod 700 "$HOME/.ssh" && chmod 600 "$HOME/.ssh/config"
-
-# Check if Xcode Command Line Tools are installed
-step "Installing Xcode Command Line Tools\n"
-if ! xcode-select -p &>/dev/null; then
-  echo "Xcode Command Line Tools not found. Installing..."
-  xcode-select --install
-else
-  echo "Xcode Command Line Tools already installed."
-fi
+run chmod 700 "$HOME/.ssh"
+run chmod 600 "$HOME/.ssh/config"
 
 # Check for Oh My Zsh and install if we don't have it
 step "Installing Oh My Zsh\n"
-if ! command -v omz >/dev/null 2>&1; then
-  /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh | /bin/sh
 fi
 
 # Check for Homebrew and install if we don't have it
@@ -581,53 +545,37 @@ if ! command -v git >/dev/null 2>&1; then
   run brew install git
 fi
 
-# Install Powerlevel10k theme on the ZSH_CUSTOM path, else to the default path
-step "Install Powerlevel 10k theme? [y/n]"
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run sudo rm -R ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-  run git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+# Install Oh My Zsh customizations in the ZSH_CUSTOM path (cf. .zshrc)
+if confirm "Install Powerlevel10k theme?" yes; then
+  clone_git_checkout https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
   link_dotfile "$DOTFILES/.p10k.zsh" "$HOME/.p10k.zsh"
-  ;;
-esac
+fi
 
-step "Set fzf as the default completion engine for zsh? [y/n]"
-case $(
-  read choice
-  echo $choice
-) in
-[nN])
-  echo ""
-  ;;
-[yY] | *)
-  echo ""
-  run git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
-  ;;
-esac
+if confirm "Install fzf-tab, autosuggestions, and syntax-highlighting plugins?" yes; then
+  mkdir -p "$ZSH_CUSTOM/plugins"
+  clone_git_checkout https://github.com/Aloxaf/fzf-tab "$ZSH_CUSTOM/plugins/fzf-tab"
+  clone_git_checkout https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+  clone_git_checkout https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+fi
 
 
 ##############################################
-chapter "Installing Homebrew formulae and casks…"
+chapter "Installing Homebrew packages…"
 ##############################################
-step "Homebrew formulae and casks\n"
+step "Homebre formulae and casks\n"
 # Update Homebrew recipes
 run brew update
-# Install all our dependencies with homebrew bundle (See Brewfile)
-run brew bundle --file "$DOTFILES/Brewfile"
+
+if confirm "Install Homebrew Bundle packages?" yes; then
+  run brew bundle --file "$DOTFILES/homebrew/Brewfile"
+fi
 
 
 ##############################################
 chapter "Symlinking dotfiles…"
 ##############################################
 
-run ./bootstrap/symlinks.sh
+run bash "$DOTFILES/bootstrap/symlinks.sh"
 
 ##############################################
 chapter "Installing App settings"
@@ -644,7 +592,7 @@ chapter "Directories"
 ##############################################
 step "Creating directories\n"
 # Create a Developer directory
-run mkdir "$HOME/Developer"
+run mkdir -p "$HOME/Developer"
 
 ##############################################
 chapter "Git configuration"
@@ -655,8 +603,7 @@ link_dotfile "$DOTFILES/.gitconfig" "$HOME/.gitconfig"
 link_dotfile "$DOTFILES/.gitignore_global" "$HOME/.gitignore_global"
 
 step "Clone Github repositories\n"
-run chmod +x ./bootstrap/clone.sh
-run ./bootstrap/clone.sh
+run bash "$DOTFILES/bootstrap/clone.sh"
 
 step "Set GitHub signing key"
 echo "Open https://github.com/settings/keys and add your SSH public key located at $HOME/.ssh/id_ed25519.pub"
@@ -673,33 +620,33 @@ else
   bundleid=$(_getBundleID "$app")
 
   # Use `~/Documents/Torrents` to store incomplete downloads
-  run defaults write ${bundleid} UseIncompleteDownloadFolder -bool true
-  run defaults write ${bundleid} IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
+  run defaults write "$bundleid" UseIncompleteDownloadFolder -bool true
+  run defaults write "$bundleid" IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
 
   # Use `~/Downloads` to store completed downloads
-  run defaults write ${bundleid} DownloadLocationConstant -bool true
+  run defaults write "$bundleid" DownloadLocationConstant -bool true
 
   # Don’t prompt for confirmation before downloading
-  run defaults write ${bundleid} DownloadAsk -bool false
-  run defaults write ${bundleid} MagnetOpenAsk -bool false
+  run defaults write "$bundleid" DownloadAsk -bool false
+  run defaults write "$bundleid" MagnetOpenAsk -bool false
 
   # Don’t prompt for confirmation before removing non-downloading active transfers
-  run defaults write ${bundleid} CheckRemoveDownloading -bool true
+  run defaults write "$bundleid" CheckRemoveDownloading -bool true
 
   # Trash original torrent files
-  run defaults write ${bundleid} DeleteOriginalTorrent -bool true
+  run defaults write "$bundleid" DeleteOriginalTorrent -bool true
 
   # Hide the donate message
-  run defaults write ${bundleid} WarningDonate -bool false
+  run defaults write "$bundleid" WarningDonate -bool false
 
   # Hide the legal disclaimer
-  run defaults write ${bundleid} WarningLegal -bool false
+  run defaults write "$bundleid" WarningLegal -bool false
 
   # IP block list.
-  run defaults write ${bundleid} BlocklistNew -bool true
-  run defaults write ${bundleid} BlocklistURL -string "http://list.iblocklist.com/?list=fr&fileformat=p2p&archiveformat=gz"
-  run defaults write ${bundleid} BlocklistAutoUpdate -bool true
+  run defaults write "$bundleid" BlocklistNew -bool true
+  run defaults write "$bundleid" BlocklistURL -string "http://list.iblocklist.com/?list=fr&fileformat=p2p&archiveformat=gz"
+  run defaults write "$bundleid" BlocklistAutoUpdate -bool true
 
   # Randomize port on launch
-  run defaults write ${bundleid} RandomPort -bool true
+  run defaults write "$bundleid" RandomPort -bool true
 fi

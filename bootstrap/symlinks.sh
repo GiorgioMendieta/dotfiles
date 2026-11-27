@@ -1,4 +1,5 @@
 #!/bin/bash
+set -Eeuo pipefail
 
 # This script is used to create symlinks for various configuration files in the user's home directory.
 
@@ -13,8 +14,11 @@ link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
 echo "Setting Karabiner-Elements config files"
 # For karabiner elements we need to link the whole directory
 # https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link
-ln -s "$DOTFILES/Apps/karabiner-elements" "$HOME/.config/karabiner"
-launchctl kickstart -k gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server
+link_dotfile "$DOTFILES/Apps/karabiner-elements" "$HOME/.config/karabiner"
+karabiner_service="gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server"
+if launchctl print "$karabiner_service" >/dev/null 2>&1; then
+  launchctl kickstart -k "$karabiner_service"
+fi
 
 echo "Setting Linearmouse config file"
 link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
@@ -29,7 +33,9 @@ link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
 
 echo "Setting tmux config file"
 link_dotfile "$DOTFILES/Apps/tmux/.tmux.conf" "$HOME/.tmux.conf"
-tmux source-file ~/.tmux.conf
+if tmux has-session 2>/dev/null; then
+  tmux source-file "$HOME/.tmux.conf"
+fi
 
 echo "Setting nano config file"
 link_dotfile "$DOTFILES/Apps/nano/.nanorc" "$HOME/.nanorc"
