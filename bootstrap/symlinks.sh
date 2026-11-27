@@ -29,6 +29,7 @@ link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
 
 echo "Setting tmux config file"
 link_dotfile "$DOTFILES/Apps/tmux/.tmux.conf" "$HOME/.tmux.conf"
+tmux source-file ~/.tmux.conf
 
 echo "Setting nano config file"
 link_dotfile "$DOTFILES/Apps/nano/.nanorc" "$HOME/.nanorc"
