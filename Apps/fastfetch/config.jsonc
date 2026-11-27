@@ -118,11 +118,6 @@
             "showPrefixLen": false
         },
         {
-            "type": "command",
-            "key": "Tailscale",
-            "text": "tailscale ip -4"
-        },
-        {
             "type": "colors",
             "symbol": "circle"
         }
