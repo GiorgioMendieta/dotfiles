@@ -1,19 +1,27 @@
 # Path to your dotfiles.
 export DOTFILES="$HOME/.dotfiles"
 
-if [[ "$(uname -s)" == "Linux" ]]; then
-  export EDITOR="/usr/bin/vim"
-fi
-
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  export EDITOR="/opt/homebrew/bin/nvim"
+if command -v nvim >/dev/null 2>&1; then
+  export EDITOR="$(command -v nvim)"
+else
+  export EDITOR="$(command -v vim)"
 fi
 
 export VISUAL="$EDITOR"
 
+#####################################
+## Homebrew
+#####################################
+export HOMEBREW_CLEANUP_MAX_AGE_DAYS=30
 # Custom location for Homebrew Bundle file
-export HOMEBREW_BUNDLE_FILE="$DOTFILES/Brewfile"
+export HOMEBREW_BUNDLE_FILE="$DOTFILES/homebrew/Brewfile"
+# Disable Homebrew Bundle dumping VSCode extensions to Brewfile
+export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=1
 
+
+#####################################
+## oh-my-zsh themes
+#####################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -32,7 +40,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ -d "$ZSH/custom/themes/powerlevel10k" ]]; then
+  ZSH_THEME="powerlevel10k/powerlevel10k"
+else
+  ZSH_THEME="robbyrussell"
+fi
 # ZSH_THEME="amuse"
 
 # Set list of themes to pick from when loading at random
@@ -133,7 +145,9 @@ export LANG=en_US.UTF-8
 # source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [[ -d "$ZSH_CUSTOM/themes/powerlevel10k" && -f "$HOME/.p10k.zsh" ]]; then
+  source "$HOME/.p10k.zsh"
+fi
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
@@ -218,4 +232,5 @@ HISTIGNORE="(ls|ll|la|cd|pwd|exit|cd ..)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # osxphotos completion
-. /Users/giorgio/.local/share/osxphotos/shell-completion/osxphotos-completion.zsh
+osxphotos_completion="$HOME/.local/share/osxphotos/shell-completion/osxphotos-completion.zsh"
+[[ ! -f "$osxphotos_completion" ]] || source "$osxphotos_completion"
