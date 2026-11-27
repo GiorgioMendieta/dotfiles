@@ -171,7 +171,9 @@
 [delta "giorgio"]
     # author: https://github.com/GiorgioMendieta
     # ref: https://github.com/dandavison/delta/blob/main/manual/src/full---help-output.md
+    # General
     dark = true
+    tabs = 4
     syntax-theme = Catppuccin Macchiato
     line-numbers = true
     side-by-side = true
@@ -203,6 +205,7 @@
     # Blame
     blame-code-style    = syntax
     blame-palette       = "#161617" "#1b1b1d" "#2a2a2d" "#3e3e43"
+    blame-format        = "{commit:<8.8} {author:<14.14} {timestamp:>14}"
     # Merge conflict
     merge-conflict-begin-symbol = ~
     merge-conflict-end-symbol   = ~
