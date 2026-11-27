@@ -133,6 +133,8 @@ clone_git_checkout() {
   run git clone --depth=1 "$repository" "$destination"
 }
 
+############################################################################################
+
 # Check for Xcode Command Line Tools before changing any system settings.
 step "Checking Xcode Command Line Tools\n"
 if ! xcode-select -p &>/dev/null; then
@@ -144,7 +146,6 @@ else
   echo "Xcode Command Line Tools already installed."
 fi
 
-############################################################################################
 
 # Just a little welcome screen
 echo ""

@@ -74,6 +74,9 @@
     line-numbers = true
     true-color = always
 
+[blame]
+    pager = delta
+
 [merge]
     conflictstyle = zdiff3
 

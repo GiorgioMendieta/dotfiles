@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# Organize files in the specified directory into subdirectories based on the first character of their names.
+
 # Keep [a-zA-Z] ranges strictly ASCII regardless of the user's locale.
 export LC_COLLATE=C
 
