@@ -2,7 +2,7 @@
 # Taps
 # ------------------------------------------------------------------------------
 tap "homebrew/services"
-tap "RhetTbull/osxphotos"
+tap "RhetTbull/osxphotos" # Apple Photos cli tool
 
 # ------------------------------------------------------------------------------
 # CLI tools
@@ -53,82 +53,76 @@ brew "wget"
 # ------------------------------------------------------------------------------
 # Casks
 # ------------------------------------------------------------------------------
-# cask "aerial" # Prefer built-in screensavers  
-# cask "aldente"
+# cask "aerial" # Prefer built-in screensavers
+# cask "aldente" # Charge limiter for MacBooks
 # cask "alt-tab" # Replaced by dockdoor
-cask "apparency"
+cask "apparency" # Inspect application bundles
 
-# cask "balenaetcher"
-cask "betterdisplay"
-cask "bettermouse"
+# cask "balenaetcher" # Flash OS images to SD cards & USB drives
+cask "betterdisplay" # Display management and calibration
+cask "bettermouse" # Customize 3rd party mice
 # cask "bitwarden" # Prefer Mac App Store version
-cask "bluesnooze"
+cask "bluesnooze" # Prevents your sleeping computer from connecting to Bluetooth accessories
 
-cask "cork"
+cask "daisydisk" # Disk space analyzer
+cask "dockdoor" # Dock switcher and window manager
+cask "dolphin@dev" # Nintendo GameCube and Wii emulator
+cask "dusklight" # TLoZ Twilight Princess port
 
-cask "daisydisk"
-cask "dockdoor"
-cask "dolphin@dev"
-cask "dusklight"
-
-cask "firefox"
+cask "firefox" # Web browser
 cask "fliqlo" # Clock wallpaper
 
-cask "ghostty"
-cask "google-chrome"
+cask "ghostty" # Fast terminal emulator
 
-cask "iina"
-cask "iterm2"
+cask "iina" # Modern media player
 
 cask "jellyfin-media-player"
-cask "jordanbaird-ice"
 
-cask "karabiner-elements"
-cask "keka"
+cask "karabiner-elements" # Keyboard customizer
+cask "keka" # File archiver
 
-cask "localsend"
-cask "little-snitch"
+cask "localsend" # Local file sharing over LAN
+cask "little-snitch" # Network monitor and firewall
 
-cask "markedit"
+cask "markedit" # Markdown editor
 
-cask "numi"
+cask "numi" # Calculator app
 
-cask "obsidian"
-cask "onyx"
+cask "obsidian" # Knowledge management and note-taking app
+cask "onyx" # Maintenance and optimization tool
 
-cask "pcsx2"
-cask "pearcleaner"
-cask "ppsspp-emulator"
-cask "protonvpn"
+cask "pcsx2" # PlayStation 2 emulator
+cask "pearcleaner" # System cleaner and optimization tool
+cask "ppsspp-emulator" # PSP emulator
+cask "protonvpn" # VPN service for secure and private internet access
 
-cask "qlmarkdown"
-cask "qlvideo"
+cask "qlvideo" # Quick Look plugin for video files
 
-cask "raycast"
-cask "reflex-app"
-cask "rustdesk"
+cask "raycast" # Productivity and launcher app
+cask "reflex-app" # Send media keys to Apple Music and Spotify
+cask "rustdesk" # Remote desktop software
 
-cask "shottr"
-cask "stats"
-cask "sony-ps-remote-play"
-cask "syntax-highlight"
+cask "shottr" # Screenshot and annotation tool
+cask "stats" # System monitoring app
+cask "sony-ps-remote-play" # Remote play for PlayStation consoles
+cask "syntax-highlight" # Quick Look plugin for syntax highlighting
 
-cask "tailscale-app"
-cask "tradingview"
-cask "transmission"
-cask "trex"
+cask "tailscale-app" # Tailscale VPN client
+cask "tradingview" # Trading platform and charting tool
+cask "transmission" # BitTorrent client
+cask "trex" # OCR tool for text recognition
 
-cask "upscayl"
-cask "updatest"
+cask "upscayl" # Image upscaling and enhancement tool
+cask "updatest" # Update management tool
 
-cask "visual-studio-code"
+cask "visual-studio-code" # IDE
 
-cask "wblock" 
+cask "wblock" # Ad blocker for Safari
 
 # cask "xquartz" # X Graphics server for ssh -X sessions
 
 # ------------------------------------------------------------------------------
-# Fonts 
+# Fonts
 # ------------------------------------------------------------------------------
 cask "font-fira-code"
 cask "font-meslo-lg-nerd-font"
@@ -138,28 +132,18 @@ cask "font-meslo-lg-nerd-font"
 # ------------------------------------------------------------------------------
 
 # Safari extensions
-mas "AdGuard for Safari", id: 1440147259
 mas "Consent-O-Matic", id: 1606897889
 mas "Hover for Safari", id: 1540705431
 mas "Hush", id: 1544743900
 mas "Keepa - Price Tracker", id: 1533805339
 mas "Protego", id: 6737959724
 
-# Microsoft
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft To Do", id: 1274495053
-mas "Microsoft Word", id: 462054704
-#mas "Microsoft OneNote", id: 784801555
-mas "OneDrive", id: 823766827
-
 mas "Bitwarden", id: 1352778147
 mas "ColorSlurp", id: 1287239339
-mas "Developer", id: 640199958
 mas "Flighty", id: 1358823008
 mas "Flow", id: 1423210932
 mas "Keynote", id: 409183694
-mas "Klack", id: 6446206067 
+mas "Klack", id: 6446206067
 mas "Mela", id: 1568924476
 mas "Pi-hole Remote", id: 1515445551
 mas "Playlisty for Apple Music", id: 1459275972
