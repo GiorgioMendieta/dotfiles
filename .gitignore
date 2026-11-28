@@ -1,6 +1,6 @@
-Apps/karabiner/automatic_backups
+apps/karabiner/automatic_backups
 plugins/
 
-Apps/immich/env
-Apps/vim/.vim/autoload/
-Apps/vim/.vim/plugged/
+apps/immich/.env
+apps/vim/.vim/autoload/
+apps/vim/.vim/plugged/

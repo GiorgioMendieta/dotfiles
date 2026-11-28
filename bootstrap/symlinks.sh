@@ -14,42 +14,42 @@ link_dotfile "$DOTFILES/.mackup.cfg" "$HOME/.mackup.cfg"
 echo "Setting Karabiner-Elements config files"
 # For karabiner elements we need to link the whole directory
 # https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/#about-symbolic-link
-link_dotfile "$DOTFILES/Apps/karabiner-elements" "$HOME/.config/karabiner"
+link_dotfile "$DOTFILES/apps/karabiner-elements" "$HOME/.config/karabiner"
 karabiner_service="gui/$(id -u)/org.pqrs.service.agent.karabiner_console_user_server"
 if launchctl print "$karabiner_service" >/dev/null 2>&1; then
   launchctl kickstart -k "$karabiner_service"
 fi
 
 echo "Setting Linearmouse config file"
-link_dotfile "$DOTFILES/Apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
+link_dotfile "$DOTFILES/apps/linearmouse/linearmouse.json" "$HOME/.config/linearmouse/linearmouse.json"
 
 echo "Setting fastfetch config files"
-link_dotfile "$DOTFILES/Apps/fastfetch/config.jsonc" "$HOME/.config/fastfetch/config.jsonc"
-link_dotfile "$DOTFILES/Apps/fastfetch/invader.txt" "$HOME/.config/fastfetch/invader.txt"
+link_dotfile "$DOTFILES/apps/fastfetch/config.jsonc" "$HOME/.config/fastfetch/config.jsonc"
+link_dotfile "$DOTFILES/apps/fastfetch/invader.txt" "$HOME/.config/fastfetch/invader.txt"
 
 echo "Setting vim config files"
-link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.vimrc"
-link_dotfile "$DOTFILES/Apps/vim/.vim" "$HOME/.vim"
+link_dotfile "$DOTFILES/apps/vim/.vimrc" "$HOME/.vimrc"
+link_dotfile "$DOTFILES/apps/vim/.vim" "$HOME/.vim"
 
 echo "Setting tmux config file"
-link_dotfile "$DOTFILES/Apps/tmux/.tmux.conf" "$HOME/.tmux.conf"
+link_dotfile "$DOTFILES/apps/tmux/.tmux.conf" "$HOME/.tmux.conf"
 if tmux has-session 2>/dev/null; then
   tmux source-file "$HOME/.tmux.conf"
 fi
 
 echo "Setting nano config file"
-link_dotfile "$DOTFILES/Apps/nano/.nanorc" "$HOME/.nanorc"
+link_dotfile "$DOTFILES/apps/nano/.nanorc" "$HOME/.nanorc"
 
 echo "Setting nvim config file"
-link_dotfile "$DOTFILES/Apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
+link_dotfile "$DOTFILES/apps/vim/.vimrc" "$HOME/.config/nvim/init.vim"
 nvim --headless +PlugInstall +qa # Install NVIM plugins, then quit the process
 
 #echo "Rectangle config file"
-#link_dotfile "$DOTFILES/Apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
+#link_dotfile "$DOTFILES/apps/Rectangle/RectangleConfig.json" "$HOME/Library/Application Support/Rectangle/RectangleConfig.json"
 
 echo "Setting bat config and themes"
 # Config
-link_dotfile "$DOTFILES/Apps/bat/config" "$(bat --config-file)"
+link_dotfile "$DOTFILES/apps/bat/config" "$(bat --config-file)"
 # Themes
 mkdir -p "$(bat --config-dir)/themes"
 curl -fsSL -o "$(bat --config-dir)/themes/catppuccin_latte.tmTheme" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
@@ -61,7 +61,7 @@ bat cache --build
 
 echo "Setting btop config and themes"
 # Config
-link_dotfile "$DOTFILES/Apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
+link_dotfile "$DOTFILES/apps/btop/btop.conf" "$HOME/.config/btop/btop.conf"
 # Themes
 mkdir -p "$HOME/.config/btop/themes"
 curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_latte.theme" https://github.com/catppuccin/btop/raw/main/themes/catppuccin_latte.theme
@@ -73,8 +73,8 @@ curl -fsSL -o "$HOME/.config/btop/themes/catppuccin_mocha.theme" https://github.
 
 echo "Setting ghostty config and themes"
 # Create a symlink to the actual config file to be opened by ghostty (Cmd + ,)
-link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/.config/ghostty/config"
-link_dotfile "$DOTFILES/Apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
+link_dotfile "$DOTFILES/apps/ghostty/config" "$HOME/.config/ghostty/config"
+link_dotfile "$DOTFILES/apps/ghostty/config" "$HOME/Library/Application Support/com.mitchellh.ghostty/config"
 # Themes
 mkdir -p "$HOME/.config/ghostty/themes"
 curl -fsSL -o "$HOME/.config/ghostty/themes/catppuccin_latte.conf" https://github.com/catppuccin/ghostty/raw/main/themes/catppuccin-latte.conf

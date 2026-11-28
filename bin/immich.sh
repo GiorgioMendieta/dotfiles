@@ -39,7 +39,7 @@ if [ -z "${DOTFILES:-}" ]; then
 fi
 
 # Get immich api key from env variable file
-[ -f "${DOTFILES}/Apps/immich/env" ] && source "${DOTFILES}/Apps/immich/env"
+[ -f "${DOTFILES}/apps/immich/.env" ] && source "${DOTFILES}/apps/immich/.env"
 
 _immich_scan_library() {
     _log INFO "Triggering Immich library scan..."

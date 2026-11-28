@@ -4,7 +4,7 @@
 # Quick config shortcuts
 alias zshcfg="vim $HOME/.zshrc; omz reload"
 alias aliascfg="vim $DOTFILES/aliases.zsh; omz reload"
-alias vimcfg="vim $DOTFILES/Apps/vim/.vimrc"
+alias vimcfg="vim $DOTFILES/apps/vim/.vimrc"
 alias sshcfg="vim $HOME/.ssh/config"
 alias rsh="omz reload"
 
@@ -41,6 +41,7 @@ alias lsusers='cat /etc/passwd | column -t -s ":" -N USERNAME,PW,UID,GUID,COMMEN
 
 # Obsidian vault
 alias pushobsidian="git add -u && git commit -m 'Manual backup' && git push"
+
 # ------------------------------------------------------------------------------
 # Networking
 # ------------------------------------------------------------------------------
@@ -165,6 +166,10 @@ if [[ "$(uname -s)" == "Linux" ]]; then
   alias outdated="sudo apt update >/dev/null 2>&1; apt list --upgradeable | tail -n +2 | awk '{print \$1, \$6, \$2}' | tr -d ']' | column -t -N 'PACKAGE NAME','OLD VERSION','NEW VERSION'"
 fi
 
+# Remove quarantine flag (macOS)
+unquarantine() {
+    xattr -r -d com.apple.quarantine /Applications/$1.app
+}
 
 # ------------------------------------------------------------------------------
 # Useful replacements

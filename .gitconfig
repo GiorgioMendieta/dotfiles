@@ -5,7 +5,7 @@
 
 [include]
     # Delta diff viewer theme
-    path = ~/.dotfiles/Apps/delta/themes.gitconfig
+    path = ~/.dotfiles/apps/delta/themes.gitconfig
 
 [init]
     defaultBranch = main
@@ -63,12 +63,13 @@
     excludesfile = ~/.gitignore_global
     editor = nvim
     pager = delta
+	ignorecase = false
 
 [interactive]
     diffFilter = delta --color-only
 
 [delta]
-    # cf. $DOTFILES/Apps/delta/themes.gitconfig for the list of available themes
+    # cf. $DOTFILES/apps/delta/themes.gitconfig for the list of available themes
     features = giorgio
     navigate = true
     line-numbers = true
